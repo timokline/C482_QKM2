@@ -2,23 +2,17 @@ package kline.qkmii.inventorymgmtsystem.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
-import javafx.stage.Stage;
-import kline.qkmii.inventorymgmtsystem.InvMgmtSysMain;
+import kline.qkmii.inventorymgmtsystem.util.FilePath;
+import kline.qkmii.inventorymgmtsystem.util.SceneManager;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainMenuController implements Initializable {
-
-    Stage stage;
-    Parent scene;
+public class MainMenuController extends SceneManager implements Initializable {
 
     @FXML
     private Button menuExitBtn;
@@ -84,12 +78,9 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void handlePartsAddBtnEvent(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource("view/add-part-form.fxml"));
-        scene = new Scene(fxmlLoader.load(), 600, 400).getRoot();
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        stage.setTitle("YAY!");
-        stage.setScene(scene.getScene());
-        stage.show();
+        //TODO: create State Machine for Add/Modify
+        //      - Change Labels & methods
+        switchScenes(event, FilePath.PARTS_SCENE);
     }
 
     @FXML
@@ -103,12 +94,9 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void handlePartsModBtnEvent(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource("view/modify-part-form.fxml"));
-        scene = new Scene(fxmlLoader.load(), 600, 400).getRoot();
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        stage.setTitle("YAY!");
-        stage.setScene(scene.getScene());
-        stage.show();
+        //TODO: create State Machine for Add/Modify
+        //      - Change Labels & methods
+        switchScenes(event, FilePath.PARTS_SCENE);
     }
 
     @FXML
@@ -118,12 +106,9 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void handleProdAddBtnEvent(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource("view/add-prod-form.fxml"));
-        scene = new Scene(fxmlLoader.load(), 600, 400).getRoot();
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        stage.setTitle("YAY!");
-        stage.setScene(scene.getScene());
-        stage.show();
+        //TODO: create State Machine for Add/Modify
+        //      - Change Labels & methods
+        switchScenes(event, FilePath.PRODUCT_SCENE);
     }
 
     @FXML
@@ -137,12 +122,9 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void handleProdModBtnEvent(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource("view/modify-product-form.fxml"));
-        scene = new Scene(fxmlLoader.load(), 600, 400).getRoot();
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        stage.setTitle("YAY!");
-        stage.setScene(scene.getScene());
-        stage.show();
+        //TODO: create State Machine for Add/Modify
+        //      - Change Labels & methods
+        switchScenes(event, FilePath.MAIN_MENU);
     }
 
     @FXML

@@ -8,4 +8,6 @@ module kline.qkmii.inventorymgmtsystem {
     opens kline.qkmii.inventorymgmtsystem.controller to javafx.fxml;
     exports kline.qkmii.inventorymgmtsystem.model;
     opens kline.qkmii.inventorymgmtsystem.model to javafx.fxml;
+    exports kline.qkmii.inventorymgmtsystem.util;
+    opens kline.qkmii.inventorymgmtsystem.util to javafx.fxml;
 }
