@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="rough mockup for add/modify product fxml file; fixed bad duplication of modify-part-form.fxml">
+    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="Added skeleton of fxml into add parts controller class; various fx:id and handle methods created. refactoring">
+      <change afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/FilePath.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/SceneManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/InvMgmtSysMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/InvMgmtSysMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/AddPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/AddPartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-part-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-part-form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/main-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/main-form.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +25,9 @@
         <option value="JavaFXApplication" />
         <option value="JUnit5 Test Class" />
         <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -55,6 +60,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="kline.qkmii.inventorymgmtsystem.controller" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\TimothyAlbert\.repos\.Java\C482_QKM2\src\main\java\kline\qkmii\inventorymgmtsystem\model" />
       <recent name="C:\Users\TimothyAlbert\.repos\.Java\C482_QKM2\src\main\java\kline\qkmii\inventorymgmtsystem\controller" />
@@ -94,7 +102,8 @@
       <option name="presentableId" value="Default" />
       <updated>1660200365039</updated>
       <workItem from="1660200366277" duration="5073000" />
-      <workItem from="1660239283580" duration="21042000" />
+      <workItem from="1660239283580" duration="23861000" />
+      <workItem from="1660333442209" duration="4547000" />
     </task>
     <task id="LOCAL-00001" summary="Initial outline and setup based on UML diagram">
       <created>1660205356356</created>
@@ -124,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660259471160</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added skeleton of fxml into main menu controller class; various fx:id and handle methods created.">
+      <created>1660283495152</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1660283495152</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,7 +162,9 @@
     <MESSAGE value="rough mockup for main menu fxml file" />
     <MESSAGE value="rough mockup for add/modify parts fxml file" />
     <MESSAGE value="rough mockup for add/modify product fxml file; fixed bad duplication of modify-part-form.fxml" />
-    <option name="LAST_COMMIT_MESSAGE" value="rough mockup for add/modify product fxml file; fixed bad duplication of modify-part-form.fxml" />
+    <MESSAGE value="Added skeleton of fxml into main menu controller class; various fx:id and handle methods created." />
+    <MESSAGE value="Added skeleton of fxml into add parts controller class; various fx:id and handle methods created. refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added skeleton of fxml into add parts controller class; various fx:id and handle methods created. refactoring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -159,6 +177,11 @@
           <properties class="java.lang.IllegalStateException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/InvMgmtSysMain.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

@@ -15,7 +15,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="669.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kline.qkmii.inventorymgmtsystem.controller.AddPartController">
    <children>
       <VBox layoutX="35.0" layoutY="54.0" prefHeight="415.0" prefWidth="548.0">
@@ -27,12 +26,11 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="147.0" selected="true" text="In-House">
+                  <RadioButton fx:id="inSrcRBtn" mnemonicParsing="false" onAction="#handleInSrcBtnEvent" prefHeight="17.0" prefWidth="147.0" selected="true" text="In-House">
                      <toggleGroup>
-                        <ToggleGroup fx:id="PartType" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="97.0" text="Outsourced" toggleGroup="$PartType" />
+                        <ToggleGroup fx:id="partSrc" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="outSrcRBtn" mnemonicParsing="false" onAction="#handleOutSrcBtnEvent" prefHeight="17.0" prefWidth="97.0" text="Outsourced" toggleGroup="$partSrc" />
                </children>
             </HBox>
             <GridPane prefHeight="210.0" prefWidth="546.0">
@@ -56,14 +54,14 @@
                   <Label text="Inv" GridPane.rowIndex="2" />
                   <Label text="Price/Cost" GridPane.rowIndex="3" />
                   <Label text="Max" GridPane.rowIndex="4" />
-                  <Label text="Machine ID" GridPane.rowIndex="5" />
-                  <TextField editable="false" promptText="Auto Gen: Disabled" GridPane.columnIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="sourceLBL" text="Machine ID" GridPane.rowIndex="5" />
+                  <TextField fx:id="idTF" editable="false" promptText="Auto Gen: Disabled" GridPane.columnIndex="1" />
+                  <TextField fx:id="nameTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="invTF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="unitTF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="maxPartsTF" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="minPartsTF" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <TextField fx:id="sourceTF" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="83.0" text="Min" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                </children>
                <padding>
@@ -72,8 +70,8 @@
             </GridPane>
             <ButtonBar prefHeight="40.0" prefWidth="508.0">
               <buttons>
-                  <Button mnemonicParsing="false" text="Save" />
-                <Button mnemonicParsing="false" text="Cancel" />
+                  <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#handleSaveBtnEvent" text="Save" />
+                <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#handleCancelBtnEvent" text="Cancel" />
               </buttons>
                <padding>
                   <Insets right="50.0" />
