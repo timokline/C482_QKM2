@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kline.qkmii.inventorymgmtsystem.controller.MainMenuController">
    <children>
       <VBox prefHeight="363.0" prefWidth="768.0">
          <children>
@@ -30,25 +37,25 @@
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Text>
-                                    <TextField prefHeight="25.0" prefWidth="171.0" promptText="Search by Part Id or Number" />
+                                    <TextField fx:id="partsQueryTF" onInputMethodTextChanged="#handlePartsQueryInput" prefHeight="25.0" prefWidth="171.0" promptText="Search by Part Id or Number" />
                                  </children>
                                  <VBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </VBox.margin>
                               </HBox>
-                              <TableView fx:id="parts_table" prefHeight="155.0" prefWidth="327.0">
+                              <TableView fx:id="partsTBLV" prefHeight="155.0" prefWidth="327.0">
                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="Part ID" />
-                                  <TableColumn prefWidth="75.0" text="Part Name" />
-                                  <TableColumn prefWidth="75.0" text="Inventory Level" />
-                                    <TableColumn prefWidth="75.0" text="Price/Cost per Unit" />
+                                    <TableColumn fx:id="partIDCol" prefWidth="75.0" text="Part ID" />
+                                  <TableColumn fx:id="partNameCol" prefWidth="75.0" text="Part Name" />
+                                  <TableColumn fx:id="partInvCol" prefWidth="75.0" text="Inventory Level" />
+                                    <TableColumn fx:id="partUnitCol" prefWidth="75.0" text="Price/Cost per Unit" />
                                 </columns>
                               </TableView>
                               <ButtonBar prefHeight="40.0" prefWidth="200.0">
                                 <buttons>
-                                  <Button mnemonicParsing="false" text="Add" />
-                                    <Button mnemonicParsing="false" text="Modify" />
-                                    <Button mnemonicParsing="false" text="Delete" />
+                                  <Button fx:id="partsAddBtn" mnemonicParsing="false" onAction="#handlePartsAddBtnEvent" text="Add" />
+                                    <Button fx:id="partsModifyBtn" mnemonicParsing="false" onAction="#handlePartsModBtnEvent" text="Modify" />
+                                    <Button fx:id="partsDeleteBtn" mnemonicParsing="false" onAction="#handlePartsDelBtnEvent" text="Delete" />
                                 </buttons>
                                  <padding>
                                     <Insets right="10.0" />
@@ -65,25 +72,25 @@
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Text>
-                                    <TextField prefHeight="25.0" prefWidth="171.0" promptText="Search by Part Id or Number" />
+                                    <TextField fx:id="prodQueryTF" onInputMethodTextChanged="#handleProdQueryInput" prefHeight="25.0" prefWidth="171.0" promptText="Search by Part Id or Number" />
                                  </children>
                                  <VBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </VBox.margin>
                               </HBox>
-                              <TableView fx:id="parts_table1" prefHeight="155.0" prefWidth="327.0">
+                              <TableView fx:id="prodTBLV" prefHeight="155.0" prefWidth="327.0">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="Product ID" />
-                                    <TableColumn prefWidth="75.0" text="Product Name" />
-                                    <TableColumn prefWidth="75.0" text="Inventory Level" />
-                                    <TableColumn prefWidth="75.0" text="Price/Cost per Unit" />
+                                    <TableColumn fx:id="prodIDCol" prefWidth="75.0" text="Product ID" />
+                                    <TableColumn fx:id="prodNameCol" prefWidth="75.0" text="Product Name" />
+                                    <TableColumn fx:id="prodInvCol" prefWidth="75.0" text="Inventory Level" />
+                                    <TableColumn fx:id="prodUnitCol" prefWidth="75.0" text="Price/Cost per Unit" />
                                  </columns>
                               </TableView>
                               <ButtonBar prefHeight="40.0" prefWidth="200.0">
                                  <buttons>
-                                    <Button mnemonicParsing="false" text="Add" />
-                                    <Button mnemonicParsing="false" text="Modify" />
-                                    <Button mnemonicParsing="false" text="Delete" />
+                                    <Button fx:id="prodAddBtn" mnemonicParsing="false" onAction="#handleProdAddBtnEvent" text="Add" />
+                                    <Button fx:id="prodModifyBtn" mnemonicParsing="false" onAction="#handleProdModBtnEvent" text="Modify" />
+                                    <Button fx:id="prodDeleteBtn" mnemonicParsing="false" onAction="#handleProdDelBtnEvent" text="Delete" />
                                  </buttons>
                                  <padding>
                                     <Insets right="10.0" />
@@ -95,7 +102,7 @@
                   </HBox>
                   <ButtonBar prefHeight="24.0" prefWidth="743.0">
                     <buttons>
-                      <Button minWidth="67.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Exit" />
+                      <Button fx:id="menuExitBtn" minWidth="67.0" mnemonicParsing="false" onAction="#handleExitBtnEvent" prefHeight="25.0" prefWidth="82.0" text="Exit" />
                     </buttons>
                      <VBox.margin>
                         <Insets right="25.0" />
