@@ -22,4 +22,8 @@ public abstract class SceneManager {
         stage.setScene(scene.getScene());
         stage.show();
     }
+
+    public void returnToMenu(ActionEvent event) throws IOException {
+        switchScenes(event, FilePath.MAIN_MENU);
+    }
 }
