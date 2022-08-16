@@ -124,7 +124,7 @@ public class MainMenuController extends SceneManager implements Initializable {
     void handleProdModBtnEvent(ActionEvent event) throws IOException {
         //TODO: create State Machine for Add/Modify
         //      - Change Labels & methods
-        switchScenes(event, FilePath.MAIN_MENU);
+        switchScenes(event, FilePath.PRODUCT_SCENE);
     }
 
     @FXML

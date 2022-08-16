@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-
+//Interface class for handle-event methods
 interface IPartsCTRLR {
     void handleSaveBtnEvent(ActionEvent event) throws IOException;
 
@@ -28,6 +28,9 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
 
     @FXML
     protected ToggleGroup PartSrc;
+
+    @FXML
+    protected Label partLBL;
 
     @FXML
     protected Button cancelBtn;
@@ -68,7 +71,7 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     protected ArrayList<TextField> editableTextFields;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle){
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         editableTextFields = new ArrayList<>(Arrays.asList(nameTF, invTF, unitTF, maxPartsTF, minPartsTF, sourceTF));
         sceneManager = new SceneManager() {/*No overrides. Use super*/
         };

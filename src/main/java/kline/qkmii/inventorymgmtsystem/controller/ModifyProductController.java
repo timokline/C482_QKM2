@@ -1,13 +1,14 @@
 package kline.qkmii.inventorymgmtsystem.controller;
 
-import javafx.fxml.Initializable;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
 
-public class ModifyProductController implements Initializable {
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+public class ModifyProductController extends ProductsController {
 
+    @FXML
+    public void handleSaveBtnEvent(ActionEvent event) throws IOException {
+        super.sceneManager.returnToMenu(event);
     }
 }
