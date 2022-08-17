@@ -18,7 +18,6 @@ public abstract class SceneManager {
         FXMLLoader fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
         scene = new Scene(fxmlLoader.load()).getRoot();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow(); //Might be a bug w/ type-casting
-        stage.setTitle("YAY!");
         stage.setScene(scene.getScene());
         stage.show();
     }

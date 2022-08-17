@@ -12,22 +12,23 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public class MainMenuController extends SceneManager implements Initializable {
 
     @FXML
     private Button menuExitBtn;
 
     @FXML
-    private TableColumn<?, ?> partIDCol;
+    private TableColumn<Part, Integer> partIDCol;
 
     @FXML
-    private TableColumn<?, ?> partInvCol;
+    private TableColumn<Part, Integer> partInvCol;
 
     @FXML
-    private TableColumn<?, ?> partNameCol;
+    private TableColumn<Part, String> partNameCol;
 
     @FXML
-    private TableColumn<?, ?> partUnitCol;
+    private TableColumn<Part, Double> partUnitCol;
 
     @FXML
     private Button partsAddBtn;
@@ -42,7 +43,7 @@ public class MainMenuController extends SceneManager implements Initializable {
     private TextField partsQueryTF;
 
     @FXML
-    private TableView<?> partsTBLV;
+    private TableView<Part> partsTBLV;
 
     @FXML
     private Button prodAddBtn;
@@ -51,25 +52,25 @@ public class MainMenuController extends SceneManager implements Initializable {
     private Button prodDeleteBtn;
 
     @FXML
-    private TableColumn<?, ?> prodIDCol;
+    private TableColumn<Product, Integer> prodIDCol;
 
     @FXML
-    private TableColumn<?, ?> prodInvCol;
+    private TableColumn<Product, Integer> prodInvCol;
 
     @FXML
     private Button prodModifyBtn;
 
     @FXML
-    private TableColumn<?, ?> prodNameCol;
+    private TableColumn<Product, String> prodNameCol;
 
     @FXML
     private TextField prodQueryTF;
 
     @FXML
-    private TableView<?> prodTBLV;
+    private TableView<Product> prodTBLV;
 
     @FXML
-    private TableColumn<?, ?> prodUnitCol;
+    private TableColumn<Product, Double> prodUnitCol;
 
     @FXML
     void handleExitBtnEvent(ActionEvent event) {
@@ -80,7 +81,7 @@ public class MainMenuController extends SceneManager implements Initializable {
     void handlePartsAddBtnEvent(ActionEvent event) throws IOException {
         //TODO: create State Machine for Add/Modify
         //      - Change Labels & methods
-        switchScenes(event, FilePath.PARTS_SCENE);
+        switchScenes(event, FilePath.ADD_PARTS_SCENE);
     }
 
     @FXML
@@ -96,7 +97,7 @@ public class MainMenuController extends SceneManager implements Initializable {
     void handlePartsModBtnEvent(ActionEvent event) throws IOException {
         //TODO: create State Machine for Add/Modify
         //      - Change Labels & methods
-        switchScenes(event, FilePath.PARTS_SCENE);
+        switchScenes(event, FilePath.MODIFY_PARTS_SCENE);
     }
 
     @FXML
@@ -108,7 +109,7 @@ public class MainMenuController extends SceneManager implements Initializable {
     void handleProdAddBtnEvent(ActionEvent event) throws IOException {
         //TODO: create State Machine for Add/Modify
         //      - Change Labels & methods
-        switchScenes(event, FilePath.PRODUCT_SCENE);
+        switchScenes(event, FilePath.ADD_PRODUCT_SCENE);
     }
 
     @FXML
@@ -124,7 +125,7 @@ public class MainMenuController extends SceneManager implements Initializable {
     void handleProdModBtnEvent(ActionEvent event) throws IOException {
         //TODO: create State Machine for Add/Modify
         //      - Change Labels & methods
-        switchScenes(event, FilePath.PRODUCT_SCENE);
+        switchScenes(event, FilePath.MODIFY_PRODUCT_SCENE);
     }
 
     @FXML
@@ -136,5 +137,4 @@ public class MainMenuController extends SceneManager implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Main Menu initialized.");
     }
-
 }

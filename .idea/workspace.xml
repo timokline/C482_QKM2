@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="refactored redundant code; created base abstract classes w/ interface for add/modify parts/product controllers">
+    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="Created ProductsController abstract w/ interface class. misc. refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/AddProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/AddProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/InvMgmtSysMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/InvMgmtSysMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/AddPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/AddPartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/MainMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ModifyProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ModifyProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/PartsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/PartsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ProductsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ProductsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/FilePath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/FilePath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-part-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-part-form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-product-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-product-form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/SceneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-part-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-part-form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-product-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-product-form.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +107,8 @@
       <workItem from="1660239283580" duration="23861000" />
       <workItem from="1660333442209" duration="16475000" />
       <workItem from="1660386504596" duration="347000" />
-      <workItem from="1660613232880" duration="949000" />
+      <workItem from="1660613232880" duration="10564000" />
+      <workItem from="1660707428803" duration="5714000" />
     </task>
     <task id="LOCAL-00001" summary="Initial outline and setup based on UML diagram">
       <created>1660205356356</created>
@@ -164,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660347932019</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Created ProductsController abstract w/ interface class. misc. refactoring">
+      <created>1660617614689</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1660617614689</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,7 +200,8 @@
     <MESSAGE value="Added skeleton of fxml into add parts controller class; various fx:id and handle methods created. added utility classes" />
     <MESSAGE value="refactored menu controller and app main for utility classes" />
     <MESSAGE value="refactored redundant code; created base abstract classes w/ interface for add/modify parts/product controllers" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored redundant code; created base abstract classes w/ interface for add/modify parts/product controllers" />
+    <MESSAGE value="Created ProductsController abstract w/ interface class. misc. refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created ProductsController abstract w/ interface class. misc. refactoring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -204,11 +214,6 @@
           <properties class="java.lang.IllegalStateException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/InvMgmtSysMain.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

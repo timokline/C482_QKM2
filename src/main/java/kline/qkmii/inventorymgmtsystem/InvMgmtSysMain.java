@@ -17,10 +17,10 @@ public class InvMgmtSysMain extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        System.out.println("FXMLLoader will load: " + FilePath.MAIN_MENU);
+        //System.out.println("FXMLLoader will load: " + FilePath.MAIN_MENU); //TODO: REMOVE LOG MSG
         FXMLLoader fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource(FilePath.MAIN_MENU));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello!");
+        stage.setTitle("Inventory Management System");
         stage.setScene(scene);
         stage.show();
     }

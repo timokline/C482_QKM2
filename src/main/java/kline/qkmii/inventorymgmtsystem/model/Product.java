@@ -1,9 +1,10 @@
 package kline.qkmii.inventorymgmtsystem.model;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Product {
-    private ObservableList<Part> associatedParts;
+    private final ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     private int id;
     private String name;
     private double price;
@@ -13,9 +14,7 @@ public class Product {
 
     //No Param Constructor
     //TODO: REMOVE FROM FINAL DISTRIBUTABLE
-    public Product() {
-        this(0,"",0.0,0,0,0);
-    }
+    public Product() { this(0,"",0.0,0,0,0); }
     //FOR PART G:
     //CREATE INTERFACE BETWEEN PRODUCT AND PART SINCE THEY SHARE SIMILAR METHOD SIGNATURES
     //MORE ABSTRACTION
@@ -80,11 +79,14 @@ public class Product {
     }
 
     public void addAssociatedPart(Part part) {
-        //TODO: Write addAssociatedPart() method
+        associatedParts.add(part);
     }
 
     public boolean deleteAssociatedPart(Part selectedPart) {
         //TODO: Write deleteAssociatedPart() method
+        //      Check if selectedPart is in the ArrayList
+        //      Return true if deleted
+        //      Return false if not found.
         return false;
     }
 
