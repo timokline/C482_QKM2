@@ -4,11 +4,18 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import kline.qkmii.inventorymgmtsystem.model.InHouse;
+import kline.qkmii.inventorymgmtsystem.model.OutSourced;
+import kline.qkmii.inventorymgmtsystem.model.Inventory;
 import kline.qkmii.inventorymgmtsystem.util.FilePath;
 
 import java.io.IOException;
 
 public class InvMgmtSysMain extends Application {
+    private static int uid = -1;
+    public static int getUID() {
+        return ++uid;
+    }
     
     @Override
     public void init() {
@@ -34,5 +41,15 @@ public class InvMgmtSysMain extends Application {
      *
      * @param args Command line arguments
      */
-    public static void main(String[] args) { launch(args); }
+    public static void main(String[] args) {
+        InHouse myPart1 = new InHouse(getUID(), "handle", 0.80, 50, 1, 500, 1000);
+        InHouse myPart2 = new InHouse(getUID(), "nail", 0.07, 100, 1, 1000, 10);
+        InHouse myPart3 = new InHouse(getUID(), "screw", 0.11, 100, 1, 1000, 11);
+
+        Inventory.addPart(myPart1);
+        Inventory.addPart(myPart2);
+        Inventory.addPart(myPart3);
+
+        launch(args);
+    }
 }

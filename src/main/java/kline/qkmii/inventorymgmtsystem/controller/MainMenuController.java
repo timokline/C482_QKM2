@@ -4,7 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
+import kline.qkmii.inventorymgmtsystem.model.Inventory;
+import kline.qkmii.inventorymgmtsystem.model.Part;
+import kline.qkmii.inventorymgmtsystem.model.Product;
 import kline.qkmii.inventorymgmtsystem.util.FilePath;
 import kline.qkmii.inventorymgmtsystem.util.SceneManager;
 
@@ -135,6 +139,18 @@ public class MainMenuController extends SceneManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        partsTBLV.setItems(Inventory.getAllParts());
+        partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        partInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        partUnitCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        prodTBLV.setItems(Inventory.getAllProducts());
+        prodIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        prodNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        prodInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        prodUnitCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
         System.out.println("Main Menu initialized.");
     }
 }

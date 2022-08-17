@@ -2,8 +2,15 @@ package kline.qkmii.inventorymgmtsystem.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import kline.qkmii.inventorymgmtsystem.model.InHouse;
+import kline.qkmii.inventorymgmtsystem.model.OutSourced;
+import kline.qkmii.inventorymgmtsystem.model.Inventory;
 
 import java.io.IOException;
+
+import static kline.qkmii.inventorymgmtsystem.InvMgmtSysMain.getUID;
 
 public class AddPartController extends PartsController {
 
@@ -15,12 +22,21 @@ public class AddPartController extends PartsController {
         //          - Create dialogue to alert error exception
         //          - Create confirm dialogue
         //              - Construct Part()
+        var id = getUID();
+        var name = nameTF.getText();
+        var unit = Double.parseDouble(unitTF.getText());
+        var inv = Integer.parseInt(invTF.getText());
+        var max = Integer.parseInt(maxPartsTF.getText());
+        var min = Integer.parseInt(minPartsTF.getText());
+
         if(inSrcRBtn.isSelected()) {
-            //handle sourceTF input
+            var machineId = Integer.parseInt(sourceTF.getText());
+            Inventory.addPart(new InHouse(id, name, unit, inv, max, min, machineId));
         } else if (outSrcRBtn.isSelected()) {
-            //handle sourceTF input
+            var company = sourceTF.getText();
+            Inventory.addPart(new OutSourced(id, name, unit, inv, max, min, company));
         } else {
-            //Branch should not execute... Error occurred.
+            Alert alert = new Alert(AlertType.ERROR);
         }
         super.sceneManager.returnToMenu(event);
     }
