@@ -10,7 +10,7 @@ import kline.qkmii.inventorymgmtsystem.model.Inventory;
 
 import java.io.IOException;
 
-import static kline.qkmii.inventorymgmtsystem.InvMgmtSysMain.getUID;
+import static kline.qkmii.inventorymgmtsystem.InvMgmtSysMain.getPartUID;
 
 public class AddPartController extends PartsController {
 
@@ -22,12 +22,12 @@ public class AddPartController extends PartsController {
         //          - Create dialogue to alert error exception
         //          - Create confirm dialogue
         //              - Construct Part()
-        var id = getUID();
-        var name = nameTF.getText();
-        var unit = Double.parseDouble(unitTF.getText());
-        var inv = Integer.parseInt(invTF.getText());
-        var max = Integer.parseInt(maxPartsTF.getText());
-        var min = Integer.parseInt(minPartsTF.getText());
+        int id = getPartUID();
+        String name = nameTF.getText();
+        double unit = Double.parseDouble(unitTF.getText());
+        int inv = Integer.parseInt(invTF.getText());
+        int max = Integer.parseInt(maxPartsTF.getText());
+        int min = Integer.parseInt(minPartsTF.getText());
 
         if(inSrcRBtn.isSelected()) {
             var machineId = Integer.parseInt(sourceTF.getText());

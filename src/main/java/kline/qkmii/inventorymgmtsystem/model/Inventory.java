@@ -63,16 +63,16 @@ public class Inventory {
         try {
             allParts.set(index, selectedPart);
         }
-        catch (Exception e){
+        catch (NullPointerException | IndexOutOfBoundsException e){
             throw new Exception(e);
         }
     }
 
     public static void updateProduct(int index, Product newProduct) throws Exception {
         try {
-            allProducts.set(index,newProduct);
+            allProducts.set(index, newProduct);
         }
-        catch (Exception e) {
+        catch (NullPointerException | IndexOutOfBoundsException e){
             throw new Exception(e);
         }
     }
