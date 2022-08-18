@@ -27,13 +27,36 @@ public class Inventory {
     }
 
     public static ObservableList<Part> lookupPart(String partName) {
-        //TODO: Write lookupPart() method
-        return allParts;
+        ObservableList<Part> filteredParts = FXCollections.observableArrayList();
+
+        for(var part : allParts) {
+            if(part.getName().contains(partName)){
+                filteredParts.add(part);
+            }
+        }
+
+        if(filteredParts.isEmpty()) {
+            return allParts;
+        } else {
+            return filteredParts;
+        }
     }
 
+    //Returns ObservableList of all products that match the string from `allProducts`.
     public static ObservableList<Product> lookupProduct(String productName) {
-        //TODO: Write lookupProduct() method
-        return allProducts;
+        ObservableList<Product> filteredProducts = FXCollections.observableArrayList();
+
+        for(var product : allProducts) {
+            if(product.getName().contains(productName)) {
+                filteredProducts.add(product);
+            }
+        }
+
+        if(filteredProducts.isEmpty()) {
+            return allProducts;
+        } else {
+            return filteredProducts;
+        }
     }
 
     public static void updatePart(int index, Part selectedPart) throws Exception {

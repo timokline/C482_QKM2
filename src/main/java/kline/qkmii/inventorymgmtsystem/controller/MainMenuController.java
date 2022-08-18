@@ -105,8 +105,9 @@ public class MainMenuController extends SceneManager implements Initializable {
     }
 
     @FXML
-    void handlePartsQueryInput(InputMethodEvent event) {
+    void handlePartsQueryInput(ActionEvent event) {
         //TODO: Partial search results/ exact input item
+        partsTBLV.setItems(Inventory.lookupPart(partsQueryTF.getText()));
     }
 
     @FXML
@@ -133,7 +134,7 @@ public class MainMenuController extends SceneManager implements Initializable {
     }
 
     @FXML
-    void handleProdQueryInput(InputMethodEvent event) {
+    void handleProdQueryInput(ActionEvent event) {
         //TODO: Partial search results/ exact input item
     }
 
