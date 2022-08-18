@@ -13,16 +13,30 @@ import java.io.IOException;
 public abstract class SceneManager {
     Stage stage; //private
     Parent scene; //private
+    FXMLLoader loader; //private
 
-    public void switchScenes(ActionEvent event, String location) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
-        scene = new Scene(fxmlLoader.load()).getRoot();
+    public void switchScene(ActionEvent event, String location) throws IOException {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow(); //Might be a bug w/ type-casting
+        loader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
+        scene = new Scene(loader.load()).getRoot();
         stage.setScene(scene.getScene());
         stage.show();
     }
 
+    public void switchScene(ActionEvent event, FXMLLoader fxmlLoader){
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow(); //Might be a bug w/ type-casting
+        scene = fxmlLoader.getRoot();
+        stage.setScene(new Scene(scene));
+        stage.show();
+    }
+
+    public FXMLLoader loadScene(String location) throws IOException {
+        loader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
+        loader.load();
+        return loader;
+    }
+
     public void returnToMenu(ActionEvent event) throws IOException {
-        switchScenes(event, FilePath.MAIN_MENU);
+        switchScene(event, FilePath.MAIN_MENU);
     }
 }

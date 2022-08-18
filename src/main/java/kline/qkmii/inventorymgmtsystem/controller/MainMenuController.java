@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.InputMethodEvent;
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
 import kline.qkmii.inventorymgmtsystem.model.Part;
 import kline.qkmii.inventorymgmtsystem.model.Product;
@@ -17,7 +16,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class MainMenuController extends SceneManager implements Initializable {
+public class MainMenuController implements Initializable {
+
+    private SceneManager sceneManager;
 
     @FXML
     private Button menuExitBtn;
@@ -85,7 +86,7 @@ public class MainMenuController extends SceneManager implements Initializable {
     void handlePartsAddBtnEvent(ActionEvent event) throws IOException {
         //TODO: create State Machine for Add/Modify
         //      - Change Labels & methods
-        switchScenes(event, FilePath.ADD_PARTS_SCENE);
+        sceneManager.switchScene(event, FilePath.ADD_PARTS_SCENE);
     }
 
     @FXML
@@ -101,7 +102,12 @@ public class MainMenuController extends SceneManager implements Initializable {
     void handlePartsModBtnEvent(ActionEvent event) throws IOException {
         //TODO: create State Machine for Add/Modify
         //      - Change Labels & methods
-        switchScenes(event, FilePath.MODIFY_PARTS_SCENE);
+        var fxmlLoader = sceneManager.loadScene(FilePath.MODIFY_PARTS_SCENE);
+
+        ModifyPartController MPMController = fxmlLoader.getController();
+        MPMController.sendPart(partsTBLV.getSelectionModel().getSelectedItem());
+
+        sceneManager.switchScene(event, fxmlLoader);
     }
 
     @FXML
@@ -114,7 +120,7 @@ public class MainMenuController extends SceneManager implements Initializable {
     void handleProdAddBtnEvent(ActionEvent event) throws IOException {
         //TODO: create State Machine for Add/Modify
         //      - Change Labels & methods
-        switchScenes(event, FilePath.ADD_PRODUCT_SCENE);
+        sceneManager.switchScene(event, FilePath.ADD_PRODUCT_SCENE);
     }
 
     @FXML
@@ -130,17 +136,89 @@ public class MainMenuController extends SceneManager implements Initializable {
     void handleProdModBtnEvent(ActionEvent event) throws IOException {
         //TODO: create State Machine for Add/Modify
         //      - Change Labels & methods
-        switchScenes(event, FilePath.MODIFY_PRODUCT_SCENE);
+        var fxmlLoader = sceneManager.loadScene(FilePath.MODIFY_PRODUCT_SCENE);
+
+        ModifyProductController MPMController = fxmlLoader.getController();
+        //MPMController.sendProduct();
+        sceneManager.switchScene(event, fxmlLoader);
+//        int index = -1;
+//
+//        for (var currentPart : Inventory.getAllParts()){
+//            ++index;
+//            if(currentPart.getId() == id) {
+//                Inventory.getAllParts().set(index, part);
+//                return true;
+//            }
+//        }
+//        return false;
     }
 
     @FXML
     void handleProdQueryInput(ActionEvent event) {
         //TODO: Partial search results/ exact input item
+        prodTBLV.setItems(Inventory.lookupProduct(prodQueryTF.getText()));
+    }
+
+    public boolean searchPart(int id) {
+        var foundPart = false;
+        for (var part : Inventory.getAllParts()) {
+            foundPart = part.getId() == id;
+            if(foundPart) {
+                break;
+            }
+        }
+
+        return foundPart;
+    }
+
+    public boolean searchProduct(int id) {
+        var foundProduct = false;
+        for (var product : Inventory.getAllProducts()) {
+            foundProduct = product.getId() == id;
+            if(foundProduct) {
+                break;
+            }
+        }
+
+        return foundProduct;
+    }
+
+    public boolean updateProduct(int id, Product product) {
+        int index = -1;
+
+        for (var currentProduct : Inventory.getAllProducts()){
+            ++index;
+            if(currentProduct.getId() == id) {
+                Inventory.getAllProducts().set(index, product);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean deletePart(int id) {
+        for (var currentPart : Inventory.getAllParts()){
+            if(currentPart.getId() == id) {
+                return Inventory.getAllParts().remove(currentPart);
+            }
+        }
+        return false;
+    }
+
+    public Part selectPart(int id) {
+        for(var part : Inventory.getAllParts()){
+            if(part.getId() == id) {
+                return part;
+            }
+        }
+        return null;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        sceneManager = new SceneManager() {};
         partsTBLV.setItems(Inventory.getAllParts());
+        //partsTBLV.setItems(filterPart("a"));
         partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         partInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
@@ -152,6 +230,19 @@ public class MainMenuController extends SceneManager implements Initializable {
         prodInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         prodUnitCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
+//        if(searchPart(2)){
+//            System.out.println("MATCH");
+//        }
+//
+//        if(updatePart(2, Inventory.getAllParts().get(0))) {
+//            System.out.println("UPDATED");
+//        }
+//
+//        if(deletePart(1)) {
+//            System.out.println("REMOVED");
+//        }
+
+        //partsTBLV.getSelectionModel().select(selectPart(0));
         System.out.println("Main Menu initialized.");
     }
 }
