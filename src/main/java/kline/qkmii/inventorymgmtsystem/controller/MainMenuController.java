@@ -84,24 +84,11 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void handlePartsAddBtnEvent(ActionEvent event) throws IOException {
-        //TODO: create State Machine for Add/Modify
-        //      - Change Labels & methods
         sceneManager.switchScene(event, FilePath.ADD_PARTS_SCENE);
     }
 
     @FXML
-    void handlePartsDelBtnEvent(ActionEvent event) {
-        //TODO: Remove selected item from TableView
-        //      A focused item on the TableView must exist
-        //      Return dialogue if no highlighted item is focused on.
-        //      If selection exists, prompt confirmation dialogue.
-        //          - Delete item
-    }
-
-    @FXML
     void handlePartsModBtnEvent(ActionEvent event) throws IOException {
-        //TODO: create State Machine for Add/Modify
-        //      - Change Labels & methods
         var fxmlLoader = sceneManager.loadScene(FilePath.MODIFY_PARTS_SCENE);
 
         ModifyPartController MPMController = fxmlLoader.getController();
@@ -126,14 +113,11 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void handlePartsQueryInput(ActionEvent event) {
-        //TODO: Partial search results/ exact input item
         partsTBLV.setItems(Inventory.lookupPart(partsQueryTF.getText()));
     }
 
     @FXML
     void handleProdAddBtnEvent(ActionEvent event) throws IOException {
-        //TODO: create State Machine for Add/Modify
-        //      - Change Labels & methods
         sceneManager.switchScene(event, FilePath.ADD_PRODUCT_SCENE);
     }
 
