@@ -78,12 +78,20 @@ public class Inventory {
     }
 
     public static boolean deletePart(Part selectedPart) {
-        //TODO: Write deletePart() method
+        for (var currentPart : allParts){
+            if(currentPart == selectedPart) {
+                return allParts.remove(currentPart);
+            }
+        }
         return false;
     }
 
     public static boolean deleteProduct(Product selectedProduct) {
-        //TODO: Write deleteProduct() method
+        for (var currentProduct : allProducts){
+            if(currentProduct == selectedProduct) {
+                return allProducts.remove(currentProduct);
+            }
+        }
         return false;
     }
 

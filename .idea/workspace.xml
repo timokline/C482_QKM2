@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="Refactoring">
+    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="Refactored main application driver">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/MainMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ModifyPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ModifyPartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/SceneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Inventory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +103,7 @@
       <workItem from="1660386504596" duration="347000" />
       <workItem from="1660613232880" duration="10564000" />
       <workItem from="1660707428803" duration="6541000" />
-      <workItem from="1660768313535" duration="16268000" />
+      <workItem from="1660768313535" duration="17966000" />
     </task>
     <task id="LOCAL-00001" summary="Initial outline and setup based on UML diagram">
       <created>1660205356356</created>
@@ -196,7 +196,21 @@
       <option name="project" value="LOCAL" />
       <updated>1660791379979</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="ModifyPartController receives Part objects from MainMenuController. Added overload method for SceneManager to encapsulate that logic.">
+      <created>1660796751104</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1660796751104</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Refactored main application driver">
+      <created>1660796767644</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1660796767644</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,7 +242,9 @@
     <MESSAGE value="Prototype UID generator. Sample data population for main menu TableViews.&#10;Handler for Parts save button written." />
     <MESSAGE value="Wrote lookup methods for Part and Product" />
     <MESSAGE value="Refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring" />
+    <MESSAGE value="ModifyPartController receives Part objects from MainMenuController. Added overload method for SceneManager to encapsulate that logic." />
+    <MESSAGE value="Refactored main application driver" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored main application driver" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -111,6 +111,20 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
+    void handlePartsDelBtnEvent(ActionEvent event) {
+        //TODO: Remove selected item from TableView
+        //      Return dialogue if no highlighted item is focused on.
+        //      If selection exists, prompt confirmation dialogue.
+        //          - Delete item
+        var selectedPart = partsTBLV.getSelectionModel().getSelectedItem();
+        if(Inventory.deletePart(selectedPart)){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+        }
+    }
+
+    @FXML
     void handlePartsQueryInput(ActionEvent event) {
         //TODO: Partial search results/ exact input item
         partsTBLV.setItems(Inventory.lookupPart(partsQueryTF.getText()));
@@ -130,6 +144,12 @@ public class MainMenuController implements Initializable {
         //      Return dialogue if no highlighted item is focused on.
         //      If selection exists, prompt confirmation dialogue.
         //          - Delete item
+        var selectedProduct = prodTBLV.getSelectionModel().getSelectedItem();
+        if(Inventory.deleteProduct(selectedProduct)){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
@@ -191,15 +211,6 @@ public class MainMenuController implements Initializable {
             if(currentProduct.getId() == id) {
                 Inventory.getAllProducts().set(index, product);
                 return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean deletePart(int id) {
-        for (var currentPart : Inventory.getAllParts()){
-            if(currentPart.getId() == id) {
-                return Inventory.getAllParts().remove(currentPart);
             }
         }
         return false;
