@@ -11,10 +11,12 @@ import kline.qkmii.inventorymgmtsystem.util.FilePath;
 import java.io.IOException;
 
 public class InvMgmtSysMain extends Application {
-    private static int uid = -1;
+    private static int partUID = -1;
+    private static int productUID = 999;
     public static int getPartUID() {
-        return ++uid;
+        return ++partUID;
     }
+    public static int getProductUID() {return ++productUID;}
     
     @Override
     public void init() {
