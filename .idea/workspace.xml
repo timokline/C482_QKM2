@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="Refactored main application driver">
+    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="Refactoring + comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/MainMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ModifyPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ModifyPartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/PartsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/PartsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-part-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-part-form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-product-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-product-form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/main-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/main-form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-part-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-part-form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-product-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-product-form.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +107,11 @@
       <workItem from="1660386504596" duration="347000" />
       <workItem from="1660613232880" duration="10564000" />
       <workItem from="1660707428803" duration="6541000" />
-      <workItem from="1660768313535" duration="17966000" />
+      <workItem from="1660768313535" duration="19983000" />
+      <workItem from="1660856422306" duration="3119000" />
+      <workItem from="1660947746508" duration="3248000" />
+      <workItem from="1660987398103" duration="1218000" />
+      <workItem from="1661030877623" duration="5531000" />
     </task>
     <task id="LOCAL-00001" summary="Initial outline and setup based on UML diagram">
       <created>1660205356356</created>
@@ -210,7 +218,21 @@
       <option name="project" value="LOCAL" />
       <updated>1660796767644</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Wrote deletePart/Product methods for Inventory. Handlers for delete buttons on the main menu implement methods.">
+      <created>1660798201012</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1660798201012</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Refactoring + comments">
+      <created>1660798211848</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1660798211848</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,7 +266,9 @@
     <MESSAGE value="Refactoring" />
     <MESSAGE value="ModifyPartController receives Part objects from MainMenuController. Added overload method for SceneManager to encapsulate that logic." />
     <MESSAGE value="Refactored main application driver" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored main application driver" />
+    <MESSAGE value="Wrote deletePart/Product methods for Inventory. Handlers for delete buttons on the main menu implement methods." />
+    <MESSAGE value="Refactoring + comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring + comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -55,7 +55,7 @@
                         <Label text="Price/Cost" GridPane.rowIndex="3" />
                         <Label text="Max" GridPane.rowIndex="4" />
                         <Label fx:id="sourceLBL" text="Machine ID" GridPane.rowIndex="5" />
-                        <TextField fx:id="idTF" editable="false" promptText="Auto Gen: Disabled" GridPane.columnIndex="1" />
+                        <TextField fx:id="idTF" disable="true" editable="false" text="Auto Gen: Disabled" GridPane.columnIndex="1" />
                         <TextField fx:id="nameTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="invTF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField fx:id="unitTF" GridPane.columnIndex="1" GridPane.rowIndex="3" />

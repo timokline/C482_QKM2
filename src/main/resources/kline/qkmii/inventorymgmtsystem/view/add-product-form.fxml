@@ -62,7 +62,7 @@
                               </Label>
                               <Label text="ID" />
                               <Label text="Name" GridPane.rowIndex="1" />
-                              <TextField fx:id="idTF" GridPane.columnIndex="1" GridPane.columnSpan="3" />
+                              <TextField fx:id="idTF" disable="true" editable="false" text="Auto Gen: Disabled" GridPane.columnIndex="1" GridPane.columnSpan="3" />
                               <TextField fx:id="nameTF" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
                            </children>
                            <VBox.margin>

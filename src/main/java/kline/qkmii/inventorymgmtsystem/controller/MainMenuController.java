@@ -112,7 +112,10 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
-    void handlePartsQueryInput(ActionEvent event) {
+    void handlePartsQueryInput(KeyEvent event) {
+        if(event.getCode() == KeyCode.ENTER) {
+            System.out.println("");
+        }
         partsTBLV.setItems(Inventory.lookupPart(partsQueryTF.getText()));
     }
 
@@ -158,7 +161,7 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
-    void handleProdQueryInput(ActionEvent event) {
+    void handleProdQueryInput(KeyEvent event) {
         //TODO: Partial search results/ exact input item
         prodTBLV.setItems(Inventory.lookupProduct(prodQueryTF.getText()));
     }

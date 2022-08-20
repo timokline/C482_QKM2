@@ -24,7 +24,7 @@
                     <children>
                         <VBox prefHeight="528.0" prefWidth="327.0">
                             <children>
-                                <Label fx:id="productLBL" prefHeight="27.0" prefWidth="242.0" text="Add Product">
+                                <Label fx:id="productLBL" prefHeight="27.0" prefWidth="242.0" text="Modify Product">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -62,7 +62,7 @@
                                         </Label>
                                         <Label text="ID" />
                                         <Label text="Name" GridPane.rowIndex="1" />
-                                        <TextField fx:id="idTF" GridPane.columnIndex="1" GridPane.columnSpan="3" />
+                                        <TextField fx:id="idTF" disable="true" editable="false" text="Auto Gen: Disable" GridPane.columnIndex="1" GridPane.columnSpan="3" />
                                         <TextField fx:id="nameTF" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
                                     </children>
                                     <VBox.margin>
