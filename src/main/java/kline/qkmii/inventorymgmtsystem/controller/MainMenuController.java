@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
 import kline.qkmii.inventorymgmtsystem.model.Part;
 import kline.qkmii.inventorymgmtsystem.model.Product;
@@ -78,10 +80,11 @@ public class MainMenuController implements Initializable {
     private TableColumn<Product, Double> prodUnitCol;
 
     @FXML
-    void handleExitBtnEvent(ActionEvent event) {
+    void handleExitBtnEvent(ActionEvent ignoredEvent) {
         System.exit(0);
     }
 
+    ///PARTS
     @FXML
     void handlePartsAddBtnEvent(ActionEvent event) throws IOException {
         sceneManager.switchScene(event, FilePath.ADD_PARTS_SCENE);
@@ -92,17 +95,19 @@ public class MainMenuController implements Initializable {
         var fxmlLoader = sceneManager.loadScene(FilePath.MODIFY_PARTS_SCENE);
 
         ModifyPartController MPMController = fxmlLoader.getController();
-        MPMController.sendPart(partsTBLV.getSelectionModel().getSelectedItem());
+        //TODO: DIALOG FOR WHEN A PART IS NOT SELECTED.
+        MPMController.fetchPart(partsTBLV.getSelectionModel().getSelectedItem());
 
         sceneManager.switchScene(event, fxmlLoader);
     }
 
     @FXML
-    void handlePartsDelBtnEvent(ActionEvent event) {
+    void handlePartsDelBtnEvent(ActionEvent ignoredEvent) {
         //TODO: Remove selected item from TableView
         //      Return dialogue if no highlighted item is focused on.
         //      If selection exists, prompt confirmation dialogue.
         //          - Delete item
+        //TODO: Dialog if no item is selected.
         var selectedPart = partsTBLV.getSelectionModel().getSelectedItem();
         if(Inventory.deletePart(selectedPart)){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -114,23 +119,25 @@ public class MainMenuController implements Initializable {
     @FXML
     void handlePartsQueryInput(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER) {
-            System.out.println("");
+            partsTBLV.setItems(Inventory.lookupPart(partsQueryTF.getText()));
+            System.out.println("Product query received");
         }
-        partsTBLV.setItems(Inventory.lookupPart(partsQueryTF.getText()));
     }
 
+    ///PRODUCTS
     @FXML
     void handleProdAddBtnEvent(ActionEvent event) throws IOException {
         sceneManager.switchScene(event, FilePath.ADD_PRODUCT_SCENE);
     }
 
     @FXML
-    void handleProdDelBtnEvent(ActionEvent event) {
+    void handleProdDelBtnEvent(ActionEvent ignoredEvent) {
         //TODO: Remove selected item from TableView
         //      A focused item on the TableView must exist
         //      Return dialogue if no highlighted item is focused on.
         //      If selection exists, prompt confirmation dialogue.
         //          - Delete item
+        //TODO: DIALOG if item not selected.
         var selectedProduct = prodTBLV.getSelectionModel().getSelectedItem();
         if(Inventory.deleteProduct(selectedProduct)){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -146,7 +153,9 @@ public class MainMenuController implements Initializable {
         var fxmlLoader = sceneManager.loadScene(FilePath.MODIFY_PRODUCT_SCENE);
 
         ModifyProductController MPMController = fxmlLoader.getController();
-        //MPMController.sendProduct();
+        //TODO: DIALOG FOR WHEN A PART IS NOT SELECTED.
+        MPMController.fetchProduct(partsTBLV.getSelectionModel().getSelectedItem());
+
         sceneManager.switchScene(event, fxmlLoader);
 //        int index = -1;
 //
@@ -162,8 +171,11 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void handleProdQueryInput(KeyEvent event) {
-        //TODO: Partial search results/ exact input item
-        prodTBLV.setItems(Inventory.lookupProduct(prodQueryTF.getText()));
+        //TODO: Verify data type of query (int/String).
+        if(event.getCode() == KeyCode.ENTER) {
+            prodTBLV.setItems(Inventory.lookupProduct(prodQueryTF.getText()));
+            System.out.println("Product query received");
+        }
     }
 
     public boolean searchPart(int id) {
@@ -176,18 +188,6 @@ public class MainMenuController implements Initializable {
         }
 
         return foundPart;
-    }
-
-    public boolean searchProduct(int id) {
-        var foundProduct = false;
-        for (var product : Inventory.getAllProducts()) {
-            foundProduct = product.getId() == id;
-            if(foundProduct) {
-                break;
-            }
-        }
-
-        return foundProduct;
     }
 
     public boolean updateProduct(int id, Product product) {

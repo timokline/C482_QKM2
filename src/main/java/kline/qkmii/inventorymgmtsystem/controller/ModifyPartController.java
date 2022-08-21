@@ -43,7 +43,7 @@ public class ModifyPartController extends PartsController {
 
     //FOR PART G:
     //IMPLEMENT COMMAND DESIGN PATTERN TO CALL EACH ACCESSOR METHOD PER PROPERTY/FIELD OF PART
-    public void sendPart(Part selectedPart) {
+    public void fetchPart(Part selectedPart) {
         idTF.setText(String.valueOf(selectedPart.getId()));
         nameTF.setText(selectedPart.getName());
         invTF.setText(String.valueOf(selectedPart.getStock()));

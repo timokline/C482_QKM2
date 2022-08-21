@@ -17,12 +17,8 @@ public class AddPartController extends PartsController {
 
     @FXML
     public void handleSaveBtnEvent(ActionEvent event) throws IOException {
-        //TODO: Create new part from input in text fields;
-        //      Check which radio button was selected
-        //      Check if all fields are filled
-        //          - Create dialogue to alert error exception
+        //TODO:     - Create dialogue to alert error exception
         //          - Create confirm dialogue
-        //              - Construct Part()
 
         //Put in try-catch
         int id = getPartUID();
