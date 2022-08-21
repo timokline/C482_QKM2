@@ -154,7 +154,7 @@ public class MainMenuController implements Initializable {
 
         ModifyProductController MPMController = fxmlLoader.getController();
         //TODO: DIALOG FOR WHEN A PART IS NOT SELECTED.
-        MPMController.fetchProduct(partsTBLV.getSelectionModel().getSelectedItem());
+        MPMController.fetchProduct(prodTBLV.getSelectionModel().getSelectedItem());
 
         sceneManager.switchScene(event, fxmlLoader);
 //        int index = -1;

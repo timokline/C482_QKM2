@@ -2,7 +2,7 @@ package kline.qkmii.inventorymgmtsystem.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import kline.qkmii.inventorymgmtsystem.model.Part;
+import kline.qkmii.inventorymgmtsystem.model.Product;
 
 import java.io.IOException;
 
@@ -13,6 +13,7 @@ public class ModifyProductController extends ProductsController {
         super.sceneManager.returnToMenu(event);
     }
 
-    public void fetchProduct(Part selectedItem) {
+    public void fetchProduct(Product selectedProduct) {
+
     }
 }
