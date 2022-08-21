@@ -28,9 +28,9 @@
                   </Label>
                   <RadioButton fx:id="inSrcRBtn" mnemonicParsing="false" onAction="#handleInSrcBtnEvent" prefHeight="17.0" prefWidth="147.0" selected="true" text="In-House">
                      <toggleGroup>
-                        <ToggleGroup fx:id="partSrc" />
+                        <ToggleGroup fx:id="partSrcTG" />
                      </toggleGroup></RadioButton>
-                  <RadioButton fx:id="outSrcRBtn" mnemonicParsing="false" onAction="#handleOutSrcBtnEvent" prefHeight="17.0" prefWidth="97.0" text="Outsourced" toggleGroup="$partSrc" />
+                  <RadioButton fx:id="outSrcRBtn" mnemonicParsing="false" onAction="#handleOutSrcBtnEvent" prefHeight="17.0" prefWidth="97.0" text="Outsourced" toggleGroup="$partSrcTG" />
                </children>
             </HBox>
             <GridPane prefHeight="210.0" prefWidth="546.0">

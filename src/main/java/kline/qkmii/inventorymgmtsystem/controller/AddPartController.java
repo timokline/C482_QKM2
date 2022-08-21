@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.RadioButton;
 import kline.qkmii.inventorymgmtsystem.model.InHouse;
 import kline.qkmii.inventorymgmtsystem.model.OutSourced;
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
@@ -22,6 +23,8 @@ public class AddPartController extends PartsController {
         //          - Create dialogue to alert error exception
         //          - Create confirm dialogue
         //              - Construct Part()
+
+        //Put in try-catch
         int id = getPartUID();
         String name = nameTF.getText();
         double unit = Double.parseDouble(unitTF.getText());
@@ -29,15 +32,17 @@ public class AddPartController extends PartsController {
         int max = Integer.parseInt(maxPartsTF.getText());
         int min = Integer.parseInt(minPartsTF.getText());
 
-        if(inSrcRBtn.isSelected()) {
-            var machineId = Integer.parseInt(sourceTF.getText());
+        var selectedSrc = (RadioButton) partSrcTG.getSelectedToggle();
+        if(selectedSrc == inSrcRBtn) {
+            int machineId = Integer.parseInt(sourceTF.getText());
             Inventory.addPart(new InHouse(id, name, unit, inv, max, min, machineId));
-        } else if (outSrcRBtn.isSelected()) {
-            var company = sourceTF.getText();
+        } else if (selectedSrc == outSrcRBtn) {
+            String company = sourceTF.getText();
             Inventory.addPart(new OutSourced(id, name, unit, inv, max, min, company));
         } else {
             Alert alert = new Alert(AlertType.ERROR);
         }
+        System.out.println(selectedSrc.getText()+ " part was created.");
         super.sceneManager.returnToMenu(event);
     }
 }

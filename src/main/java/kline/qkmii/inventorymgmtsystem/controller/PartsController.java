@@ -27,7 +27,7 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     protected SceneManager sceneManager;
 
     @FXML
-    protected ToggleGroup PartSrc;
+    protected ToggleGroup partSrcTG;
 
     @FXML
     protected Label partLBL;
