@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 
 //Interface class for handle-event methods
 interface IPartsCTRLR {
-    void handleSaveBtnEvent(ActionEvent event) throws IOException;
+    void handleSaveBtnEvent(ActionEvent event) throws Exception;
 
     void handleCancelBtnEvent(ActionEvent event) throws IOException;
 
@@ -92,9 +92,6 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
 
     @FXML
     public void handleCancelBtnEvent(ActionEvent event) throws IOException {
-        for (var textField : editableTextFields) {
-            textField.setText(""); //Clear fields
-        }
         sceneManager.returnToMenu(event);
     }
 }
