@@ -68,6 +68,8 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     @FXML
     protected TextField unitTF;
 
+    String partCompanyNameInput;
+    String partMachineIDInput;
     protected ArrayList<TextField> editableTextFields;
 
     @Override
@@ -81,13 +83,15 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     @FXML
     public void handleInSrcBtnEvent(ActionEvent actionEvent) {
         sourceLBL.setText("Machine ID");
-        System.out.println("sourceLBL was changed to \"Machine ID\"");
+        partCompanyNameInput = sourceTF.getText(); //store outsource value
+        sourceTF.setText(partMachineIDInput);      //retrieve in-source value
     }
 
     @FXML
     public void handleOutSrcBtnEvent(ActionEvent actionEvent) {
         sourceLBL.setText("Company Name");
-        System.out.println("sourceLBL was changed to \"Company Name\"");
+        partMachineIDInput = sourceTF.getText(); //store in-source value
+        sourceTF.setText(partCompanyNameInput); //retrieve outsource value
     }
 
     @FXML

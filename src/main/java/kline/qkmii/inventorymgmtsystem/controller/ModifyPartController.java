@@ -53,8 +53,10 @@ public class ModifyPartController extends PartsController {
 
         if(selectedPart instanceof InHouse) {
             sourceTF.setText(String.valueOf(((InHouse) selectedPart).getMachineId()));
+            partSrcTG.selectToggle(inSrcRBtn);
         } else if (selectedPart instanceof OutSourced) {
             sourceTF.setText(String.valueOf(((OutSourced) selectedPart).getCompanyName()));
+            partSrcTG.selectToggle(outSrcRBtn);
         }
     }
 }

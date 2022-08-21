@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import kline.qkmii.inventorymgmtsystem.model.InHouse;
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
+import kline.qkmii.inventorymgmtsystem.model.OutSourced;
 import kline.qkmii.inventorymgmtsystem.util.FilePath;
 
 import java.io.IOException;
@@ -47,9 +48,12 @@ public class InvMgmtSysMain extends Application {
         InHouse myPart2 = new InHouse(getPartUID(), "nail", 0.07, 100, 1, 1000, 10);
         InHouse myPart3 = new InHouse(getPartUID(), "screw", 0.11, 100, 1, 1000, 11);
 
+        OutSourced theirPart1 = new OutSourced(getPartUID(), "bolt", 0.92, 200, 100, 999, "BigBennyBolts");
+
         Inventory.addPart(myPart1);
         Inventory.addPart(myPart2);
         Inventory.addPart(myPart3);
+        Inventory.addPart(theirPart1);
 
         launch(args);
     }
