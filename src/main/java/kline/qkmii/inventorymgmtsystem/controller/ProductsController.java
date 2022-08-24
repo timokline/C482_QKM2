@@ -101,13 +101,38 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
     @FXML
     private Button saveBtn;
 
+    //private Product currentProduct = new Product();
+    protected ObservableList<Part> currentAssocList = FXCollections.observableArrayList();
+
+    protected void populateAvailPartsTbl() {
+        availablePartsTBLV.setItems(Inventory.getAllParts());
+    }
+
+    protected void populateAssocPartsTbl() {
+        associatedPartsTBLV.setItems(currentAssocList);
+    }
+
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
-        sceneManager = new SceneManager() { };
+        populateAvailPartsTbl();
+        availPartIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        availPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        availInvLvlCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        availPartUnitCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        populateAssocPartsTbl();
+        assocPartIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        assocPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        assocInvLvlCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        assocPartUnitCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
         System.out.println("ProductsController abstract class initialized.");
     }
     @FXML
     public void handleAddPartBtnEvent(ActionEvent event) {
+        //TODO: Check if a part is selected.
+        var selectedPart = availablePartsTBLV.getSelectionModel().getSelectedItem();
+        currentAssocList.add(selectedPart);
+        populateAssocPartsTbl();
     }
 
     @FXML

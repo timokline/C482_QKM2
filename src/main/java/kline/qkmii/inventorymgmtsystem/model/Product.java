@@ -14,7 +14,7 @@ public class Product {
 
     //No Param Constructor
     //TODO: REMOVE FROM FINAL DISTRIBUTABLE
-    public Product() { this(0,"",0.0,0,0,0); }
+    public Product() { /*this(0,"",0.0,0,0,0);*/ }
     //FOR PART G:
     //CREATE INTERFACE BETWEEN PRODUCT AND PART SINCE THEY SHARE SIMILAR METHOD SIGNATURES
     //MORE ABSTRACTION
@@ -27,6 +27,7 @@ public class Product {
         this.min = min;
         this.max = max;
     }
+
 
 
     public void setId(int id) {
@@ -79,15 +80,11 @@ public class Product {
     }
 
     public void addAssociatedPart(Part part) {
-        associatedParts.add(part);
+        this.associatedParts.add(part);
     }
 
     public boolean deleteAssociatedPart(Part selectedPart) {
-        //TODO: Write deleteAssociatedPart() method
-        //      Check if selectedPart is in the ArrayList
-        //      Return true if deleted
-        //      Return false if not found.
-        return false;
+        return this.associatedParts.remove(selectedPart);
     }
 
     public ObservableList<Part> getAllAssociatedParts() {
