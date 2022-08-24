@@ -1,10 +1,17 @@
 package kline.qkmii.inventorymgmtsystem.controller;
 
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
+import kline.qkmii.inventorymgmtsystem.model.Inventory;
+import kline.qkmii.inventorymgmtsystem.model.Part;
+import kline.qkmii.inventorymgmtsystem.model.Product;
 import kline.qkmii.inventorymgmtsystem.util.SceneManager;
 
 import java.io.IOException;
@@ -19,70 +26,71 @@ interface IProdCTRLR {
 
     void handleQueryInput(InputMethodEvent event);
 
-    void handleRemPartBtnEvent(ActionEvent event);
+    void handleRmvPartBtnEvent(ActionEvent event);
 
-    void handleSaveBtnEvent(ActionEvent event) throws IOException;
+    void handleSaveBtnEvent(ActionEvent event) throws Exception;
 }
 
 public abstract class ProductsController implements Initializable, IProdCTRLR {
 
-    protected SceneManager sceneManager;
+    protected SceneManager sceneManager = new SceneManager() {
+    };
     @FXML
     private Button addPartBtn;
 
     @FXML
-    private TableColumn<?, ?> assocInvLvlCol;
+    protected TableColumn<Part, Integer> assocInvLvlCol;
 
     @FXML
-    private TableColumn<?, ?> assocPartIDCol;
+    protected TableColumn<Part, Integer> assocPartIDCol;
 
     @FXML
-    private TableColumn<?, ?> assocPartNameCol;
+    protected TableColumn<Part, String> assocPartNameCol;
 
     @FXML
-    private TableColumn<?, ?> assocPartUnitCol;
+    protected TableColumn<Part, Double> assocPartUnitCol;
 
     @FXML
-    private TableView<?> associatedPartsTBLV;
+    protected TableView<Part> associatedPartsTBLV;
 
     @FXML
-    private TableColumn<?, ?> availInvLvlCol;
+    private TableColumn<Part, Integer> availInvLvlCol;
 
     @FXML
-    private TableColumn<?, ?> availPartIdCol;
+    private TableColumn<Part, Integer> availPartIdCol;
 
     @FXML
-    private TableColumn<?, ?> availPartNameCol;
+    private TableColumn<Part, String> availPartNameCol;
 
     @FXML
-    private TableColumn<?, ?> availPartUnitCol;
+    private TableColumn<Part, Double> availPartUnitCol;
 
     @FXML
-    private TableView<?> availablePartsTBLV;
+    private TableView<Part> availablePartsTBLV;
 
     @FXML
     private Button cancelBtn;
 
     @FXML
-    private TextField idTF;
+    protected TextField idTF;
 
     @FXML
-    private TextField invTF;
+    protected TextField invTF;
 
     @FXML
-    private TextField maxProductsTF;
+    protected TextField maxProductsTF;
 
     @FXML
-    private TextField minProductsTF;
+    protected TextField minProductsTF;
 
     @FXML
-    private TextField nameTF;
+    protected TextField nameTF;
 
     @FXML
     private TextField partQueryTF;
 
     @FXML
-    private TextField priceTF;
+    protected TextField priceTF;
 
     @FXML
     private Label productLBL;
@@ -109,9 +117,14 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
 
     @FXML
     public void handleQueryInput(InputMethodEvent event) {
+
     }
 
     @FXML
-    public void handleRemPartBtnEvent(ActionEvent event) {
+    public void handleRmvPartBtnEvent(ActionEvent event) {
+        var selectedPart = associatedPartsTBLV.getSelectionModel().getSelectedItem();
+        //TODO: Dialog to confirm deletion.
+        currentAssocList.remove(selectedPart);
+        populateAssocPartsTbl();
     }
 }

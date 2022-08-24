@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SPLITTER_PROPORTION" value="0.26181668" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="Tidied code + refactor naming conventions">
+    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="refactored fetchProduct for modify product">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/AddProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/AddProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ModifyProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ModifyProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ProductsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ProductsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/FilePath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/FilePath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-product-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-product-form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/main-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/main-form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-product-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-product-form.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +41,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2DCQ0gq0NoEZHFdTlHWWRutWlkS" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -53,7 +63,8 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/TimothyAlbert/.repos/.Java/C482_QKM2/src/main/java/kline/qkmii/inventorymgmtsystem/model&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -109,7 +120,11 @@
       <workItem from="1660947746508" duration="3248000" />
       <workItem from="1660987398103" duration="1218000" />
       <workItem from="1661030877623" duration="16702000" />
-      <workItem from="1661062754804" duration="7612000" />
+      <workItem from="1661062754804" duration="11229000" />
+      <workItem from="1661120556348" duration="2063000" />
+      <workItem from="1661199041421" duration="6151000" />
+      <workItem from="1661291130023" duration="2038000" />
+      <workItem from="1661363555820" duration="1861000" />
     </task>
     <task id="LOCAL-00001" summary="Initial outline and setup based on UML diagram">
       <created>1660205356356</created>
@@ -265,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661067353538</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="refactored fetchProduct for modify product">
+      <created>1661070909777</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1661070909777</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,7 +328,8 @@
     <MESSAGE value="Handler for ModifyPartController save button written" />
     <MESSAGE value="Fixed bug with radio buttons in modify part form" />
     <MESSAGE value="Tidied code + refactor naming conventions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tidied code + refactor naming conventions" />
+    <MESSAGE value="refactored fetchProduct for modify product" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored fetchProduct for modify product" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

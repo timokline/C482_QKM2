@@ -50,6 +50,9 @@
                                   <TableColumn fx:id="partInvCol" prefWidth="75.0" text="Inventory Level" />
                                     <TableColumn fx:id="partUnitCol" prefWidth="75.0" text="Price/Cost per Unit" />
                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
                               </TableView>
                               <ButtonBar prefHeight="40.0" prefWidth="200.0">
                                 <buttons>
@@ -85,6 +88,9 @@
                                     <TableColumn fx:id="prodInvCol" prefWidth="75.0" text="Inventory Level" />
                                     <TableColumn fx:id="prodUnitCol" prefWidth="75.0" text="Price/Cost per Unit" />
                                  </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
                               </TableView>
                               <ButtonBar prefHeight="40.0" prefWidth="200.0">
                                  <buttons>
