@@ -7,16 +7,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="refactored fetchProduct for modify product">
+    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="product controllers written">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/AddPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/AddPartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/AddProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/AddProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ModifyPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ModifyPartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ModifyProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ModifyProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/PartsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/PartsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ProductsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ProductsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/FilePath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/FilePath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-product-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-product-form.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/main-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/main-form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-product-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-product-form.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +123,7 @@
       <workItem from="1661120556348" duration="2063000" />
       <workItem from="1661199041421" duration="6151000" />
       <workItem from="1661291130023" duration="2038000" />
-      <workItem from="1661363555820" duration="1861000" />
+      <workItem from="1661363555820" duration="8180000" />
     </task>
     <task id="LOCAL-00001" summary="Initial outline and setup based on UML diagram">
       <created>1660205356356</created>
@@ -287,7 +286,21 @@
       <option name="project" value="LOCAL" />
       <updated>1661070909777</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="TableColumns in ProductsController correctly hold the right data types. Refactored JFX handler method.">
+      <created>1661365800221</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1661365800221</updated>
+    </task>
+    <task id="LOCAL-00025" summary="product controllers written">
+      <created>1661365863638</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1661365863639</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,7 +318,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial outline and setup based on UML diagram" />
     <MESSAGE value="rough mockup for main menu fxml file" />
     <MESSAGE value="rough mockup for add/modify parts fxml file" />
     <MESSAGE value="rough mockup for add/modify product fxml file; fixed bad duplication of modify-part-form.fxml" />
@@ -329,7 +341,9 @@
     <MESSAGE value="Fixed bug with radio buttons in modify part form" />
     <MESSAGE value="Tidied code + refactor naming conventions" />
     <MESSAGE value="refactored fetchProduct for modify product" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored fetchProduct for modify product" />
+    <MESSAGE value="TableColumns in ProductsController correctly hold the right data types. Refactored JFX handler method." />
+    <MESSAGE value="product controllers written" />
+    <option name="LAST_COMMIT_MESSAGE" value="product controllers written" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

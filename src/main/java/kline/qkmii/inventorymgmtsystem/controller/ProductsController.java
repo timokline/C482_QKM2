@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static kline.qkmii.inventorymgmtsystem.InvMgmtSysMain.getProductUID;
+
 interface IProdCTRLR {
 
     void handleAddPartBtnEvent(ActionEvent event);
@@ -101,7 +103,6 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
     @FXML
     private Button saveBtn;
 
-    //private Product currentProduct = new Product();
     protected ObservableList<Part> currentAssocList = FXCollections.observableArrayList();
 
     protected void populateAvailPartsTbl() {
@@ -114,16 +115,16 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
 
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
-        populateAvailPartsTbl();
         availPartIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         availPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         availInvLvlCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         availPartUnitCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-        populateAssocPartsTbl();
+        populateAvailPartsTbl();
         assocPartIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         assocPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         assocInvLvlCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         assocPartUnitCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        populateAssocPartsTbl();
 
         System.out.println("ProductsController abstract class initialized.");
     }
@@ -151,5 +152,25 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
         //TODO: Dialog to confirm deletion.
         currentAssocList.remove(selectedPart);
         populateAssocPartsTbl();
+    }
+    int productID;
+    String prodNameInput;
+    double prodPriceInput;
+    int prodInventoryInput;
+    int maxProdInput;
+    int minProdInput;
+
+    protected void parseEditableTFInputs() {
+        prodNameInput = nameTF.getText();
+        prodPriceInput = Double.parseDouble(priceTF.getText());
+        prodInventoryInput = Integer.parseInt(invTF.getText());
+        maxProdInput = Integer.parseInt(maxProductsTF.getText());
+        minProdInput = Integer.parseInt(minProductsTF.getText());
+    }
+
+    protected Product createProduct() {
+        Product newProduct = new Product(productID, prodNameInput, prodPriceInput, prodInventoryInput, minProdInput, maxProdInput);
+        newProduct.getAllAssociatedParts().setAll(currentAssocList);
+        return newProduct;
     }
 }

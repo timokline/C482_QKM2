@@ -2,8 +2,6 @@ package kline.qkmii.inventorymgmtsystem.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.RadioButton;
 import kline.qkmii.inventorymgmtsystem.model.InHouse;
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
 import kline.qkmii.inventorymgmtsystem.model.OutSourced;
@@ -13,30 +11,16 @@ import java.io.IOException;
 
 public class ModifyPartController extends PartsController {
 
+    int currPartIndex;
 
     @FXML
     public void handleSaveBtnEvent(ActionEvent event) throws Exception {
         //TODO:     - Create dialogue to alert error exception
         //          - Create confirm dialogue
-
-        //Put in try-catch
-        int id = Integer.parseInt(idTF.getText());
-        String name = nameTF.getText();
-        double unit = Double.parseDouble(unitTF.getText());
-        int inv = Integer.parseInt(invTF.getText());
-        int max = Integer.parseInt(maxPartsTF.getText());
-        int min = Integer.parseInt(minPartsTF.getText());
-
-        var selectedSrc = (RadioButton) partSrcTG.getSelectedToggle();
-        if(selectedSrc == inSrcRBtn) {
-            int machineId = Integer.parseInt(sourceTF.getText());
-            Inventory.updatePart(id, new InHouse(id, name, unit, inv, max, min, machineId));
-        } else if (selectedSrc == outSrcRBtn) {
-            String company = sourceTF.getText();
-            Inventory.updatePart(id, new OutSourced(id, name, unit, inv, max, min, company));
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-        }
+        fetchSelectedSrc();
+        partID = Integer.parseInt(idTF.getText());
+        parseEditableTFInputs();
+        Inventory.updatePart(currPartIndex, createPart());
         System.out.println(selectedSrc.getText()+ " part was modified.");
         super.sceneManager.returnToMenu(event);
     }
@@ -58,5 +42,6 @@ public class ModifyPartController extends PartsController {
             sourceTF.setText(String.valueOf(((OutSourced) selectedPart).getCompanyName()));
             partSrcTG.selectToggle(outSrcRBtn);
         }
+        currPartIndex = Inventory.getAllParts().indexOf(selectedPart);
     }
 }
