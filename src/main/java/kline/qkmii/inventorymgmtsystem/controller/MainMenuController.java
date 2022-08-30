@@ -216,31 +216,18 @@ public class MainMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = new SceneManager() {};
         partsTBLV.setItems(Inventory.getAllParts());
-        //partsTBLV.setItems(filterPart("a"));
+        prodTBLV.setItems(Inventory.getAllProducts());
+
         partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         partInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partUnitCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        prodTBLV.setItems(Inventory.getAllProducts());
         prodIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         prodNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         prodInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         prodUnitCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-//        if(searchPart(2)){
-//            System.out.println("MATCH");
-//        }
-//
-//        if(updatePart(2, Inventory.getAllParts().get(0))) {
-//            System.out.println("UPDATED");
-//        }
-//
-//        if(deletePart(1)) {
-//            System.out.println("REMOVED");
-//        }
-
-        //partsTBLV.getSelectionModel().select(selectPart(0));
         System.out.println("Main Menu initialized.");
     }
 }

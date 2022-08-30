@@ -1,7 +1,5 @@
 package kline.qkmii.inventorymgmtsystem.model;
 
-import kline.qkmii.inventorymgmtsystem.model.Part;
-
 public class InHouse extends Part {
     private int machineId;
 
@@ -17,5 +15,4 @@ public class InHouse extends Part {
     public int getMachineId() {
         return this.machineId;
     }
-
 }
