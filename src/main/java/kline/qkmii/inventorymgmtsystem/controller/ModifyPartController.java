@@ -17,12 +17,17 @@ public class ModifyPartController extends PartsController {
     public void handleSaveBtnEvent(ActionEvent event) throws Exception {
         //TODO:     - Create dialogue to alert error exception
         //          - Create confirm dialogue
-        fetchSelectedSrc();
-        partID = Integer.parseInt(idTF.getText());
-        parseEditableTFInputs();
-        Inventory.updatePart(currPartIndex, createPart());
-        System.out.println(selectedSrc.getText()+ " part was modified.");
-        super.sceneManager.returnToMenu(event);
+        try {
+            fetchSelectedSrc();
+            parseEditableTFInputs();
+            validateInputs();
+            partID = Integer.parseInt(idTF.getText());
+            Inventory.updatePart(currPartIndex, createPart());
+            System.out.println(selectedSrc.getText() + " part was modified.");
+            super.sceneManager.returnToMenu(event);
+        } catch (Exception e) {
+            System.out.println(e.getMessage() + ": Part was not modified");
+        }
     }
 
     //FOR PART G:
@@ -38,9 +43,11 @@ public class ModifyPartController extends PartsController {
         if(selectedPart instanceof InHouse) {
             sourceTF.setText(String.valueOf(((InHouse) selectedPart).getMachineId()));
             partSrcTG.selectToggle(inSrcRBtn);
+            inSrcRBtn.fireEvent(new ActionEvent());
         } else if (selectedPart instanceof OutSourced) {
             sourceTF.setText(String.valueOf(((OutSourced) selectedPart).getCompanyName()));
             partSrcTG.selectToggle(outSrcRBtn);
+            outSrcRBtn.fireEvent(new ActionEvent());
         }
         currPartIndex = Inventory.getAllParts().indexOf(selectedPart);
     }
