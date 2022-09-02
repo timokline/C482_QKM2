@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="kline.qkmii.inventorymgmtsystem.controller.DBTableController"
+      prefHeight="400.0" prefWidth="600.0">
+    <HBox alignment="BOTTOM_LEFT" prefHeight="27.0" prefWidth="293.0" spacing="50.0">
+        <children>
+            <Label fx:id="tableviewLBL" text="Parts">
+                <font>
+                    <Font name="System Bold" size="14.0" />
+                </font>
+            </Label>
+            <TextField fx:id="queryTF" onKeyPressed="#handleQueryInput" prefHeight="25.0" prefWidth="171.0" promptText="Search by Part Id or Name" />
+        </children>
+        <VBox.margin>
+            <Insets left="10.0" right="10.0" />
+        </VBox.margin>
+    </HBox>
+    <TableView fx:id="databaseTblV" prefHeight="155.0" prefWidth="327.0">
+        <columns>
+            <TableColumn fx:id="IDCol" prefWidth="75.0" text="Part ID" />
+            <TableColumn fx:id="NameCol" prefWidth="75.0" text="Part Name" />
+            <TableColumn fx:id="InvCol" prefWidth="75.0" text="Inventory Level" />
+            <TableColumn fx:id="UnitCol" prefWidth="75.0" text="Price/Cost per Unit" />
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+        </columnResizePolicy>
+    </TableView>
+</VBox>
