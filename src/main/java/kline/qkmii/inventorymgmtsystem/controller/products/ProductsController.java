@@ -1,4 +1,4 @@
-package kline.qkmii.inventorymgmtsystem.controller;
+package kline.qkmii.inventorymgmtsystem.controller.products;
 
 
 import javafx.collections.FXCollections;
@@ -17,21 +17,6 @@ import kline.qkmii.inventorymgmtsystem.util.SceneManager;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import static kline.qkmii.inventorymgmtsystem.InvMgmtSysMain.getProductUID;
-
-interface IProdCTRLR {
-
-    void handleAddPartBtnEvent(ActionEvent event);
-
-    void handleCancelBtnEvent(ActionEvent event) throws IOException;
-
-    void handleQueryInput(InputMethodEvent event);
-
-    void handleRmvPartBtnEvent(ActionEvent event);
-
-    void handleSaveBtnEvent(ActionEvent event) throws Exception;
-}
 
 public abstract class ProductsController implements Initializable, IProdCTRLR {
 

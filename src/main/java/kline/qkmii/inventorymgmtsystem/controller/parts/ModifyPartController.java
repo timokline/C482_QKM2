@@ -1,4 +1,4 @@
-package kline.qkmii.inventorymgmtsystem.controller;
+package kline.qkmii.inventorymgmtsystem.controller.parts;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,8 +6,6 @@ import kline.qkmii.inventorymgmtsystem.model.InHouse;
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
 import kline.qkmii.inventorymgmtsystem.model.OutSourced;
 import kline.qkmii.inventorymgmtsystem.model.Part;
-
-import java.io.IOException;
 
 public class ModifyPartController extends PartsController {
 

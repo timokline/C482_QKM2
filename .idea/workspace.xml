@@ -7,14 +7,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="various refactors">
-      <change afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/DBTableController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/database-tableview.fxml" afterDir="false" />
+    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="Refactored tableviews into generic controller. fxmls have nested controllers">
+      <change afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/IPartsCTRLR.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/products/IProdCTRLR.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/FeedbackMsgFactory.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/main_form_old.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/AddPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/AddPartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/AddProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/products/AddProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/MainMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/main-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/main-form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ModifyPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/ModifyPartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ModifyProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/products/ModifyProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/PartsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/PartsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/ProductsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/products/ProductsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-part-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-part-form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-product-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/add-product-form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-part-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-part-form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-product-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kline/qkmii/inventorymgmtsystem/view/modify-product-form.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,10 +36,10 @@
       <list>
         <option value="JavaFXApplication" />
         <option value="JUnit5 Test Class" />
-        <option value="Interface" />
         <option value="Record" />
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -129,7 +139,7 @@
       <workItem from="1661892425814" duration="16309000" />
       <workItem from="1661987136955" duration="906000" />
       <workItem from="1662008311866" duration="644000" />
-      <workItem from="1662065687399" duration="12998000" />
+      <workItem from="1662065687399" duration="15378000" />
     </task>
     <task id="LOCAL-00001" summary="Initial outline and setup based on UML diagram">
       <created>1660205356356</created>
@@ -327,7 +337,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661897609370</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Refactored tableviews into generic controller. fxmls have nested controllers">
+      <created>1662094123435</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1662094123435</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,7 +362,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added skeleton of fxml into main menu controller class; various fx:id and handle methods created." />
     <MESSAGE value="Added skeleton of fxml into add parts controller class; various fx:id and handle methods created. refactoring" />
     <MESSAGE value="Added skeleton of fxml into add parts controller class; various fx:id and handle methods created. added utility classes" />
     <MESSAGE value="refactored menu controller and app main for utility classes" />
@@ -370,7 +386,8 @@
     <MESSAGE value="refactored all part &amp; product controller methods" />
     <MESSAGE value="added error handling methods for part controller" />
     <MESSAGE value="various refactors" />
-    <option name="LAST_COMMIT_MESSAGE" value="various refactors" />
+    <MESSAGE value="Refactored tableviews into generic controller. fxmls have nested controllers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored tableviews into generic controller. fxmls have nested controllers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

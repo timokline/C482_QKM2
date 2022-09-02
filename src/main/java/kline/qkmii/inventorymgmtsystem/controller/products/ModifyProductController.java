@@ -1,11 +1,9 @@
-package kline.qkmii.inventorymgmtsystem.controller;
+package kline.qkmii.inventorymgmtsystem.controller.products;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
 import kline.qkmii.inventorymgmtsystem.model.Product;
-
-import java.io.IOException;
 
 public class ModifyProductController extends ProductsController {
 

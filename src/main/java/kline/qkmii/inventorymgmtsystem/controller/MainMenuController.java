@@ -4,9 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import kline.qkmii.inventorymgmtsystem.controller.parts.ModifyPartController;
+import kline.qkmii.inventorymgmtsystem.controller.products.ModifyProductController;
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
 import kline.qkmii.inventorymgmtsystem.model.Part;
 import kline.qkmii.inventorymgmtsystem.model.Product;
@@ -26,18 +26,6 @@ public class MainMenuController implements Initializable {
     private Button menuExitBtn;
 
     @FXML
-    private TableColumn<Part, Integer> partIDCol;
-
-    @FXML
-    private TableColumn<Part, Integer> partInvCol;
-
-    @FXML
-    private TableColumn<Part, String> partNameCol;
-
-    @FXML
-    private TableColumn<Part, Double> partUnitCol;
-
-    @FXML
     private Button partsAddBtn;
 
     @FXML
@@ -46,30 +34,14 @@ public class MainMenuController implements Initializable {
     @FXML
     private Button partsModifyBtn;
 
-    //@FXML private TextField partsQueryTF;
-
-    //@FXML private TableView<Part> partsTBLV;
-
     @FXML
     private Button prodAddBtn;
 
     @FXML
     private Button prodDeleteBtn;
 
-    //@FXML private TableColumn<Product, Integer> prodIDCol;
-
-    //@FXML private TableColumn<Product, Integer> prodInvCol;
-
     @FXML
     private Button prodModifyBtn;
-
-    //@FXML private TableColumn<Product, String> prodNameCol;
-
-    //@FXML private TextField prodQueryTF;
-
-    //@FXML private TableView<Product> prodTBLV;
-
-    //@FXML private TableColumn<Product, Double> prodUnitCol;
 
     public MainMenuController() {
         this.sceneManager = new SceneManager() {};
@@ -92,8 +64,13 @@ public class MainMenuController implements Initializable {
         var fxmlLoader = sceneManager.loadScene(FilePath.MODIFY_PARTS_SCENE);
 
         ModifyPartController MPMController = fxmlLoader.getController();
-        //TODO: DIALOG FOR WHEN A PART IS NOT SELECTED.
-        MPMController.fetchPart(partsTblController.getDatabase().getSelectionModel().getSelectedItem());
+
+        try {
+            MPMController.fetchPart(partsTblController.getDatabase().getSelectionModel().getSelectedItem());
+        }
+        catch (NullPointerException e) {
+            //TODO: DIALOG FOR WHEN A PART IS NOT SELECTED.
+        }
 
         sceneManager.switchScene(event, fxmlLoader);
     }
@@ -112,15 +89,6 @@ public class MainMenuController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
         }
     }
-
-//    @FXML
-//    void handlePartsQueryInput(KeyEvent event) {
-//        var query = partsTblController.getSearchQuery();
-//        if(event.getCode() == KeyCode.ENTER) {
-//            partsTblController.setDatabase(Inventory.lookupPart(query));
-//            System.out.println("Part query received");
-//        }
-//    }
 
     ///PRODUCTS
     @FXML
@@ -166,16 +134,6 @@ public class MainMenuController implements Initializable {
 //        }
 //        return false;
     }
-
-//    @FXML
-//    void handleProdQueryInput(KeyEvent event) {
-//        //TODO: Verify data type of query (int/String).
-//        var query = productTblController.getSearchQuery();
-//        if(event.getCode() == KeyCode.ENTER) {
-//            productTblController.setDatabase(Inventory.lookupProduct(query));
-//            System.out.println("Part query received");
-//        }
-//    }
 
     public boolean searchPart(int id) {
         var foundPart = false;

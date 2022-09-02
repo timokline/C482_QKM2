@@ -1,4 +1,4 @@
-package kline.qkmii.inventorymgmtsystem.controller;
+package kline.qkmii.inventorymgmtsystem.controller.products;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

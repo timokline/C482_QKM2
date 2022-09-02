@@ -1,10 +1,8 @@
-package kline.qkmii.inventorymgmtsystem.controller;
+package kline.qkmii.inventorymgmtsystem.controller.parts;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
-
-import java.io.IOException;
 
 import static kline.qkmii.inventorymgmtsystem.InvMgmtSysMain.getPartUID;
 

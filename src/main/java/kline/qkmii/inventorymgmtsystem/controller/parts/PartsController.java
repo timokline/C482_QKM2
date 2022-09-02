@@ -1,4 +1,4 @@
-package kline.qkmii.inventorymgmtsystem.controller;
+package kline.qkmii.inventorymgmtsystem.controller.parts;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,16 +14,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-//Interface class for handle-event methods
-interface IPartsCTRLR {
-    void handleSaveBtnEvent(ActionEvent event) throws Exception;
-
-    void handleCancelBtnEvent(ActionEvent event) throws IOException;
-
-    void handleInSrcBtnEvent(ActionEvent actionEvent);
-
-    void handleOutSrcBtnEvent(ActionEvent actionEvent);
-}
 public abstract class PartsController implements Initializable, IPartsCTRLR {
 
     final String ILLEGAL_INT_INPUT_MSG = "Input must be numerical";
