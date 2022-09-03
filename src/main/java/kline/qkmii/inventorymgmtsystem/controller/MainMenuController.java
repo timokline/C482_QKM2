@@ -2,9 +2,12 @@ package kline.qkmii.inventorymgmtsystem.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import kline.qkmii.inventorymgmtsystem.InvMgmtSysMain;
+import kline.qkmii.inventorymgmtsystem.controller.parts.AddPartController;
 import kline.qkmii.inventorymgmtsystem.controller.parts.ModifyPartController;
 import kline.qkmii.inventorymgmtsystem.controller.products.ModifyProductController;
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
@@ -56,17 +59,18 @@ public class MainMenuController implements Initializable {
     ///PARTS
     @FXML
     void handlePartsAddBtnEvent(ActionEvent event) throws IOException {
-        sceneManager.switchScene(event, FilePath.ADD_PARTS_SCENE);
+        AddPartController addPartController = new AddPartController();
+        var fxmlLoader = sceneManager.createLoader(addPartController, FilePath.PARTS_FORM_SCENE);
+        sceneManager.switchScene(event, fxmlLoader);
     }
 
     @FXML
     void handlePartsModBtnEvent(ActionEvent event) throws IOException {
-        var fxmlLoader = sceneManager.loadScene(FilePath.MODIFY_PARTS_SCENE);
-
-        ModifyPartController MPMController = fxmlLoader.getController();
+        ModifyPartController modifyPartController = new ModifyPartController();
+        var fxmlLoader = sceneManager.createLoader(modifyPartController, FilePath.PARTS_FORM_SCENE);
 
         try {
-            MPMController.fetchPart(partsTblController.getDatabase().getSelectionModel().getSelectedItem());
+            modifyPartController.fetchPart(partsTblController.getDatabase().getSelectionModel().getSelectedItem());
         }
         catch (NullPointerException e) {
             //TODO: DIALOG FOR WHEN A PART IS NOT SELECTED.

@@ -11,6 +11,10 @@ public class ModifyPartController extends PartsController {
 
     int currPartIndex;
 
+    public ModifyPartController() {
+        labelText = "Modify Part";
+    }
+
     @FXML
     public void handleSaveBtnEvent(ActionEvent event) throws Exception {
         //TODO:     - Create dialogue to alert error exception

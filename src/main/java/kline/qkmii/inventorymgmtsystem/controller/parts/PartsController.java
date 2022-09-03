@@ -54,7 +54,7 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     protected RadioButton outSrcRBtn;
 
     @FXML
-    private Label partLBL;
+    protected Label partLBL;
 
     @FXML
     protected ToggleGroup partSrcTG;
@@ -75,7 +75,7 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     protected TextField unitTF;
 
 
-
+    String labelText;
     int partID;
     String partNameInput;
     double partPriceInput;
@@ -93,6 +93,7 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sceneManager = new SceneManager() {/*No overrides. Use super*/
         };
+        partLBL.setText(labelText);
         System.out.println("PartsController abstract class initialized.");
     }
 

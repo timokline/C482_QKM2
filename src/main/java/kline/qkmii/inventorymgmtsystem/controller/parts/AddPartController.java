@@ -8,6 +8,10 @@ import static kline.qkmii.inventorymgmtsystem.InvMgmtSysMain.getPartUID;
 
 public class AddPartController extends PartsController {
 
+    public AddPartController() {
+        labelText = "Add Part";
+    }
+
     @FXML
     public void handleSaveBtnEvent(ActionEvent event) {
         //TODO:     - Create dialogue to alert error exception

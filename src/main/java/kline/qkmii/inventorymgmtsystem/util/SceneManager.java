@@ -30,6 +30,17 @@ public abstract class SceneManager {
         stage.show();
     }
 
+    public FXMLLoader createLoader(Object controller, String location) {
+        var fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
+        fxmlLoader.setController(controller);
+        try {
+            fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return fxmlLoader;
+    }
+
     public FXMLLoader loadScene(String location) throws IOException {
         loader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
         loader.load();
