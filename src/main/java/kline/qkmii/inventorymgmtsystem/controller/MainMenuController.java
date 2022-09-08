@@ -21,38 +21,10 @@ import java.util.ResourceBundle;
 
 public class MainMenuController implements Initializable {
 
-    private SceneManager sceneManager;
-
-    @FXML
-    private Button menuExitBtn;
-
-    @FXML
-    private Button partsAddBtn;
-
-    @FXML
-    private Button partsDeleteBtn;
-
-    @FXML
-    private Button partsModifyBtn;
-
-    @FXML
-    private Button prodAddBtn;
-
-    @FXML
-    private Button prodDeleteBtn;
-
-    @FXML
-    private Button prodModifyBtn;
-
-    public MainMenuController() {
-        this.sceneManager = new SceneManager() {};
-        System.out.println("Main Menu controller created");
-    }
-
-    @FXML
-    void handleExitBtnEvent(ActionEvent ignoredEvent) {
-        System.exit(0);
-    }
+  @FXML
+  void handleExitBtnEvent(ActionEvent ignoredEvent) {
+    System.exit(0);
+  }
 
   ///PARTS
   @FXML
@@ -174,21 +146,21 @@ public class MainMenuController implements Initializable {
     return null;
   }
 
-    @FXML private VBox partsTbl;
-    @FXML private VBox productTbl;
-    @FXML private DBTableController<Part> partsTblController = new DBTableController<>();
-    @FXML private DBTableController<Product> productTblController = new DBTableController<>();
+  @FXML
+  private VBox partsTbl;
+  @FXML
+  private VBox productTbl;
+  @FXML
+  private DBTableController<Part> partsTblController;
+  @FXML
+  private DBTableController<Product> productTblController;
 
-    @FXML
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        partsTblController.setTableLabel("Parts");
-        productTblController.setTableLabel("Products");
-
-        partsTblController.setDatabase(Inventory.getAllParts());
-        productTblController.setDatabase(Inventory.getAllProducts());
-
-        partsTblController.populateTable();
-        productTblController.populateTable();
+  @FXML
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    partsTblController.initDBTblController("Parts", "Search by Part ID or Name", "Part ID", "Part Name",
+        Inventory.getAllParts());
+    productTblController.initDBTblController("Products", "Search by Product ID or Name", "Product ID", "Product Name",
+        Inventory.getAllProducts());
 
     System.out.println("Main Menu initialized.");
   }

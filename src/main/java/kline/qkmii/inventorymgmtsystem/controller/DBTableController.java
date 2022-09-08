@@ -98,12 +98,22 @@ public class DBTableController<T> implements Initializable {
     databaseTblV.setItems(database);
   }
 
-    @FXML
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        IDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        NameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        InvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        UnitCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+  public void initDBTblController(String tableLabel, String textFieldPrompt, String idColText, String nameColText,
+                                  ObservableList<T> database) {
+    this.setTableLabel(tableLabel);
+    this.setQueryTFPromptText(textFieldPrompt);
+    this.setIDColText(idColText);
+    this.setNameColText(nameColText);
+    this.setDatabase(database);
+    this.populateTable();
+  }
+
+  @FXML
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    IDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+    NameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+    InvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+    UnitCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
     this.populateTable();
     System.out.println("Table initialized created");

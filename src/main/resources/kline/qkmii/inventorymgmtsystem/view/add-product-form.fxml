@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="586.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kline.qkmii.inventorymgmtsystem.controller.products.AddProductController">
+<AnchorPane prefHeight="586.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane layoutX="35.0" layoutY="12.0" prefHeight="457.0" prefWidth="694.0" style="-fx-border-width: 1; -fx-border-color: black; -fx-border-radius: 10;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="25.0">
          <children>
@@ -112,7 +112,7 @@
                                  <children>
                                     <ButtonBar prefHeight="43.0" prefWidth="359.0">
                                        <buttons>
-                                          <Button fx:id="removePartBtn" mnemonicParsing="false" onAction="#handleRmvPartBtnEvent" text="Remove Associated Part" />
+                                          <Button mnemonicParsing="false" onAction="#handleRmvPartBtnEvent" text="Remove Associated Part" />
                                        </buttons>
                                        <VBox.margin>
                                           <Insets right="16.0" />
@@ -120,8 +120,8 @@
                                     </ButtonBar>
                                     <ButtonBar prefHeight="36.0" prefWidth="375.0">
                                       <buttons>
-                                        <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#handleSaveBtnEvent" text="Save" />
-                                          <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#handleCancelBtnEvent" text="Cancel" />
+                                        <Button mnemonicParsing="false" onAction="#handleSaveBtnEvent" text="Save" />
+                                          <Button mnemonicParsing="false" onAction="#handleCancelBtnEvent" text="Cancel" />
                                       </buttons>
                                     </ButtonBar>
                                  </children>
