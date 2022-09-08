@@ -8,8 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.InputMethodEvent;
-import kline.qkmii.inventorymgmtsystem.model.Inventory;
+import javafx.scene.layout.VBox;
+import kline.qkmii.inventorymgmtsystem.controller.DBTableController;
 import kline.qkmii.inventorymgmtsystem.model.Part;
 import kline.qkmii.inventorymgmtsystem.model.Product;
 import kline.qkmii.inventorymgmtsystem.util.SceneManager;
@@ -20,75 +20,73 @@ import java.util.ResourceBundle;
 
 public abstract class ProductsController implements Initializable, IProdCTRLR {
 
-    protected SceneManager sceneManager = new SceneManager() {
-    };
-    @FXML
-    private Button addPartBtn;
+  @FXML
+  private Button addPartBtn;
 
-    @FXML
-    protected TableColumn<Part, Integer> assocInvLvlCol;
+  @FXML
+  protected TableColumn<Part, Integer> assocInvLvlCol;
 
-    @FXML
-    protected TableColumn<Part, Integer> assocPartIDCol;
+  @FXML
+  protected TableColumn<Part, Integer> assocPartIDCol;
 
-    @FXML
-    protected TableColumn<Part, String> assocPartNameCol;
+  @FXML
+  protected TableColumn<Part, String> assocPartNameCol;
 
-    @FXML
-    protected TableColumn<Part, Double> assocPartUnitCol;
+  @FXML
+  protected TableColumn<Part, Double> assocPartUnitCol;
 
-    @FXML
-    protected TableView<Part> associatedPartsTBLV;
+  @FXML
+  protected TableView<Part> associatedPartsTBLV;
 
-    @FXML
-    private TableColumn<Part, Integer> availInvLvlCol;
+  @FXML
+  private TableColumn<Part, Integer> availInvLvlCol;
 
-    @FXML
-    private TableColumn<Part, Integer> availPartIdCol;
+  @FXML
+  private TableColumn<Part, Integer> availPartIdCol;
 
-    @FXML
-    private TableColumn<Part, String> availPartNameCol;
+  @FXML
+  private TableColumn<Part, String> availPartNameCol;
 
-    @FXML
-    private TableColumn<Part, Double> availPartUnitCol;
+  @FXML
+  private TableColumn<Part, Double> availPartUnitCol;
 
-    @FXML
-    private TableView<Part> availablePartsTBLV;
+  @FXML
+  private TableView<Part> availablePartsTBLV;
 
-    @FXML
-    private Button cancelBtn;
+  @FXML
+  private Button cancelBtn;
 
-    @FXML
-    protected TextField idTF;
+  @FXML
+  protected TextField idTF;
 
-    @FXML
-    protected TextField invTF;
+  @FXML
+  protected TextField invTF;
 
-    @FXML
-    protected TextField maxProductsTF;
+  @FXML
+  protected TextField maxProductsTF;
 
-    @FXML
-    protected TextField minProductsTF;
+  @FXML
+  protected TextField minProductsTF;
 
-    @FXML
-    protected TextField nameTF;
+  @FXML
+  protected TextField nameTF;
 
-    @FXML
-    private TextField partQueryTF;
+  @FXML
+  private TextField partQueryTF;
 
-    @FXML
-    protected TextField priceTF;
+  @FXML
+  protected TextField priceTF;
 
-    @FXML
-    private Label productLBL;
+  @FXML
+  private Label productLBL;
 
-    @FXML
-    private Button removePartBtn;
+  @FXML
+  private Button removePartBtn;
 
-    @FXML
-    private Button saveBtn;
+  @FXML
+  private Button saveBtn;
 
-    protected ObservableList<Part> currentAssocList = FXCollections.observableArrayList();
+  protected ObservableList<Part> currentAssocList = FXCollections.observableArrayList();
 
     protected void populateAvailPartsTbl() {
         availablePartsTBLV.setItems(Inventory.getAllParts());
@@ -121,41 +119,37 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
         populateAssocPartsTbl();
     }
 
-    @FXML
-    public void handleCancelBtnEvent(ActionEvent event) throws IOException {
-        sceneManager.returnToMenu(event);
-    }
+  @FXML
+  public void handleCancelBtnEvent(ActionEvent event) throws IOException {
+    SceneManager.returnToMenu(event);
+  }
 
-    @FXML
-    public void handleQueryInput(InputMethodEvent event) {
+  @FXML
+  public void handleRmvPartBtnEvent(ActionEvent event) {
+    var selectedPart = associatedPartsTBLV.getSelectionModel().getSelectedItem();
+    //TODO: Dialog to confirm deletion.
+    currentAssocList.remove(selectedPart);
+    populateAssocPartsTbl();
+  }
 
-    }
+  int productID;
+  String prodNameInput;
+  double prodPriceInput;
+  int prodInventoryInput;
+  int maxProdInput;
+  int minProdInput;
 
-    @FXML
-    public void handleRmvPartBtnEvent(ActionEvent event) {
-        var selectedPart = associatedPartsTBLV.getSelectionModel().getSelectedItem();
-        //TODO: Dialog to confirm deletion.
-        currentAssocList.remove(selectedPart);
-        populateAssocPartsTbl();
-    }
-    int productID;
-    String prodNameInput;
-    double prodPriceInput;
-    int prodInventoryInput;
-    int maxProdInput;
-    int minProdInput;
+  protected void parseEditableTFInputs() {
+    prodNameInput = nameTF.getText();
+    prodPriceInput = Double.parseDouble(priceTF.getText());
+    prodInventoryInput = Integer.parseInt(invTF.getText());
+    maxProdInput = Integer.parseInt(maxProductsTF.getText());
+    minProdInput = Integer.parseInt(minProductsTF.getText());
+  }
 
-    protected void parseEditableTFInputs() {
-        prodNameInput = nameTF.getText();
-        prodPriceInput = Double.parseDouble(priceTF.getText());
-        prodInventoryInput = Integer.parseInt(invTF.getText());
-        maxProdInput = Integer.parseInt(maxProductsTF.getText());
-        minProdInput = Integer.parseInt(minProductsTF.getText());
-    }
-
-    protected Product createProduct() {
-        Product newProduct = new Product(productID, prodNameInput, prodPriceInput, prodInventoryInput, minProdInput, maxProdInput);
-        newProduct.getAllAssociatedParts().setAll(currentAssocList);
-        return newProduct;
-    }
+  protected Product createProduct() {
+    Product newProduct = new Product(productID, prodNameInput, prodPriceInput, prodInventoryInput, minProdInput, maxProdInput);
+    newProduct.getAllAssociatedParts().setAll(currentAssocList);
+    return newProduct;
+  }
 }

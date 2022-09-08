@@ -22,7 +22,7 @@
          <children>
             <HBox prefHeight="53.0" prefWidth="548.0">
                <children>
-                  <Label fx:id="partLBL" prefHeight="17.0" prefWidth="149.0" text="Add Part">
+                  <Label fx:id="partFormLBL" prefHeight="17.0" prefWidth="149.0" text="Add Part">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

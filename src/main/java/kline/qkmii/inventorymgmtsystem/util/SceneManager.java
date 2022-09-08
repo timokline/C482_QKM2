@@ -10,44 +10,53 @@ import kline.qkmii.inventorymgmtsystem.InvMgmtSysMain;
 
 import java.io.IOException;
 
-public abstract class SceneManager {
-    Stage stage; //private
-    Parent scene; //private
-    FXMLLoader loader; //private
+public final class SceneManager {
+  static Stage stage;
+  static Parent scene;
+  static FXMLLoader loader;
 
-    public void switchScene(ActionEvent event, String location) throws IOException {
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow(); //Might be a bug w/ type-casting
-        loader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
-        scene = new Scene(loader.load()).getRoot();
-        stage.setScene(scene.getScene());
-        stage.show();
+  private SceneManager() {
+  }
+
+  public static void switchScene(ActionEvent event, String location) {
+    try {
+      stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      loader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
+      scene = new Scene(loader.load()).getRoot();
+      stage.setScene(scene.getScene());
+      stage.show();
+    } catch (IOException e) {
+      System.out.println(e);
+    }
+  }
+
+  public static void switchScene(ActionEvent event, FXMLLoader fxmlLoader) {
+    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    scene = fxmlLoader.getRoot();
+    stage.setScene(new Scene(scene));
+    stage.show();
+  }
+
+  public static FXMLLoader injectController(Object controller, String location) {
+    var fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
+    fxmlLoader.setController(controller);
+    try {
+      fxmlLoader.load();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
 
-    public void switchScene(ActionEvent event, FXMLLoader fxmlLoader){
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow(); //Might be a bug w/ type-casting
-        scene = fxmlLoader.getRoot();
-        stage.setScene(new Scene(scene));
-        stage.show();
-    }
+    return fxmlLoader;
+  }
 
-    public FXMLLoader createLoader(Object controller, String location) {
-        var fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
-        fxmlLoader.setController(controller);
-        try {
-            fxmlLoader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return fxmlLoader;
-    }
+  public static FXMLLoader loadScene(String location) throws IOException {
+    loader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
+    loader.load();
 
-    public FXMLLoader loadScene(String location) throws IOException {
-        loader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
-        loader.load();
-        return loader;
-    }
+    return loader;
+  }
 
-    public void returnToMenu(ActionEvent event) throws IOException {
-        switchScene(event, FilePath.MAIN_MENU);
-    }
+  public static void returnToMenu(ActionEvent event) {
+    switchScene(event, FilePath.MAIN_MENU);
+  }
 }
