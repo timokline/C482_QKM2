@@ -15,11 +15,14 @@ public class AddProductController extends ProductsController {
   }
 
   @FXML
-  public void handleSaveBtnEvent(ActionEvent event) throws IOException {
-    productID = getProductUID();
-    parseEditableTFInputs();
-    Inventory.addProduct(createProduct());
-    System.out.println("Product was created.");
-    SceneManager.returnToMenu(event);
+  public void handleSaveBtnEvent(ActionEvent event) {
+    try {
+      validateInputs();
+      Inventory.addProduct(createProduct());
+      System.out.println("Product was created.");
+      SceneManager.returnToMenu(event);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
   }
 }

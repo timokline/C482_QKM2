@@ -187,17 +187,51 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
     }
   }
 
-  protected void parseEditableTFInputs() {
-    prodNameInput = nameTF.getText();
-    prodPriceInput = Double.parseDouble(priceTF.getText());
-    prodInventoryInput = Integer.parseInt(invTF.getText());
-    maxProdInput = Integer.parseInt(maxProductsTF.getText());
-    minProdInput = Integer.parseInt(minProductsTF.getText());
+  private void parseUserInputs() {
+    currProductName = nameTF.getText();
+    currProductPrice = Double.parseDouble(priceTF.getText());
+    currProductStock = Integer.parseInt(invTF.getText());
+    currMaxProducts = Integer.parseInt(maxProductsTF.getText());
+    currMinProducts = Integer.parseInt(minProductsTF.getText());
+  }
+
+  protected void validateInputs() throws IllegalArgumentException {
+    try {
+      boolean errorCaught = false;
+
+      //Check empty fields and conversion
+      for (var userInput : editableTextFields) {
+        var inputHandled = ErrorHandler.processInput(userInput);
+        if (!inputHandled) {
+          errorCaught = true;
+        }
+      }
+
+      //Check integer business logic
+      if (!errorCaught) {
+        parseUserInputs();
+        errorCaught = ErrorHandler.validateIntInputs(currProductStock, currMinProducts, currMaxProducts,
+            stockFeedbackTXT, minFeedbackTXT, maxFeedbackTXT);
+      }
+
+      //Throw for any tests above flagged
+      if (errorCaught) {
+        throw new RuntimeException(new IllegalArgumentException() + ": Invalid user inputs");
+      }
+
+
+    } finally {
+      System.out.println("Cleanup.");
+    }
   }
 
   protected Product createProduct() {
-    Product newProduct = new Product(productID, prodNameInput, prodPriceInput, prodInventoryInput, minProdInput, maxProdInput);
-    newProduct.getAllAssociatedParts().setAll(currentAssocList);
-    return newProduct;
+    return productBuilder
+        .name(currProductName)
+        .price(currProductPrice)
+        .stock(currProductStock)
+        .min(currMinProducts)
+        .max(currMaxProducts)
+        .build();
   }
 }
