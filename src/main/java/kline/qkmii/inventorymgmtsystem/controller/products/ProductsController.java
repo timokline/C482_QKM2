@@ -1,21 +1,26 @@
 package kline.qkmii.inventorymgmtsystem.controller.products;
 
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import kline.qkmii.inventorymgmtsystem.DialogManager;
+import kline.qkmii.inventorymgmtsystem.SceneManager;
 import kline.qkmii.inventorymgmtsystem.controller.DBTableController;
+import kline.qkmii.inventorymgmtsystem.model.Inventory;
 import kline.qkmii.inventorymgmtsystem.model.Part;
 import kline.qkmii.inventorymgmtsystem.model.Product;
-import kline.qkmii.inventorymgmtsystem.util.SceneManager;
+import kline.qkmii.inventorymgmtsystem.model.ProductBuilder;
+import kline.qkmii.inventorymgmtsystem.util.ErrorHandler;
+import kline.qkmii.inventorymgmtsystem.util.TextFieldContainer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -33,9 +38,6 @@ interface IProdCTRLR {
 public abstract class ProductsController implements Initializable, IProdCTRLR {
 
   @FXML
-  private Button addPartBtn;
-
-  @FXML
   protected TableColumn<Part, Integer> assocInvLvlCol;
 
   @FXML
@@ -49,24 +51,6 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
 
   @FXML
   protected TableView<Part> associatedPartsTBLV;
-
-  @FXML
-  private TableColumn<Part, Integer> availInvLvlCol;
-
-  @FXML
-  private TableColumn<Part, Integer> availPartIdCol;
-
-  @FXML
-  private TableColumn<Part, String> availPartNameCol;
-
-  @FXML
-  private TableColumn<Part, Double> availPartUnitCol;
-
-  @FXML
-  private TableView<Part> availablePartsTBLV;
-
-  @FXML
-  private Button cancelBtn;
 
   @FXML
   protected TextField idTF;
@@ -84,35 +68,45 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
   protected TextField nameTF;
 
   @FXML
-  private TextField partQueryTF;
-
-  @FXML
   protected TextField priceTF;
-
   @FXML
-  private Label productLBL;
-
+  protected Text nameFeedbackTXT;
   @FXML
-  private Button removePartBtn;
-
+  protected Text stockFeedbackTXT;
   @FXML
-  private Button saveBtn;
-
-  protected ObservableList<Part> currentAssocList = FXCollections.observableArrayList();
-
-  protected void populateAssocPartsTbl() {
-    associatedPartsTBLV.setItems(currentAssocList);
-  }
-
+  protected Text priceFeedbackTXT;
+  @FXML
+  protected Text minFeedbackTXT;
+  @FXML
+  protected Text maxFeedbackTXT;
+  protected ProductBuilder productBuilder;
+  protected Set<Text> feedbackMessageTexts;
+  protected Set<TextFieldContainer> editableTextFields;
+  String formLabelText;
+  //Current Product information
+  int currProductID;
+  String currProductName;
+  double currProductPrice;
+  int currProductStock;
+  int currMaxProducts;
+  int currMinProducts;
+  @FXML
+  private Label productFormLBL;
   @FXML
   private VBox availPartsTbl;
   @FXML
   private DBTableController<Part> availPartsTblController;
 
+  public ProductsController() {
+  }
+
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    availPartsTblController.initDBTblController("", "Search by Part ID or Name", "Part ID", "Part Name", currentAssocList);
+    initTextFieldSet();
+    initFeedbackTextsSet();
+    resetFeedbackTexts();
+    productFormLBL.setText(formLabelText);
+    availPartsTblController.initDBTblController("", "Search by Part ID or Name", "Part ID", "Part Name", Inventory.getAllParts());
 
     assocPartIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
     assocPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -124,32 +118,74 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
   }
 
   @FXML
-  public void handleAddPartBtnEvent(ActionEvent event) {
-    //TODO: Check if a part is selected.
+  public void handleAddPartBtnEvent(ActionEvent ignoredEvent) {
     var selectedPart = availPartsTblController.getDatabase().getSelectionModel().getSelectedItem();
-    currentAssocList.add(selectedPart);
+    if (selectedPart != null) {
+      productBuilder.add(selectedPart);
+    } else {
+      DialogManager.SelectionError();
+    }
     populateAssocPartsTbl();
+    ignoredEvent.consume();
   }
 
   @FXML
-  public void handleCancelBtnEvent(ActionEvent event) throws IOException {
+  public void handleRmvPartBtnEvent(ActionEvent ignoredEvent) {
+    var selectedPart = associatedPartsTBLV.getSelectionModel().getSelectedItem();
+    if (selectedPart != null) {
+      var result = DialogManager.PartRemovalConfirmation().showAndWait();
+      if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (!productBuilder.delete(selectedPart)) {
+          DialogManager.PartRemovalError();
+        }
+      } else {
+        DialogManager.PartRemovalInfo();
+      }
+    } else {
+      DialogManager.SelectionError();
+    }
+    populateAssocPartsTbl();
+    ignoredEvent.consume();
+  }
+
+  @FXML
+  public void handleCancelBtnEvent(ActionEvent event) {
     SceneManager.returnToMenu(event);
   }
 
   @FXML
-  public void handleRmvPartBtnEvent(ActionEvent event) {
-    var selectedPart = associatedPartsTBLV.getSelectionModel().getSelectedItem();
-    //TODO: Dialog to confirm deletion.
-    currentAssocList.remove(selectedPart);
-    populateAssocPartsTbl();
+  public abstract void handleSaveBtnEvent(ActionEvent event) throws Exception;
+
+  protected void populateAssocPartsTbl() {
+    associatedPartsTBLV.setItems(productBuilder.viewAssocParts());
   }
 
-  int productID;
-  String prodNameInput;
-  double prodPriceInput;
-  int prodInventoryInput;
-  int maxProdInput;
-  int minProdInput;
+  private void initTextFieldSet() {
+    editableTextFields = new HashSet<>(Arrays.asList(
+        new TextFieldContainer(this.nameTF, TextFieldContainer.InputType.STRING, this.nameFeedbackTXT),
+        new TextFieldContainer(this.priceTF, TextFieldContainer.InputType.DECIMAL, this.priceFeedbackTXT),
+        new TextFieldContainer(this.invTF, TextFieldContainer.InputType.INTEGER, this.stockFeedbackTXT),
+        new TextFieldContainer(this.maxProductsTF, TextFieldContainer.InputType.INTEGER, this.maxFeedbackTXT),
+        new TextFieldContainer(this.minProductsTF, TextFieldContainer.InputType.INTEGER, this.minFeedbackTXT))
+    );
+  }
+
+  private void initFeedbackTextsSet() {
+    feedbackMessageTexts = new HashSet<>(Arrays.asList(
+        this.nameFeedbackTXT,
+        this.priceFeedbackTXT,
+        this.stockFeedbackTXT,
+        this.maxFeedbackTXT,
+        this.minFeedbackTXT
+    ));
+  }
+
+  private void resetFeedbackTexts() {
+    for (var text : feedbackMessageTexts) {
+      text.setText("");
+      text.setVisible(false);
+    }
+  }
 
   protected void parseEditableTFInputs() {
     prodNameInput = nameTF.getText();
