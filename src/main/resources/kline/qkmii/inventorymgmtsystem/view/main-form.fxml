@@ -4,16 +4,15 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kline.qkmii.inventorymgmtsystem.controller.MainMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kline.qkmii.inventorymgmtsystem.controller.MainMenuController">
    <children>
-      <BorderPane prefHeight="363.0" prefWidth="768.0" />
-      <VBox prefHeight="363.0" prefWidth="768.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="385.0" prefWidth="1061.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory Management System" wrappingWidth="266.3216094970703">
                <font>
@@ -23,52 +22,65 @@
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
             </Text>
-            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="768.0">
+            <VBox alignment="CENTER" prefHeight="330.0" prefWidth="1061.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="237.0" prefWidth="768.0" spacing="50.0">
+                  <HBox alignment="CENTER" fillHeight="false" prefHeight="269.0" prefWidth="921.0" spacing="50.0">
                      <children>
-                        <VBox prefHeight="211.0" prefWidth="304.0">
+                        <AnchorPane prefHeight="273.0" prefWidth="455.0">
                            <children>
-                                <fx:include fx:id="partsTbl" source="database-tableview.fxml"/>
-                              <ButtonBar prefHeight="40.0" prefWidth="200.0">
-                                <buttons>
-                                  <Button fx:id="partsAddBtn" mnemonicParsing="false" onAction="#handlePartsAddBtnEvent" text="Add" />
-                                    <Button fx:id="partsModifyBtn" mnemonicParsing="false" onAction="#handlePartsModBtnEvent" text="Modify" />
-                                    <Button fx:id="partsDeleteBtn" mnemonicParsing="false" onAction="#handlePartsDelBtnEvent" text="Delete" />
-                                </buttons>
-                                 <padding>
-                                    <Insets right="10.0" />
-                                 </padding>
-                              </ButtonBar>
+                              <Pane prefHeight="237.0" prefWidth="435.0" style="-fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 1;" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <children>
+                                    <VBox alignment="CENTER" layoutX="16.0" layoutY="2.0" prefHeight="237.0" prefWidth="403.0">
+                                       <children>
+                                          <fx:include fx:id="partsTbl" source="database-tableview.fxml" />
+                                          <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                                            <buttons>
+                                              <Button mnemonicParsing="false" onAction="#handlePartsAddBtnEvent" text="Add" />
+                                                <Button mnemonicParsing="false" onAction="#handlePartsModBtnEvent" text="Modify" />
+                                                <Button mnemonicParsing="false" onAction="#handlePartsDelBtnEvent" text="Delete" />
+                                            </buttons>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                          </ButtonBar>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </Pane>
                            </children>
-                        </VBox>
-                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="211.0" prefWidth="304.0">
+                        </AnchorPane>
+                        <AnchorPane layoutX="85.0" layoutY="10.0" prefHeight="273.0" prefWidth="455.0">
                            <children>
-                               <fx:include fx:id="productTbl" source="database-tableview.fxml"/>
-                              <ButtonBar prefHeight="40.0" prefWidth="200.0">
-                                 <buttons>
-                                    <Button fx:id="prodAddBtn" mnemonicParsing="false" onAction="#handleProdAddBtnEvent" text="Add" />
-                                    <Button fx:id="prodModifyBtn" mnemonicParsing="false" onAction="#handleProdModBtnEvent" text="Modify" />
-                                    <Button fx:id="prodDeleteBtn" mnemonicParsing="false" onAction="#handleProdDelBtnEvent" text="Delete" />
-                                 </buttons>
-                                 <padding>
-                                    <Insets right="10.0" />
-                                 </padding>
-                              </ButtonBar>
+                              <Pane prefHeight="237.0" prefWidth="435.0" style="-fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 1;" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <children>
+                                    <VBox alignment="CENTER" layoutX="16.0" layoutY="2.0" prefHeight="237.0" prefWidth="403.0">
+                                       <children>
+                                          <fx:include fx:id="productTbl" source="database-tableview.fxml" />
+                                          <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                                             <buttons>
+                                                <Button mnemonicParsing="false" onAction="#handleProdAddBtnEvent" text="Add" />
+                                                <Button mnemonicParsing="false" onAction="#handleProdModBtnEvent" text="Modify" />
+                                                <Button mnemonicParsing="false" onAction="#handleProdDelBtnEvent" text="Delete" />
+                                             </buttons>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                          </ButtonBar>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </Pane>
                            </children>
-                        </VBox>
+                        </AnchorPane>
                      </children>
                   </HBox>
-                  <ButtonBar prefHeight="24.0" prefWidth="743.0">
+                  <ButtonBar prefHeight="33.0" prefWidth="1051.0">
                     <buttons>
-                      <Button fx:id="menuExitBtn" minWidth="67.0" mnemonicParsing="false" onAction="#handleExitBtnEvent" prefHeight="25.0" prefWidth="82.0" text="Exit" />
+                      <Button minWidth="67.0" mnemonicParsing="false" onAction="#handleExitBtnEvent" prefHeight="25.0" prefWidth="82.0" text="Exit" />
                     </buttons>
                      <VBox.margin>
-                        <Insets right="25.0" />
+                        <Insets right="30.0" />
                      </VBox.margin>
-                     <padding>
-                        <Insets top="20.0" />
-                     </padding>
                   </ButtonBar>
                </children>
             </VBox>

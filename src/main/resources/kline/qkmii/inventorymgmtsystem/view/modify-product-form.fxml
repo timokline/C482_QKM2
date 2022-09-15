@@ -24,7 +24,7 @@
                     <children>
                         <VBox prefHeight="528.0" prefWidth="327.0">
                             <children>
-                                <Label fx:id="productLBL" prefHeight="27.0" prefWidth="242.0" text="Modify Product">
+                                <Label fx:id="productFormLBL" prefHeight="27.0" prefWidth="242.0" text="Modify Product">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
