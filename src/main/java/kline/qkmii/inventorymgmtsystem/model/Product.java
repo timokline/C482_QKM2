@@ -28,52 +28,52 @@ public class Product {
     this.max = max;
   }
 
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public void setPrice(double price) {
-    this.price = price;
-  }
-
-  public void setStock(int stock) {
-    this.stock = stock;
-  }
-
-  public void setMin(int min) {
-    this.min = min;
-  }
-
-  public void setMax(int max) {
-    this.max = max;
-  }
-
   public int getId() {
     return this.id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getName() {
     return this.name;
   }
 
+  public void setName(String name) {
+    this.name = name;
+  }
+
   public double getPrice() {
     return this.price;
+  }
+
+  public void setPrice(double price) {
+    this.price = price;
   }
 
   public int getStock() {
     return this.stock;
   }
 
+  public void setStock(int stock) {
+    this.stock = stock;
+  }
+
   public int getMin() {
     return this.min;
   }
 
+  public void setMin(int min) {
+    this.min = min;
+  }
+
   public int getMax() {
     return this.max;
+  }
+
+  public void setMax(int max) {
+    this.max = max;
   }
 
   public void addAssociatedPart(Part part) {
