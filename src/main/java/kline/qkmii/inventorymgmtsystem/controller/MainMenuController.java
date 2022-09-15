@@ -3,18 +3,19 @@ package kline.qkmii.inventorymgmtsystem.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
+import kline.qkmii.inventorymgmtsystem.DialogManager;
+import kline.qkmii.inventorymgmtsystem.SceneManager;
 import kline.qkmii.inventorymgmtsystem.controller.parts.AddPartController;
 import kline.qkmii.inventorymgmtsystem.controller.parts.ModifyPartController;
+import kline.qkmii.inventorymgmtsystem.controller.products.AddProductController;
 import kline.qkmii.inventorymgmtsystem.controller.products.ModifyProductController;
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
 import kline.qkmii.inventorymgmtsystem.model.Part;
 import kline.qkmii.inventorymgmtsystem.model.Product;
 import kline.qkmii.inventorymgmtsystem.util.FilePath;
-import kline.qkmii.inventorymgmtsystem.util.SceneManager;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,7 +23,17 @@ import java.util.ResourceBundle;
 public class MainMenuController implements Initializable {
 
   @FXML
+  private VBox partsTbl;
+  @FXML
+  private VBox productTbl;
+  @FXML
+  private DBTableController<Part> partsTblController;
+  @FXML
+  private DBTableController<Product> productTblController;
+
+  @FXML
   void handleExitBtnEvent(ActionEvent ignoredEvent) {
+    ignoredEvent.consume();
     System.exit(0);
   }
 
@@ -36,124 +47,77 @@ public class MainMenuController implements Initializable {
 
   @FXML
   void handlePartsModBtnEvent(ActionEvent event) {
-    ModifyPartController modifyPartController = new ModifyPartController();
-    var fxmlLoader = SceneManager.injectController(modifyPartController, FilePath.PARTS_FORM_SCENE);
+    var selectedPart = partsTblController.getDatabase().getSelectionModel().getSelectedItem();
 
     try {
-      modifyPartController.fetchPart(partsTblController.getDatabase().getSelectionModel().getSelectedItem());
+      ModifyPartController modifyPartController = new ModifyPartController();
+      var fxmlLoader = SceneManager.injectController(modifyPartController, FilePath.PARTS_FORM_SCENE);
+      modifyPartController.fetchPartInfo(selectedPart);
+      SceneManager.switchScene(event, fxmlLoader);
     } catch (NullPointerException e) {
-      //TODO: DIALOG FOR WHEN A PART IS NOT SELECTED.
+      DialogManager.SelectionError();
     }
-
-    SceneManager.switchScene(event, fxmlLoader);
   }
 
   @FXML
   void handlePartsDelBtnEvent(ActionEvent ignoredEvent) {
-    //TODO: Remove selected item from TableView
-    //      Return dialogue if no highlighted item is focused on.
-    //      If selection exists, prompt confirmation dialogue.
-    //          - Delete item
-
-    try {
-      var selectedPart = partsTblController.getDatabase().getSelectionModel().getSelectedItem();
-      if (Inventory.deletePart(selectedPart)) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    var selectedPart = partsTblController.getDatabase().getSelectionModel().getSelectedItem();
+    if (selectedPart != null) {
+      var result = DialogManager.PartDeletionConfirmation().showAndWait();
+      if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (!Inventory.deletePart(selectedPart)) {
+          DialogManager.PartDeletionError();
+        }
       } else {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        DialogManager.PartDeletionInfo();
       }
-    } catch (NullPointerException e) {
-      //TODO: Dialog if no item is selected.
+    } else {
+      System.out.println(new NullPointerException() + "No item was selected in tableview.");
+      DialogManager.SelectionError();
     }
+    ignoredEvent.consume();
   }
 
   ///PRODUCTS
   @FXML
   void handleProdAddBtnEvent(ActionEvent event) {
-    SceneManager.switchScene(event, FilePath.ADD_PRODUCT_SCENE);
+    AddProductController addProductController = new AddProductController();
+    var fxmlLoader = SceneManager.injectController(addProductController, FilePath.PRODUCTS_FORM_SCENE);
+    SceneManager.switchScene(event, fxmlLoader);
+  }
+
+  @FXML
+  void handleProdModBtnEvent(ActionEvent event) {
+    var selectedProduct = productTblController.getDatabase().getSelectionModel().getSelectedItem();
+
+    try {
+      ModifyProductController modifyProductController = new ModifyProductController(selectedProduct);
+      var fxmlLoader = SceneManager.injectController(modifyProductController, FilePath.PRODUCTS_FORM_SCENE);
+      modifyProductController.fetchProductInfo(selectedProduct);
+      SceneManager.switchScene(event, fxmlLoader);
+    } catch (NullPointerException e) {
+      DialogManager.SelectionError();
+    }
   }
 
   @FXML
   void handleProdDelBtnEvent(ActionEvent ignoredEvent) {
-    //TODO: Remove selected item from TableView
-    //      A focused item on the TableView must exist
-    //      Return dialogue if no highlighted item is focused on.
-    //      If selection exists, prompt confirmation dialogue.
-    //          - Delete item
-    //TODO: DIALOG if item not selected.
     var selectedProduct = productTblController.getDatabase().getSelectionModel().getSelectedItem();
-    if (Inventory.deleteProduct(selectedProduct)) {
-      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    if (selectedProduct != null) {
+      var result = DialogManager.ProductDeletionConfirmation().showAndWait();
+      if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (!Inventory.deleteProduct(selectedProduct)) {
+          DialogManager.ProductDeletionError();
+        }
+      } else {
+        DialogManager.ProductDeletionInfo();
+      }
     } else {
-      Alert alert = new Alert(Alert.AlertType.ERROR);
+      System.out.println(new NullPointerException() + "No item was selected in tableview.");
+      DialogManager.SelectionError();
     }
+    ignoredEvent.consume();
   }
-
-  @FXML
-  void handleProdModBtnEvent(ActionEvent event) throws IOException {
-    //TODO: create State Machine for Add/Modify
-    //      - Change Labels & methods
-    var fxmlLoader = SceneManager.loadScene(FilePath.MODIFY_PRODUCT_SCENE);
-
-    ModifyProductController MPMController = fxmlLoader.getController();
-    //TODO: DIALOG FOR WHEN A PART IS NOT SELECTED.
-    MPMController.fetchProduct(productTblController.getDatabase().getSelectionModel().getSelectedItem());
-
-    SceneManager.switchScene(event, fxmlLoader);
-//        int index = -1;
-//
-//        for (var currentPart : Inventory.getAllParts()){
-//            ++index;
-//            if(currentPart.getId() == id) {
-//                Inventory.getAllParts().set(index, part);
-//                return true;
-//            }
-//        }
-//        return false;
-  }
-
-  public boolean searchPart(int id) {
-    var foundPart = false;
-    for (var part : Inventory.getAllParts()) {
-      foundPart = part.getId() == id;
-      if (foundPart) {
-        break;
-      }
-    }
-
-    return foundPart;
-  }
-
-  public boolean updateProduct(int id, Product product) {
-    int index = -1;
-
-    for (var currentProduct : Inventory.getAllProducts()) {
-      ++index;
-      if (currentProduct.getId() == id) {
-        Inventory.getAllProducts().set(index, product);
-        return true;
-      }
-    }
-    return false;
-  }
-
-  public Part selectPart(int id) {
-    for (var part : Inventory.getAllParts()) {
-      if (part.getId() == id) {
-        return part;
-      }
-    }
-    return null;
-  }
-
-  @FXML
-  private VBox partsTbl;
-  @FXML
-  private VBox productTbl;
-  @FXML
-  private DBTableController<Part> partsTblController;
-  @FXML
-  private DBTableController<Product> productTblController;
 
   @FXML
   public void initialize(URL url, ResourceBundle resourceBundle) {
