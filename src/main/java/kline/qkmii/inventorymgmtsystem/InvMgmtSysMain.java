@@ -7,40 +7,20 @@ import javafx.stage.Stage;
 import kline.qkmii.inventorymgmtsystem.model.InHouse;
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
 import kline.qkmii.inventorymgmtsystem.model.OutSourced;
+import kline.qkmii.inventorymgmtsystem.model.Product;
 import kline.qkmii.inventorymgmtsystem.util.FilePath;
 
 import java.io.IOException;
 
+import static kline.qkmii.inventorymgmtsystem.model.ProductBuilder.getProductUID;
+
 public class InvMgmtSysMain extends Application {
   private static int partUID = -1;
-  private static int productUID = 999;
+  SceneManager sceneManager;
+  DialogManager dialogManager;
 
   public static int getPartUID() {
     return ++partUID;
-  }
-
-  public static int getProductUID() {
-    return ++productUID;
-  }
-
-  @Override
-  public void init() {
-    System.out.println("Starting application....");
-  }
-
-  @Override
-  public void start(Stage stage) throws IOException {
-    //System.out.println("FXMLLoader will load: " + FilePath.MAIN_MENU); //TODO: REMOVE LOG MSG
-    FXMLLoader fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource(FilePath.MAIN_MENU));
-    Scene scene = new Scene(fxmlLoader.load());
-    stage.setTitle("Inventory Management System");
-    stage.setScene(scene);
-    stage.show();
-  }
-
-  @Override
-  public void stop() {
-    System.out.println("Stopping application....");
   }
 
   /**
@@ -53,11 +33,36 @@ public class InvMgmtSysMain extends Application {
 
     OutSourced theirPart1 = new OutSourced(getPartUID(), "bolt", 0.92, 200, 100, 999, "BigBennyBolts");
 
+    Product myProduct = new Product(getProductUID(), "hammer", 2.34, 10, 1, 100);
+    myProduct.addAssociatedPart(myPart1);
+
     Inventory.addPart(myPart1);
     Inventory.addPart(myPart2);
     Inventory.addPart(myPart3);
     Inventory.addPart(theirPart1);
+    Inventory.addProduct(myProduct);
 
     launch(args);
+  }
+
+  @Override
+  public void init() {
+    System.out.println("Starting application....");
+    sceneManager = SceneManager.getSingleton();
+    dialogManager = DialogManager.getInstance();
+  }
+
+  @Override
+  public void start(Stage stage) throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource(FilePath.MAIN_MENU));
+    Scene scene = new Scene(fxmlLoader.load());
+    stage.setTitle("Inventory Management System");
+    stage.setScene(scene);
+    stage.show();
+  }
+
+  @Override
+  public void stop() {
+    System.out.println("Stopping application....");
   }
 }
