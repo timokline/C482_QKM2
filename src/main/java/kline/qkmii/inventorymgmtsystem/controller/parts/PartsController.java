@@ -8,14 +8,17 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
+import kline.qkmii.inventorymgmtsystem.SceneManager;
 import kline.qkmii.inventorymgmtsystem.model.InHouse;
 import kline.qkmii.inventorymgmtsystem.model.OutSourced;
 import kline.qkmii.inventorymgmtsystem.model.Part;
-import kline.qkmii.inventorymgmtsystem.util.SceneManager;
+import kline.qkmii.inventorymgmtsystem.util.ErrorHandler;
+import kline.qkmii.inventorymgmtsystem.util.TextFieldContainer;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -32,11 +35,6 @@ interface IPartsCTRLR {
 
 public abstract class PartsController implements Initializable, IPartsCTRLR {
 
-  final String ILLEGAL_INT_INPUT_MSG = "Input must be numerical";
-  final String ILLEGAL_DBL_INPUT_MSG = "Input must be a decimal";
-  final String EMPTY_FIELD_MSG = "Required Field";
-  final String OUT_OF_BOUNDS_MSG = "Number must be greater than 0";
-
   @FXML
   protected Label partFormLBL;
   @FXML
@@ -52,51 +50,84 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
   @FXML
   protected TextField nameTF;
   @FXML
-  private Text nameFdbkMsg;
+  protected Text nameFdbkMsg;
   @FXML
   protected TextField invTF;
   @FXML
-  private Text invFdbkMsg;
+  protected Text invFdbkMsg;
   @FXML
   protected TextField unitTF;
   @FXML
-  private Text unitFdbkMsg;
+  protected Text unitFdbkMsg;
   @FXML
   protected TextField maxPartsTF;
   @FXML
-  private Text maxPartsFdbkMsg;
+  protected Text maxPartsFdbkMsg;
   @FXML
   protected TextField minPartsTF;
   @FXML
   protected Text minPartsFdbkMsg;
-
-  @FXML
-  private Label sourceLBL;
   @FXML
   protected TextField sourceTF;
   @FXML
-  private Text srcFdbkMsg;
-
-
-  protected ArrayList<TextField> editableTextFields;
+  protected Text srcFdbkMsg;
+  protected TextFieldContainer currCompanyName;
+  protected TextFieldContainer currMachineID;
+  protected Set<TextFieldContainer> editableTextFields;
+  protected Set<Text> feedbackMessageTexts;
   String formLabelText;
-  int partID;
-  String partNameInput;
-  double partPriceInput;
-  int partInventoryInput;
-  int maxPartsInput;
-  int minPartsInput;
-  String partCompanyNameInput;
-  int partMachineIDInput;
+  int currPartID;
+  String currPartName;
+  double currPartPrice;
+  int currPartStock;
+  int currMaxParts;
+  int currMinParts;
+  Set<Object> productInfo;
+  String partCompanyName;
+  Object currPartSrc;
   RadioButton selectedSrc;
+  @FXML
+  private Label sourceLBL;
 
   public PartsController() {
-    editableTextFields = new ArrayList<>(Arrays.asList(this.nameTF, this.invTF, this.unitTF, this.maxPartsTF, this.minPartsTF, this.sourceTF));
+  }
+
+  private void resetFeedbackTexts() {
+    for (var text : feedbackMessageTexts) {
+      text.setText("");
+      text.setVisible(false);
+    }
   }
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    partFormLBL.setText(formLabelText);
+    productInfo = new HashSet<>(Arrays.asList(
+        currPartName,
+        currPartPrice,
+        currPartStock,
+        currMaxParts,
+        currMinParts
+    ));
+    feedbackMessageTexts = new HashSet<>(Arrays.asList(
+        this.nameFdbkMsg,
+        this.unitFdbkMsg,
+        this.invFdbkMsg,
+        this.maxPartsFdbkMsg,
+        this.minPartsFdbkMsg,
+        this.srcFdbkMsg
+    ));
+    editableTextFields = new HashSet<>(Arrays.asList(
+        new TextFieldContainer(this.nameTF, TextFieldContainer.InputType.STRING, this.nameFdbkMsg),
+        new TextFieldContainer(this.unitTF, TextFieldContainer.InputType.DECIMAL, this.unitFdbkMsg),
+        new TextFieldContainer(this.invTF, TextFieldContainer.InputType.INTEGER, this.invFdbkMsg),
+        new TextFieldContainer(this.maxPartsTF, TextFieldContainer.InputType.INTEGER, this.maxPartsFdbkMsg),
+        new TextFieldContainer(this.minPartsTF, TextFieldContainer.InputType.INTEGER, this.minPartsFdbkMsg))
+    );
+    currCompanyName = new TextFieldContainer(sourceTF, TextFieldContainer.InputType.STRING, srcFdbkMsg);
+    currMachineID = new TextFieldContainer(sourceTF, TextFieldContainer.InputType.INTEGER, srcFdbkMsg);
+
+    partFormLBL.setText(String.valueOf(formLabelText));
+    resetFeedbackTexts();
     System.out.println("PartsController abstract class initialized.");
   }
 
@@ -114,6 +145,9 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
   public void handleCancelBtnEvent(ActionEvent event) {
     SceneManager.returnToMenu(event);
   }
+
+  @FXML
+  public abstract void handleSaveBtnEvent(ActionEvent event) throws Exception;
 
   protected void fetchSelectedSrc() {
     selectedSrc = (RadioButton) partSrcTG.getSelectedToggle();
@@ -226,6 +260,18 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     return newPart;
   }
 
+  private void parseUserInputs() {
+    currPartName = nameTF.getText();
+    currPartStock = Integer.parseInt(invTF.getText());
+    currPartPrice = Double.parseDouble(unitTF.getText());
+    currMaxParts = Integer.parseInt(maxPartsTF.getText());
+    currMinParts = Integer.parseInt(minPartsTF.getText());
+    if (selectedSrc == inSrcRBtn) {
+      currPartSrc = Integer.parseInt(sourceTF.getText());
+    } else if (selectedSrc == outSrcRBtn) {
+      currPartSrc = sourceTF.getText();
+    }
+  }
 
   protected void validateInputs() throws Exception {
     String invErrorMsg, maxErrorMsg, minErrorMsg, unitErrorMsg;

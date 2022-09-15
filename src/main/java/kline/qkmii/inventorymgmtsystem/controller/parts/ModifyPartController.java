@@ -2,11 +2,11 @@ package kline.qkmii.inventorymgmtsystem.controller.parts;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import kline.qkmii.inventorymgmtsystem.SceneManager;
 import kline.qkmii.inventorymgmtsystem.model.InHouse;
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
 import kline.qkmii.inventorymgmtsystem.model.OutSourced;
 import kline.qkmii.inventorymgmtsystem.model.Part;
-import kline.qkmii.inventorymgmtsystem.util.SceneManager;
 
 public class ModifyPartController extends PartsController {
 
@@ -37,7 +37,7 @@ public class ModifyPartController extends PartsController {
 
   //FOR PART G:
   //IMPLEMENT COMMAND DESIGN PATTERN TO CALL EACH ACCESSOR METHOD PER PROPERTY/FIELD OF PART
-  public void fetchPart(Part selectedPart) {
+  public void fetchPartInfo(Part selectedPart) {
     idTF.setText(String.valueOf(selectedPart.getId()));
     nameTF.setText(selectedPart.getName());
     invTF.setText(String.valueOf(selectedPart.getStock()));
