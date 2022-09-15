@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Main-Class: kline.qkmii.inventorymgmtsystem.InvMgmtSysMain
+Class-Path: javafx-graphics-18.0.2.jar javafx-base-18.0.2-win.jar javafx
+ -controls-18.0.2-win.jar javafx-fxml-18.0.2.jar javafx-base-18.0.2.jar 
+ javafx-controls-18.0.2.jar javafx-fxml-18.0.2-win.jar javafx-graphics-1
+ 8.0.2-win.jar
+
