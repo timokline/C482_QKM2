@@ -13,6 +13,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import kline.qkmii.inventorymgmtsystem.DialogManager;
+import kline.qkmii.inventorymgmtsystem.model.Inventory;
+import kline.qkmii.inventorymgmtsystem.model.Part;
+import kline.qkmii.inventorymgmtsystem.model.Product;
+import kline.qkmii.inventorymgmtsystem.util.ErrorHandler;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,31 +44,47 @@ public class DBTableController<T> implements Initializable {
   @FXML
   private void handleQueryInput(KeyEvent event) {
     if (event.getCode() == KeyCode.ENTER) {
-      FilteredList<T> filteredList = new FilteredList<>(databaseEntries, predicate -> true);
-      var query = getSearchQuery().toLowerCase();
-      filteredList.setPredicate(entry -> {
-        if (query.isEmpty()) {
-          return true;
-        }
+      var query = getSearchQuery();
+      FilteredList<T> filteredList = new FilteredList<>(databaseEntries);
 
-        if (entry.getClass().getName().toLowerCase().contains(query)) {
-          return true;
+      if (ErrorHandler.isInteger(query)) {
+        filteredList.setPredicate(entry -> {
+          if (entry instanceof Part) {
+            return entry == Inventory.lookupPart(Integer.parseInt(query));
+          } else if (entry instanceof Product) {
+            return entry == Inventory.lookupProduct(Integer.parseInt(query));
+          }
+
+          return false;
+        });
+        if (filteredList.isEmpty()) {
+          populateTable();
+          DialogManager.SearchError();
         } else {
-          //TODO: MAKE DIALOG POPUP
+          databaseTblV.getSelectionModel().select(filteredList.get(0));
         }
+      } else {
+        filteredList.setPredicate(entry -> {
+          if (entry instanceof Part) {
+            return ((Part) entry).getName().contains(query);
+          } else if (entry instanceof Product) {
+            return ((Product) entry).getName().contains(query);
+          }
 
-        //No Match
-        return false;
-      });
+          return false;
+        });
 
-      SortedList<T> sortedList = new SortedList<>(filteredList);
+        SortedList<T> sortedList = new SortedList<>(filteredList);
+        if (sortedList.isEmpty()) {
+          populateTable();
+          DialogManager.SearchError();
+        } else {
+          populateTable(sortedList);
+        }
+      }
 
-      this.populateTable(sortedList);
     }
-  }
-
-  public void setDatabase(ObservableList<T> observableList) {
-    this.databaseEntries = observableList;
+    event.consume();
   }
 
   public void setTableLabel(String text) {
@@ -88,6 +109,10 @@ public class DBTableController<T> implements Initializable {
 
   public TableView<T> getDatabase() {
     return this.databaseTblV;
+  }
+
+  public void setDatabase(ObservableList<T> observableList) {
+    this.databaseEntries = observableList;
   }
 
   public void populateTable() {

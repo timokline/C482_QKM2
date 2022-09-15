@@ -3,6 +3,9 @@ package kline.qkmii.inventorymgmtsystem.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Inventory {
   private static final ObservableList<Part> allParts = FXCollections.observableArrayList();
   private static final ObservableList<Product> allProducts = FXCollections.observableArrayList();
@@ -19,15 +22,27 @@ public class Inventory {
   //IMPROVEMENT: CREATE A GENERIC METHOD FOR lookUpPart and lookUpProduct
   //              HELPER FUNCTION TO GENERALIZE THE ALGORITHM/LOGIC?
   public static Part lookupPart(int partId) throws IndexOutOfBoundsException {
-    return allParts.get(partId);
+    for (var part : allParts) {
+      if (part.getId() == partId) {
+        return part;
+      }
+    }
+
+    return null;
   }
 
   public static Product lookupProduct(int productId) throws IndexOutOfBoundsException {
-    return allProducts.get(productId);
+    for (var product : allProducts) {
+      if (product.getId() == productId) {
+        return product;
+      }
+    }
+
+    return null;
   }
 
   public static ObservableList<Part> lookupPart(String partName) {
-    ObservableList<Part> filteredParts = FXCollections.observableArrayList();
+    List<Part> filteredParts = new ArrayList<>();
 
     for (var part : allParts) {
       if (part.getName().contains(partName)) {
@@ -38,13 +53,13 @@ public class Inventory {
     if (filteredParts.isEmpty()) {
       return allParts;
     } else {
-      return filteredParts;
+      return FXCollections.observableArrayList(filteredParts);
     }
   }
 
   //Returns ObservableList of all products that match the string from `allProducts`.
   public static ObservableList<Product> lookupProduct(String productName) {
-    ObservableList<Product> filteredProducts = FXCollections.observableArrayList();
+    List<Product> filteredProducts = new ArrayList<>();
 
     for (var product : allProducts) {
       if (product.getName().contains(productName)) {
@@ -55,24 +70,16 @@ public class Inventory {
     if (filteredProducts.isEmpty()) {
       return allProducts;
     } else {
-      return filteredProducts;
+      return FXCollections.observableArrayList(filteredProducts);
     }
   }
 
-  public static void updatePart(int index, Part selectedPart) throws Exception {
-    try {
-      allParts.set(index, selectedPart);
-    } catch (NullPointerException | IndexOutOfBoundsException e) {
-      throw new Exception(e);
-    }
+  public static void updatePart(int index, Part selectedPart) {
+    allParts.set(index, selectedPart);
   }
 
-  public static void updateProduct(int index, Product newProduct) throws Exception {
-    try {
-      allProducts.set(index, newProduct);
-    } catch (NullPointerException | IndexOutOfBoundsException e) {
-      throw new Exception(e);
-    }
+  public static void updateProduct(int index, Product newProduct) {
+    allProducts.set(index, newProduct);
   }
 
   public static boolean deletePart(Part selectedPart) {
@@ -87,7 +94,10 @@ public class Inventory {
   public static boolean deleteProduct(Product selectedProduct) {
     for (var currentProduct : allProducts) {
       if (currentProduct == selectedProduct) {
-        return allProducts.remove(currentProduct);
+        if (selectedProduct.getAllAssociatedParts().isEmpty()) {
+          return allProducts.remove(currentProduct);
+        }
+        break;
       }
     }
     return false;
