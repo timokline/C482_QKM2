@@ -1,4 +1,4 @@
-package kline.qkmii.inventorymgmtsystem.util;
+package kline.qkmii.inventorymgmtsystem;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -6,7 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import kline.qkmii.inventorymgmtsystem.InvMgmtSysMain;
+import kline.qkmii.inventorymgmtsystem.util.FilePath;
 
 import java.io.IOException;
 
@@ -14,8 +14,13 @@ public final class SceneManager {
   static Stage stage;
   static Parent scene;
   static FXMLLoader loader;
+  private static SceneManager instance = null;
 
   private SceneManager() {
+  }
+
+  public static SceneManager getSingleton() {
+    return (instance == null) ? (instance = new SceneManager()) : instance;
   }
 
   public static void switchScene(ActionEvent event, String location) {
@@ -26,15 +31,19 @@ public final class SceneManager {
       stage.setScene(scene.getScene());
       stage.show();
     } catch (IOException e) {
-      System.out.println(e);
+      throw new RuntimeException(e);
     }
   }
 
   public static void switchScene(ActionEvent event, FXMLLoader fxmlLoader) {
-    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    scene = fxmlLoader.getRoot();
-    stage.setScene(new Scene(scene));
-    stage.show();
+    try {
+      stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      scene = fxmlLoader.getRoot();
+      stage.setScene(new Scene(scene));
+      stage.show();
+    } catch (NullPointerException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   public static FXMLLoader injectController(Object controller, String location) {
@@ -47,13 +56,6 @@ public final class SceneManager {
     }
 
     return fxmlLoader;
-  }
-
-  public static FXMLLoader loadScene(String location) throws IOException {
-    loader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
-    loader.load();
-
-    return loader;
   }
 
   public static void returnToMenu(ActionEvent event) {
