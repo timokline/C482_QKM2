@@ -22,11 +22,9 @@ public class ModifyPartController extends PartsController {
     //TODO:     - Create dialogue to alert error exception
     //          - Create confirm dialogue
     try {
-      fetchSelectedSrc();
-      parseEditableTFInputs();
       validateInputs();
 
-      partID = Integer.parseInt(idTF.getText());
+      currPartID = Integer.parseInt(idTF.getText());
       Inventory.updatePart(currPartIndex, createPart());
       System.out.println(selectedSrc.getText() + " part was modified.");
       SceneManager.returnToMenu(event);

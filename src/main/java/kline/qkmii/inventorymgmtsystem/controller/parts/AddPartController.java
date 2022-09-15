@@ -21,8 +21,9 @@ public class AddPartController extends PartsController {
     try {
       validateInputs();
 
-      partID = getPartUID();
-      Inventory.addPart(createPart());
+      currPartID = getPartUID();
+      var newPart = createPart();
+      Inventory.addPart(newPart);
       System.out.println(selectedSrc.getText() + " part was created.");
       SceneManager.returnToMenu(event);
     } catch (Exception e) {
