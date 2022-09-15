@@ -17,6 +17,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.Set;
+
+interface IPartsCTRLR {
+
+  void handleSaveBtnEvent(ActionEvent event) throws Exception;
+
+  void handleCancelBtnEvent(ActionEvent event) throws IOException;
+
+  void handleInSrcBtnEvent(ActionEvent actionEvent);
+
+  void handleOutSrcBtnEvent(ActionEvent actionEvent);
+}
 
 public abstract class PartsController implements Initializable, IPartsCTRLR {
 

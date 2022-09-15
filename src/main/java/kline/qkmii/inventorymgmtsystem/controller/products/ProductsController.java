@@ -17,6 +17,18 @@ import kline.qkmii.inventorymgmtsystem.util.SceneManager;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Set;
+
+interface IProdCTRLR {
+
+  void handleAddPartBtnEvent(ActionEvent event);
+
+  void handleCancelBtnEvent(ActionEvent event) throws IOException;
+
+  void handleRmvPartBtnEvent(ActionEvent event);
+
+  void handleSaveBtnEvent(ActionEvent event) throws Exception;
+}
 
 public abstract class ProductsController implements Initializable, IProdCTRLR {
 
