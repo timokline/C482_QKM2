@@ -61,7 +61,7 @@ class HandleNegativeNumbers implements Handler {
       case INTEGER:
         if (!(Integer.parseInt(textFieldInput) >= 0)) {
           System.out.println("Negative integer input:" + new ArithmeticException());
-          feedbackMessage.setText(FeedbackMessage.OUT_OF_BOUNDS_MSG);
+          feedbackMessage.setText(FeedbackMessage.NEGATIVE_NUM_MSG);
 
           return false;
         }
@@ -69,7 +69,7 @@ class HandleNegativeNumbers implements Handler {
       case DECIMAL:
         if (!(Double.parseDouble(textFieldInput) >= 0.0)) {
           System.out.println("Negative double input:" + new ArithmeticException());
-          feedbackMessage.setText(FeedbackMessage.OUT_OF_BOUNDS_MSG);
+          feedbackMessage.setText(FeedbackMessage.NEGATIVE_NUM_MSG);
 
           return false;
         }

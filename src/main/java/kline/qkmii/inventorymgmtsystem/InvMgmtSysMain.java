@@ -4,15 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import kline.qkmii.inventorymgmtsystem.model.InHouse;
-import kline.qkmii.inventorymgmtsystem.model.Inventory;
-import kline.qkmii.inventorymgmtsystem.model.OutSourced;
-import kline.qkmii.inventorymgmtsystem.model.Product;
+import kline.qkmii.inventorymgmtsystem.model.*;
 import kline.qkmii.inventorymgmtsystem.util.FilePath;
 
 import java.io.IOException;
-
-import static kline.qkmii.inventorymgmtsystem.model.ProductBuilder.getProductUID;
 
 public class InvMgmtSysMain extends Application {
   private static int partUID = -1;
@@ -33,7 +28,7 @@ public class InvMgmtSysMain extends Application {
 
     OutSourced theirPart1 = new OutSourced(getPartUID(), "bolt", 0.92, 200, 100, 999, "BigBennyBolts");
 
-    Product myProduct = new Product(getProductUID(), "hammer", 2.34, 10, 1, 100);
+    Product myProduct = new ProductBuilder("hammer", 2.34, 10, 1, 100).build();
     myProduct.addAssociatedPart(myPart1);
 
     Inventory.addPart(myPart1);
