@@ -7,6 +7,7 @@ public class TextFieldContainer {
   public final TextField input;
   public final InputType inputType;
   public Text feedback;
+
   public TextFieldContainer(TextField input, InputType inputType, Text feedback) {
     this.input = input;
     this.inputType = inputType;

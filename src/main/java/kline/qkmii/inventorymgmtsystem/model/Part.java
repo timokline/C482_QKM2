@@ -5,7 +5,6 @@
 package kline.qkmii.inventorymgmtsystem.model;
 
 /**
- *
  * @author Place Your Name Here
  */
 public abstract class Part {

@@ -19,10 +19,6 @@ public class ProductBuilder {
   private int min;
   private int max;
 
-  private int getProductUID() {
-    return ++productUID;
-  }
-
   //Constructs a product builder with placeholder information for a new product;
   public ProductBuilder() {
     isNew = true;
@@ -63,6 +59,10 @@ public class ProductBuilder {
     for (var part : product.getAllAssociatedParts()) {
       this.product.addAssociatedPart(part);
     }
+  }
+
+  private int getProductUID() {
+    return ++productUID;
   }
 
   //sets the name of the product. returns reference to this ProductBuilder
@@ -132,19 +132,19 @@ public class ProductBuilder {
 
   private void validate() throws IllegalStateException {
     var feedbackMessages = new FeedbackMessage.Builder();
-    if(name == null || name.isEmpty()) {
+    if (name == null || name.isEmpty()) {
       feedbackMessages.append("ProductBuilder.name cannot be null or empty.");
     }
-    if(price < 0) {
+    if (price < 0) {
       feedbackMessages.append("ProductBuilder.price cannot be negative.");
     }
-    if(stock < 0) {
+    if (stock < 0) {
       feedbackMessages.append("ProductBuilder.stock cannot be negative.");
     }
-    if(max < 0) {
+    if (max < 0) {
       feedbackMessages.append("ProductBuilder.price cannot be negative.");
     }
-    if(min < 0) {
+    if (min < 0) {
       feedbackMessages.append("ProductBuilder.price cannot be negative.");
     }
     if (feedbackMessages.length() > 0) {

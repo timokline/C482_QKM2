@@ -11,22 +11,22 @@ public final class FeedbackMessage {
     logs = messages;
   }
 
-  public String toString(){
+  public String toString() {
     return logs.toString();
   }
 
   public static class Builder {
     private final StringBuilder logMessages;
 
-    public Builder(){
+    public Builder() {
       logMessages = new StringBuilder();
     }
 
     public Builder append(String message) {
-      if(message.isEmpty()) {
+      if (message.isEmpty()) {
         return this;
       }
-      if(logMessages.isEmpty()) {
+      if (logMessages.isEmpty()) {
         logMessages.append("\n\r");
       }
       logMessages.append(message).append("\n\r");

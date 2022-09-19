@@ -196,33 +196,28 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
   }
 
   protected void validateInputs() throws IllegalArgumentException {
-    try {
-      boolean errorCaught = false;
+    boolean errorCaught = false;
 
-      //Check empty fields and conversion
-      for (var userInput : editableTextFields) {
-        var inputHandled = ErrorHandler.processInput(userInput);
-        if (!inputHandled) {
-          errorCaught = true;
-        }
+    //Check empty fields and conversion
+    for (var userInput : editableTextFields) {
+      var inputHandled = ErrorHandler.processInput(userInput);
+      if (!inputHandled) {
+        errorCaught = true;
       }
-
-      //Check integer business logic
-      if (!errorCaught) {
-        parseUserInputs();
-        errorCaught = ErrorHandler.validateIntInputs(currProductStock, currMinProducts, currMaxProducts,
-            stockFeedbackTXT, minFeedbackTXT, maxFeedbackTXT);
-      }
-
-      //Throw for any tests above flagged
-      if (errorCaught) {
-        throw new RuntimeException(new IllegalArgumentException() + ": Invalid user inputs");
-      }
-
-
-    } finally {
-      System.out.println("Cleanup.");
     }
+
+    //Check integer business logic
+    if (!errorCaught) {
+      parseUserInputs();
+      errorCaught = ErrorHandler.validateIntInputs(currProductStock, currMinProducts, currMaxProducts,
+          stockFeedbackTXT, minFeedbackTXT, maxFeedbackTXT);
+    }
+
+    //Throw for any tests above flagged
+    if (errorCaught) {
+      throw new RuntimeException(new IllegalArgumentException() + ": Invalid user inputs");
+    }
+
   }
 
   protected Product createProduct() {
