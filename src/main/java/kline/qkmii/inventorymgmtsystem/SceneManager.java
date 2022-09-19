@@ -14,13 +14,8 @@ public final class SceneManager {
   static Stage stage;
   static Parent scene;
   static FXMLLoader loader;
-  private static SceneManager instance = null;
 
   private SceneManager() {
-  }
-
-  public static SceneManager getSingleton() {
-    return (instance == null) ? (instance = new SceneManager()) : instance;
   }
 
   public static void switchScene(ActionEvent event, String location) {
