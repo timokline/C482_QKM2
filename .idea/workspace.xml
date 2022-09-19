@@ -12,15 +12,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="&quot;PartController&quot;s utilized PartFactory. ModifyPartController refactored for pre-injection&#10;refactored initializations into methods in PartsController.java">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="Refactored main application and project files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/DialogManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/DialogManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/InvMgmtSysMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/InvMgmtSysMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/SceneManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/ErrorHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/ErrorHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/kline/qkmii/inventorymgmtsystem/model/ProductTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/AddPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/AddPartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/ModifyPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/ModifyPartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/PartsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/PartsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/products/ProductsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/products/ProductsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/PartFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/PartFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/ProductBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/ProductBuilder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +57,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2DCQ0gq0NoEZHFdTlHWWRutWlkS" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -166,35 +166,7 @@
       <workItem from="1663191916399" duration="28268000" />
       <workItem from="1663225186982" duration="20426000" />
       <workItem from="1663493286701" duration="4619000" />
-      <workItem from="1663498592847" duration="15725000" />
-    </task>
-    <task id="LOCAL-00004" summary="rough mockup for add/modify product fxml file; fixed bad duplication of modify-part-form.fxml">
-      <created>1660259471160</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1660259471160</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Added skeleton of fxml into main menu controller class; various fx:id and handle methods created.">
-      <created>1660283495152</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1660283495152</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Added skeleton of fxml into add parts controller class; various fx:id and handle methods created. added utility classes">
-      <created>1660338334810</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1660338334810</updated>
-    </task>
-    <task id="LOCAL-00007" summary="refactored menu controller and app main for utility classes">
-      <created>1660338369808</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1660338369808</updated>
+      <workItem from="1663498592847" duration="25257000" />
     </task>
     <task id="LOCAL-00008" summary="refactored redundant code; created base abstract classes w/ interface for add/modify parts/product controllers">
       <created>1660347932019</created>
@@ -511,7 +483,35 @@
       <option name="project" value="LOCAL" />
       <updated>1663553992520</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Refactored DialogManager. removed instantiation of the class">
+      <created>1663556891922</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1663556891922</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Refactored ErrorHandler. removed instantiation of the class">
+      <created>1663556922485</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1663556922485</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Refactored SceneManager. removed instantiation of the class">
+      <created>1663556945439</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1663556945439</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Refactored main application and project files">
+      <created>1663556974096</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1663556974096</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -561,10 +561,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="various refactors" />
-    <MESSAGE value="Refactored tableviews into generic controller. fxmls have nested controllers" />
-    <MESSAGE value="Moved controllers into packages defined by the UI form they control. Refactored interfaces into their own file" />
-    <MESSAGE value="Refactored AddPart and ModifyPart controllers to inject into 1 fxml" />
     <MESSAGE value="Refactored method names, conventions and formatting. SceneManager is now a static class" />
     <MESSAGE value="MainMenuController and ProductsController use DBTableController for parts database search tableview" />
     <MESSAGE value="Created a utility ErrorHandler class that implements Chain of Responsibilities. Various Handler classes validate input. Created a POD for the text field properties, TextFieldContainer. Constants class FeedbackMessage holds strings of possible responses to invalid input." />
@@ -586,7 +582,11 @@
     <MESSAGE value="Refactored and commented (draft) ProductBuilder. Added builder pattern to FeedbackMessage to be utilised in ProductBuilder validate() method" />
     <MESSAGE value="Reformatted code. Added a factory pattern for constructing a Part" />
     <MESSAGE value="&quot;PartController&quot;s utilized PartFactory. ModifyPartController refactored for pre-injection&#10;refactored initializations into methods in PartsController.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;PartController&quot;s utilized PartFactory. ModifyPartController refactored for pre-injection&#10;refactored initializations into methods in PartsController.java" />
+    <MESSAGE value="Refactored DialogManager. removed instantiation of the class" />
+    <MESSAGE value="Refactored ErrorHandler. removed instantiation of the class" />
+    <MESSAGE value="Refactored SceneManager. removed instantiation of the class" />
+    <MESSAGE value="Refactored main application and project files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored main application and project files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
