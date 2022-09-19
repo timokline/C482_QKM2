@@ -9,9 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import kline.qkmii.inventorymgmtsystem.SceneManager;
-import kline.qkmii.inventorymgmtsystem.model.InHouse;
-import kline.qkmii.inventorymgmtsystem.model.OutSourced;
 import kline.qkmii.inventorymgmtsystem.model.Part;
+import kline.qkmii.inventorymgmtsystem.model.PartFactory;
 import kline.qkmii.inventorymgmtsystem.util.ErrorHandler;
 import kline.qkmii.inventorymgmtsystem.util.TextFieldContainer;
 
@@ -75,6 +74,7 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
   protected TextFieldContainer currMachineID;
   protected Set<TextFieldContainer> editableTextFields;
   protected Set<Text> feedbackMessageTexts;
+  protected PartFactory partFactory;
   String formLabelText;
   int currPartID;
   String currPartName;
@@ -82,12 +82,12 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
   int currPartStock;
   int currMaxParts;
   int currMinParts;
-  Set<Object> productInfo;
-  String partCompanyName;
   Object currPartSrc;
   RadioButton selectedSrc;
+  PartFactory.PartSrcType currPartType;
   @FXML
   private Label sourceLBL;
+
 
   public PartsController() {
   }
@@ -101,33 +101,13 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    productInfo = new HashSet<>(Arrays.asList(
-        currPartName,
-        currPartPrice,
-        currPartStock,
-        currMaxParts,
-        currMinParts
-    ));
-    feedbackMessageTexts = new HashSet<>(Arrays.asList(
-        this.nameFdbkMsg,
-        this.unitFdbkMsg,
-        this.invFdbkMsg,
-        this.maxPartsFdbkMsg,
-        this.minPartsFdbkMsg,
-        this.srcFdbkMsg
-    ));
-    editableTextFields = new HashSet<>(Arrays.asList(
-        new TextFieldContainer(this.nameTF, TextFieldContainer.InputType.STRING, this.nameFdbkMsg),
-        new TextFieldContainer(this.unitTF, TextFieldContainer.InputType.DECIMAL, this.unitFdbkMsg),
-        new TextFieldContainer(this.invTF, TextFieldContainer.InputType.INTEGER, this.invFdbkMsg),
-        new TextFieldContainer(this.maxPartsTF, TextFieldContainer.InputType.INTEGER, this.maxPartsFdbkMsg),
-        new TextFieldContainer(this.minPartsTF, TextFieldContainer.InputType.INTEGER, this.minPartsFdbkMsg))
-    );
+    initTextFieldSet();
+    initFeedbackTextsSet();
+    resetFeedbackTexts();
     currCompanyName = new TextFieldContainer(sourceTF, TextFieldContainer.InputType.STRING, srcFdbkMsg);
     currMachineID = new TextFieldContainer(sourceTF, TextFieldContainer.InputType.INTEGER, srcFdbkMsg);
 
     partFormLBL.setText(String.valueOf(formLabelText));
-    resetFeedbackTexts();
     System.out.println("PartsController abstract class initialized.");
   }
 
@@ -149,19 +129,38 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
   @FXML
   public abstract void handleSaveBtnEvent(ActionEvent event) throws Exception;
 
+  private void initTextFieldSet() {
+    feedbackMessageTexts = new HashSet<>(Arrays.asList(
+        this.nameFdbkMsg,
+        this.unitFdbkMsg,
+        this.invFdbkMsg,
+        this.maxPartsFdbkMsg,
+        this.minPartsFdbkMsg,
+        this.srcFdbkMsg
+    ));
+  }
+
+  private void initFeedbackTextsSet() {
+    editableTextFields = new HashSet<>(Arrays.asList(
+        new TextFieldContainer(this.nameTF, TextFieldContainer.InputType.STRING, this.nameFdbkMsg),
+        new TextFieldContainer(this.unitTF, TextFieldContainer.InputType.DECIMAL, this.unitFdbkMsg),
+        new TextFieldContainer(this.invTF, TextFieldContainer.InputType.INTEGER, this.invFdbkMsg),
+        new TextFieldContainer(this.maxPartsTF, TextFieldContainer.InputType.INTEGER, this.maxPartsFdbkMsg),
+        new TextFieldContainer(this.minPartsTF, TextFieldContainer.InputType.INTEGER, this.minPartsFdbkMsg))
+    );
+  }
+
   protected void fetchSelectedSrc() {
     selectedSrc = (RadioButton) partSrcTG.getSelectedToggle();
+    if (selectedSrc == inSrcRBtn) {
+      currPartType = PartFactory.PartSrcType.IN_HOUSE;
+    } else if (selectedSrc == outSrcRBtn) {
+      currPartType = PartFactory.PartSrcType.OUTSOURCED;
+    }
   }
 
   protected Part createPart() {
-    Part newPart = null;
-    if (selectedSrc == inSrcRBtn) {
-      newPart = new InHouse(currPartID, currPartName, currPartPrice, currPartStock, currMinParts, currMaxParts, (int) currPartSrc);
-    } else if (selectedSrc == outSrcRBtn) {
-      newPart = new OutSourced(currPartID, currPartName, currPartPrice, currPartStock, currMinParts, currMaxParts, partCompanyName);
-    }
-
-    return newPart;
+    return partFactory.makePart(currPartType, currPartName, currPartPrice, currPartStock, currMinParts, currMaxParts, currPartSrc);
   }
 
   private void parseUserInputs() {
@@ -211,7 +210,6 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     } finally {
       editableTextFields.remove(currCompanyName);
       editableTextFields.remove(currMachineID);
-      System.out.println("Cleanup.");
     }
   }
 }

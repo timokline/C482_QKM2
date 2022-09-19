@@ -50,9 +50,8 @@ public class MainMenuController implements Initializable {
     var selectedPart = partsTblController.getDatabase().getSelectionModel().getSelectedItem();
 
     try {
-      ModifyPartController modifyPartController = new ModifyPartController();
+      ModifyPartController modifyPartController = new ModifyPartController(selectedPart);
       var fxmlLoader = SceneManager.injectController(modifyPartController, FilePath.PARTS_FORM_SCENE);
-      modifyPartController.fetchPartInfo(selectedPart);
       SceneManager.switchScene(event, fxmlLoader);
     } catch (NullPointerException e) {
       DialogManager.SelectionError();
@@ -93,7 +92,6 @@ public class MainMenuController implements Initializable {
     try {
       ModifyProductController modifyProductController = new ModifyProductController(selectedProduct);
       var fxmlLoader = SceneManager.injectController(modifyProductController, FilePath.PRODUCTS_FORM_SCENE);
-      modifyProductController.fetchProductInfo(selectedProduct);
       SceneManager.switchScene(event, fxmlLoader);
     } catch (NullPointerException e) {
       DialogManager.SelectionError();

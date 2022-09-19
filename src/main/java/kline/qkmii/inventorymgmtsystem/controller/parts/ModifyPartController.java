@@ -3,28 +3,26 @@ package kline.qkmii.inventorymgmtsystem.controller.parts;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import kline.qkmii.inventorymgmtsystem.SceneManager;
-import kline.qkmii.inventorymgmtsystem.model.InHouse;
-import kline.qkmii.inventorymgmtsystem.model.Inventory;
-import kline.qkmii.inventorymgmtsystem.model.OutSourced;
-import kline.qkmii.inventorymgmtsystem.model.Part;
+import kline.qkmii.inventorymgmtsystem.model.*;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class ModifyPartController extends PartsController {
 
-  int currPartIndex;
+  private int currPartIndex;
 
-  public ModifyPartController() {
+  public ModifyPartController(Part selectedPart) {
     super();
+    fetchPartInfo(selectedPart);
+    partFactory = new PartFactory(selectedPart);
     formLabelText = "Modify Part";
   }
 
   @FXML
   public void handleSaveBtnEvent(ActionEvent event) throws Exception {
-    //TODO:     - Create dialogue to alert error exception
-    //          - Create confirm dialogue
     try {
       validateInputs();
-
-      currPartID = Integer.parseInt(idTF.getText());
       Inventory.updatePart(currPartIndex, createPart());
       System.out.println(selectedSrc.getText() + " part was modified.");
       SceneManager.returnToMenu(event);
@@ -35,23 +33,42 @@ public class ModifyPartController extends PartsController {
 
   //FOR PART G:
   //IMPLEMENT COMMAND DESIGN PATTERN TO CALL EACH ACCESSOR METHOD PER PROPERTY/FIELD OF PART
-  public void fetchPartInfo(Part selectedPart) {
-    idTF.setText(String.valueOf(selectedPart.getId()));
-    nameTF.setText(selectedPart.getName());
-    invTF.setText(String.valueOf(selectedPart.getStock()));
-    unitTF.setText(String.valueOf(selectedPart.getPrice()));
-    maxPartsTF.setText(String.valueOf(selectedPart.getMax()));
-    minPartsTF.setText(String.valueOf(selectedPart.getMin()));
-
+  private void fetchPartInfo(Part selectedPart) {
+    currPartID = selectedPart.getId();
+    currPartName = selectedPart.getName();
+    currPartStock = selectedPart.getStock();
+    currPartPrice = selectedPart.getPrice();
+    currMaxParts = selectedPart.getMax();
+    currMinParts = selectedPart.getMin();
     if (selectedPart instanceof InHouse) {
-      sourceTF.setText(String.valueOf(((InHouse) selectedPart).getMachineId()));
-      partSrcTG.selectToggle(inSrcRBtn);
-      inSrcRBtn.fireEvent(new ActionEvent());
+      currPartSrc = ((InHouse) selectedPart).getMachineId();
+      currPartType = PartFactory.PartSrcType.IN_HOUSE;
     } else if (selectedPart instanceof OutSourced) {
-      sourceTF.setText(String.valueOf(((OutSourced) selectedPart).getCompanyName()));
-      partSrcTG.selectToggle(outSrcRBtn);
-      outSrcRBtn.fireEvent(new ActionEvent());
+      currPartSrc = ((OutSourced) selectedPart).getCompanyName();
+      currPartType = PartFactory.PartSrcType.OUTSOURCED;
     }
     currPartIndex = Inventory.getAllParts().indexOf(selectedPart);
+  }
+
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    idTF.setText(String.valueOf(currPartID));
+    nameTF.setText(currPartName);
+    invTF.setText(String.valueOf(currPartStock));
+    unitTF.setText(String.valueOf(currPartPrice));
+    maxPartsTF.setText(String.valueOf(currMaxParts));
+    minPartsTF.setText(String.valueOf(currMinParts));
+    sourceTF.setText(String.valueOf(currPartSrc));
+    switch (currPartType) {
+      case IN_HOUSE -> {
+        partSrcTG.selectToggle(inSrcRBtn);
+        inSrcRBtn.fireEvent(new ActionEvent());
+      }
+      case OUTSOURCED -> {
+        partSrcTG.selectToggle(outSrcRBtn);
+        outSrcRBtn.fireEvent(new ActionEvent());
+      }
+    }
+    super.initialize(url, resourceBundle);
   }
 }

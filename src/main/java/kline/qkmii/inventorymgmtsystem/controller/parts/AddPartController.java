@@ -4,26 +4,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import kline.qkmii.inventorymgmtsystem.SceneManager;
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
-
-import static kline.qkmii.inventorymgmtsystem.InvMgmtSysMain.getPartUID;
+import kline.qkmii.inventorymgmtsystem.model.PartFactory;
 
 public class AddPartController extends PartsController {
 
   public AddPartController() {
     super();
+    partFactory = new PartFactory();
     formLabelText = "Add Part";
   }
 
   @FXML
   public void handleSaveBtnEvent(ActionEvent event) {
-    //TODO:     - Create dialogue to alert error exception
-    //          - Create confirm dialogue
     try {
       validateInputs();
-
-      currPartID = getPartUID();
-      var newPart = createPart();
-      Inventory.addPart(newPart);
+      Inventory.addPart(createPart());
       System.out.println(selectedSrc.getText() + " part was created.");
       SceneManager.returnToMenu(event);
     } catch (Exception e) {

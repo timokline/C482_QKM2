@@ -21,7 +21,7 @@ public class ModifyProductController extends ProductsController {
     formLabelText = "Modify Product";
   }
 
-  public void fetchProductInfo(Product selectedProduct) {
+  private void fetchProductInfo(Product selectedProduct) {
     currProductID = selectedProduct.getId();
     currProductName = selectedProduct.getName();
     currProductStock = selectedProduct.getStock();
