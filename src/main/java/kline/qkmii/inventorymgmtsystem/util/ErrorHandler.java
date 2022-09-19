@@ -9,17 +9,17 @@ import java.util.List;
 //Top-Level static wrapper class for handling user input
 //Chain of Responsibility design pattern.
 public final class ErrorHandler {
-  public static Handler firstHandler = new HandleEmptyTextField();
-  public static List<Handler> numberHandlers = new LinkedList<>(Arrays.asList(firstHandler, new HandleNumberConversion(), new HandleNegativeNumbers()));
+  private static final Handler firstHandler = new HandleEmptyTextField();
+  private static final List<Handler> numberHandlers = new LinkedList<>(Arrays.asList(firstHandler, new HandleNumberConversion(), new HandleNegativeNumbers()));
 
   private ErrorHandler() {
   }
 
-  static public boolean processInput(TextFieldContainer textFieldInfo) {
+  public static boolean processInput(TextFieldContainer textFieldInfo) {
     return processInput(textFieldInfo.input.getText(), textFieldInfo.inputType, textFieldInfo.feedback);
   }
 
-  static public boolean processInput(String input, TextFieldContainer.InputType inputType, Text feedbackMessage) {
+  public static boolean processInput(String input, TextFieldContainer.InputType inputType, Text feedbackMessage) {
     boolean inputHandled = true;
 
     switch (inputType) {
@@ -50,14 +50,14 @@ public final class ErrorHandler {
   }
 
   public static boolean validateIntInputs(int stock, int min, int max,
-                                          Text invFdbkMsg, Text minFdbkMsg, Text maxFdbkMsg) {
+                                          Text stockFeedback, Text minFeedback, Text maxFeedback) {
     boolean errorCaught = false;
 
     //check if min is less than max
     if (max < min) {
       errorCaught = true;
-      minFdbkMsg.setText("Number must be less than max value");
-      minFdbkMsg.setVisible(true);
+      minFeedback.setText("Number must be less than max value");
+      minFeedback.setVisible(true);
     }
 
     //check if inventory is between min and max
@@ -65,14 +65,14 @@ public final class ErrorHandler {
     if (stock > Math.max(max, min) ||
         stock < Math.min(max, min)) {
       errorCaught = true;
-      invFdbkMsg.setText("Number must be between min and max values");
-      invFdbkMsg.setVisible(true);
+      stockFeedback.setText("Number must be between min and max values");
+      stockFeedback.setVisible(true);
     }
 
     if (!errorCaught) {
-      invFdbkMsg.setVisible(false);
-      minFdbkMsg.setVisible(false);
-      maxFdbkMsg.setVisible(false);
+      stockFeedback.setVisible(false);
+      minFeedback.setVisible(false);
+      maxFeedback.setVisible(false);
     }
 
     return errorCaught;
@@ -89,7 +89,7 @@ public final class ErrorHandler {
     try {
       Integer.parseInt(input);
     } catch (NumberFormatException e) {
-      System.out.println(e.getMessage() + " :String is not an integer.");
+      System.out.println(e.getMessage() + ", input is not an integer.");
 
       return false;
     }
