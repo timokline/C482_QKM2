@@ -36,7 +36,7 @@ public class ModifyPartController extends PartsController {
    * Creates a new <code>PartFactory</code> using the part to be updated.
    * Initializes <code>formLabelText</code> to be pre-injected into FXML
    *
-   * @param selectedPart the part to be modified.
+   * @param selectedPart the part to be modified. Cannot be null
    * @see PartsController#formLabelText
    * @see #fetchPartInfo(Part)
    * @see #initialize(URL, ResourceBundle)
@@ -51,12 +51,13 @@ public class ModifyPartController extends PartsController {
 
   /** Handles saving a modified part.
    * Calls <code>validateInput()</code> to verify user inputs are correct
-   * before updating part in <code>Inventory</code>. Returns to menu view if
+   * before updating part in <code>Inventory</code>. Calls <code>createPart</code>
+   * to replace part being modified with its updated data. Returns to menu view if
    * succeeds.
    *
    * @param event save button click. To redirect back to menu.
-   * @throws Exception error log from <code>validateInputs()</code>.
-   * Prevents update of part in <code>inventory</code>
+   * @throws Exception if error flagged from <code>validateInputs()</code>.
+   * Prevents update of part in <code>Inventory</code>
    * @see PartsController#validateInputs()
    * @see SceneManager#returnToMenu(ActionEvent)
    */
@@ -76,18 +77,13 @@ public class ModifyPartController extends PartsController {
    * Provided a <code>Part</code> object, copies part information into appropriate instance variables.
    * Stores the index in <code>Inventory</code> of the part.
    *
-   * @param selectedPart the part to be modified.
+   * @param selectedPart the part to be modified. Cannot be null. Must be InHouse or Outsourced.
+   *                     Must exist in <code>Inventory.allParts</code>.
+   * @throws NullPointerException if selected part is null.
    * @see #currPartIndex
-   * @see PartsController#currPartID
-   * @see PartsController#currPartName
-   * @see PartsController#currPartStock
-   * @see PartsController#currPartPrice
-   * @see PartsController#currMinParts
-   * @see PartsController#currMaxParts
    * @see PartsController#currPartSrc
-   * @see PartsController#currPartType
    */
-  private void fetchPartInfo(Part selectedPart) {
+  private void fetchPartInfo(Part selectedPart){
     currPartID = selectedPart.getId();
     currPartName = selectedPart.getName();
     currPartStock = selectedPart.getStock();
@@ -108,6 +104,8 @@ public class ModifyPartController extends PartsController {
    * The current <code>Part</code>'s information fetched during the constructor
    * instantiation is injected into the loaded FXML fields. <code>Radio Button</code>s
    * of view are updated per source of the current part.
+   * <br>
+   * PRE-COND: <code>currPartType</code> must be assigned to enum value.
    *
    * @param url url
    * @param resourceBundle resource bundle
