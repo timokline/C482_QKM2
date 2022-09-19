@@ -13,11 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import kline.qkmii.inventorymgmtsystem.SceneManager;
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
-import kline.qkmii.inventorymgmtsystem.model.Part;
 import kline.qkmii.inventorymgmtsystem.model.PartFactory;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /** Controller class to handle adding a new <code>Part</code>.
  * Inherits from the base class <code>PartsController</code>.
@@ -41,12 +38,12 @@ public class AddPartController extends PartsController {
 
   /** Handles saving a new part.
    * Calls <code>validateInput()</code> to verify user inputs are correct
-   * before adding part to <code>Inventory</code>. Returns to menu view if
+   * before adding a new part to <code>Inventory</code>. Returns to menu view if
    * succeeds.
    *
    * @param event save button click. To redirect back to menu.
-   * @throws Exception error log from <code>validateInputs()</code>.
-   * Prevents adding part to <code>inventory</code>
+   * @throws Exception if error logged from <code>validateInputs()</code>.
+   *                   Prevents adding part to <code>inventory</code>.
    * @see PartsController#validateInputs()
    * @see SceneManager#returnToMenu(ActionEvent)
    */
