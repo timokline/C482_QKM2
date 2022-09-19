@@ -10,9 +10,7 @@ import kline.qkmii.inventorymgmtsystem.util.FilePath;
 import java.io.IOException;
 
 public class InvMgmtSysMain extends Application {
-  SceneManager sceneManager;
-  DialogManager dialogManager;
-
+  private Stage primaryStage;
   /**
    * @param args Command line arguments
    */
@@ -36,20 +34,27 @@ public class InvMgmtSysMain extends Application {
     launch(args);
   }
 
-  @Override
-  public void init() {
-    System.out.println("Starting application....");
-    sceneManager = SceneManager.getSingleton();
-    dialogManager = DialogManager.getInstance();
+  private void showMainMenu() {
+    try {
+      FXMLLoader fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource(FilePath.MAIN_MENU));
+      Scene scene = new Scene(fxmlLoader.load());
+      primaryStage.setScene(scene);
+      primaryStage.show();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
-  public void start(Stage stage) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource(FilePath.MAIN_MENU));
-    Scene scene = new Scene(fxmlLoader.load());
-    stage.setTitle("Inventory Management System");
-    stage.setScene(scene);
-    stage.show();
+  public void init() {
+    System.out.println("Starting application....");
+  }
+
+  @Override
+  public void start(Stage stage) {
+    primaryStage = stage;
+    primaryStage.setTitle("Inventory Management System");
+    showMainMenu();
   }
 
   @Override

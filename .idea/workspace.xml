@@ -12,20 +12,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="Refactored and commented (draft) ProductBuilder. Added builder pattern to FeedbackMessage to be utilised in ProductBuilder validate() method">
-      <change afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/PartFactory.java" afterDir="false" />
+    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="&quot;PartController&quot;s utilized PartFactory. ModifyPartController refactored for pre-injection&#10;refactored initializations into methods in PartsController.java">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/DialogManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/DialogManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/InvMgmtSysMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/InvMgmtSysMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/MainMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/AddPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/AddPartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/ModifyPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/ModifyPartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/PartsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/PartsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/products/ModifyProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/products/ModifyProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/products/ProductsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/products/ProductsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Part.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Part.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/ProductBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/ProductBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/FeedbackMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/FeedbackMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/TextFieldContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/TextFieldContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/SceneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/ErrorHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/util/ErrorHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/kline/qkmii/inventorymgmtsystem/model/ProductTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,27 +67,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/SnqyTrtyl/DOCUMENTS&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2971481&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "F:/SnqyTrtyl/DOCUMENTS",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2971481",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.runner"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="kline.qkmii.inventorymgmtsystem.controller" />
@@ -171,21 +166,7 @@
       <workItem from="1663191916399" duration="28268000" />
       <workItem from="1663225186982" duration="20426000" />
       <workItem from="1663493286701" duration="4619000" />
-      <workItem from="1663498592847" duration="12474000" />
-    </task>
-    <task id="LOCAL-00002" summary="rough mockup for main menu fxml file">
-      <created>1660248483941</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1660248483942</updated>
-    </task>
-    <task id="LOCAL-00003" summary="rough mockup for add/modify parts fxml file">
-      <created>1660251885101</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1660251885101</updated>
+      <workItem from="1663498592847" duration="15725000" />
     </task>
     <task id="LOCAL-00004" summary="rough mockup for add/modify product fxml file; fixed bad duplication of modify-part-form.fxml">
       <created>1660259471160</created>
@@ -516,7 +497,21 @@
       <option name="project" value="LOCAL" />
       <updated>1663504042924</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Reformatted code. Added a factory pattern for constructing a Part">
+      <created>1663553635401</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1663553635401</updated>
+    </task>
+    <task id="LOCAL-00052" summary="&quot;PartController&quot;s utilized PartFactory. ModifyPartController refactored for pre-injection&#10;refactored initializations into methods in PartsController.java">
+      <created>1663553992520</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1663553992520</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -566,8 +561,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactored all part &amp; product controller methods" />
-    <MESSAGE value="added error handling methods for part controller" />
     <MESSAGE value="various refactors" />
     <MESSAGE value="Refactored tableviews into generic controller. fxmls have nested controllers" />
     <MESSAGE value="Moved controllers into packages defined by the UI form they control. Refactored interfaces into their own file" />
@@ -591,7 +584,9 @@
     <MESSAGE value="Search bar in DBTableController uses Inventory methods to look up Part or Product. Inventory methods refactored. TODO: Find safer way to filter list of generic types" />
     <MESSAGE value="project files" />
     <MESSAGE value="Refactored and commented (draft) ProductBuilder. Added builder pattern to FeedbackMessage to be utilised in ProductBuilder validate() method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored and commented (draft) ProductBuilder. Added builder pattern to FeedbackMessage to be utilised in ProductBuilder validate() method" />
+    <MESSAGE value="Reformatted code. Added a factory pattern for constructing a Part" />
+    <MESSAGE value="&quot;PartController&quot;s utilized PartFactory. ModifyPartController refactored for pre-injection&#10;refactored initializations into methods in PartsController.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;PartController&quot;s utilized PartFactory. ModifyPartController refactored for pre-injection&#10;refactored initializations into methods in PartsController.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
