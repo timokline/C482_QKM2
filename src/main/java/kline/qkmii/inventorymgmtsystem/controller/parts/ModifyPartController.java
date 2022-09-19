@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
  * Upon a save event, calls a validation method and updates the part in <code>Inventory</code>.
  * @author Timothy Albert Kline
  * @version 1.0
+ * @see PartsController
 */
 public class ModifyPartController extends PartsController {
   /**

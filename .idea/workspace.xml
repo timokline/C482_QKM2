@@ -12,7 +12,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="Refactored main application and project files">
+    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="Added Javadocs to ModifyPartController.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/InvMgmtSysMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/InvMgmtSysMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/AddPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/AddPartController.java" afterDir="false" />
@@ -166,14 +166,7 @@
       <workItem from="1663191916399" duration="28268000" />
       <workItem from="1663225186982" duration="20426000" />
       <workItem from="1663493286701" duration="4619000" />
-      <workItem from="1663498592847" duration="25257000" />
-    </task>
-    <task id="LOCAL-00008" summary="refactored redundant code; created base abstract classes w/ interface for add/modify parts/product controllers">
-      <created>1660347932019</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1660347932019</updated>
+      <workItem from="1663498592847" duration="25888000" />
     </task>
     <task id="LOCAL-00009" summary="Created ProductsController abstract w/ interface class. misc. refactoring">
       <created>1660617614689</created>
@@ -511,7 +504,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663556974096</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Added Javadocs to ModifyPartController.java">
+      <created>1663568793226</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1663568793227</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -561,7 +561,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactored method names, conventions and formatting. SceneManager is now a static class" />
     <MESSAGE value="MainMenuController and ProductsController use DBTableController for parts database search tableview" />
     <MESSAGE value="Created a utility ErrorHandler class that implements Chain of Responsibilities. Various Handler classes validate input. Created a POD for the text field properties, TextFieldContainer. Constants class FeedbackMessage holds strings of possible responses to invalid input." />
     <MESSAGE value="Added a DialogManager to create popup windows for errors. MainMenuController now has dialog logic. Product form fxml now get injected with appropriate controller via button" />
@@ -586,7 +585,8 @@
     <MESSAGE value="Refactored ErrorHandler. removed instantiation of the class" />
     <MESSAGE value="Refactored SceneManager. removed instantiation of the class" />
     <MESSAGE value="Refactored main application and project files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored main application and project files" />
+    <MESSAGE value="Added Javadocs to ModifyPartController.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Javadocs to ModifyPartController.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
