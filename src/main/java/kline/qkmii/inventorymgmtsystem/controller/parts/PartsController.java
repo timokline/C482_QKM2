@@ -36,7 +36,6 @@ import java.util.Set;
  */
 interface IPartsCTRLR {
 
-
   /** Save button event handler
    * @param event action event
    * @throws Exception if failed to save.
@@ -47,7 +46,6 @@ interface IPartsCTRLR {
    * @param event action event.
    */
   void handleCancelBtnEvent(ActionEvent event);
-
 
   /** In-Source radio button event handler
    * @param event action event
@@ -60,7 +58,7 @@ interface IPartsCTRLR {
   void handleOutSrcBtnEvent(ActionEvent event);
 }
 
-/** Controller class for the <code>Part</code>s FXML view.
+/** Abstract controller class for the <code>Part</code>s FXML view.
  * @author Timothy Albert Kline
  * @version 1.0
  * @see IPartsCTRLR
@@ -127,7 +125,7 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
    */
   String formLabelTitle;
   RadioButton selectedSrc;
-  //CURRENT PART INFO
+  //Current Part Info
   int currPartID;
   String currPartName;
   double currPartPrice;
@@ -151,7 +149,7 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
   /** Propagates FXML <code>Text</code> fields into a set for easy iteration.
    *
    */
-  private void initTFContainerSet() {
+  private void initFeedbackTextsSet() {
     feedbackMessageTexts = new HashSet<>(Arrays.asList(
         this.nameFbkMsgTXT,
         this.priceFbkMsgTXT,
@@ -165,7 +163,7 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
   /** Propagates <code>TextFieldContainer</code>s into a set for easy iteration.
    * @see TextFieldContainer
    */
-  private void initFeedbackTextsSet() {
+  private void initTFContainerSet() {
     editableTextFields = new HashSet<>(Arrays.asList(
         new TextFieldContainer(this.nameTF, TextFieldContainer.InputType.STRING, this.nameFbkMsgTXT),
         new TextFieldContainer(this.priceTF, TextFieldContainer.InputType.DECIMAL, this.priceFbkMsgTXT),
@@ -189,14 +187,14 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
    *  Injects <code>formLabelTitle</code> into <code>partFormLBL</code>.
    * @param url url
    * @param resourceBundle resource bundle
-   * @see #initFeedbackTextsSet()
    * @see #initTFContainerSet()
+   * @see #initFeedbackTextsSet()
    * @see #resetFeedbackTexts()
    */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    initTFContainerSet();
     initFeedbackTextsSet();
+    initTFContainerSet();
     resetFeedbackTexts();
     currCompanyName = new TextFieldContainer(sourceTF, TextFieldContainer.InputType.STRING, srcFbkMsgTXT);
     currMachineID = new TextFieldContainer(sourceTF, TextFieldContainer.InputType.INTEGER, srcFbkMsgTXT);
