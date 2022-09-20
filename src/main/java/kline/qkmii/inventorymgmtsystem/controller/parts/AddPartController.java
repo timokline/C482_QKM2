@@ -26,7 +26,7 @@ import kline.qkmii.inventorymgmtsystem.model.PartFactory;
 public class AddPartController extends PartsController {
   /** Controller constructor.
    * Creates a new <code>PartFactory</code>.
-   * Initializes <code>formLabelText</code> to be pre-injected into FXML
+   * Initializes <code>formLabelTitle</code> to be pre-injected into FXML
    * @see PartsController#formLabelTitle
    * @see PartFactory#PartFactory()
    */

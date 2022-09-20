@@ -27,14 +27,14 @@ import java.util.ResourceBundle;
 */
 public class ModifyPartController extends PartsController {
   /**
-   * index in <code>Inventory</code> of part being modified.
+   * index in <code>Inventory.allParts</code> of part being modified.
    */
   private int currPartIndex;
 
   /** Controller constructor specifying a part to modify.
    * Provided a <code>Part</code> object, calls <code>fetchPartInfo</code> to store information about the part.
    * Creates a new <code>PartFactory</code> using the part to be updated.
-   * Initializes <code>formLabelText</code> to be pre-injected into FXML
+   * Initializes <code>formLabelTitle</code> to be pre-injected into FXML
    *
    * @param selectedPart the part to be modified. Cannot be null
    * @see PartsController#formLabelTitle
@@ -49,33 +49,9 @@ public class ModifyPartController extends PartsController {
     formLabelTitle = "Modify Part";
   }
 
-  /** Handles saving a modified part.
-   * Calls <code>validateInput()</code> to verify user inputs are correct
-   * before updating part in <code>Inventory</code>. Calls <code>createPart</code>
-   * to replace part being modified with its updated data. Returns to menu view if
-   * succeeds.
-   *
-   * @param event save button click. To redirect back to menu.
-   * @throws Exception if error flagged from <code>validateInputs()</code>.
-   * Prevents update of part in <code>Inventory</code>
-   * @see PartsController#validateInputs()
-   * @see SceneManager#returnToMenu(ActionEvent)
-   */
-  @FXML
-  public void handleSaveBtnEvent(ActionEvent event) throws Exception {
-    try {
-      validateInputs();
-      Inventory.updatePart(currPartIndex, createPart());
-      System.out.println(selectedSrc.getText() + " part was modified.");
-      SceneManager.returnToMenu(event);
-    } catch (Exception e) {
-      System.out.println(e.getMessage() + ": Part was not modified");
-    }
-  }
-
   /** Stores information about the part being modified.
    * Provided a <code>Part</code> object, copies part information into appropriate instance variables.
-   * Stores the index in <code>Inventory</code> of the part.
+   * Stores the index in <code>Inventory.allParts</code> of the part.
    *
    * @param selectedPart the part to be modified. Cannot be null. Must be InHouse or Outsourced.
    *                     Must exist in <code>Inventory.allParts</code>.
@@ -133,5 +109,29 @@ public class ModifyPartController extends PartsController {
       }
     }
     super.initialize(url, resourceBundle);
+  }
+
+  /** Handles saving a modified part.
+   * Calls <code>validateInput()</code> to verify user inputs are correct
+   * before updating part in <code>Inventory</code>. Calls <code>createPart</code>
+   * to replace part being modified with its updated data. Returns to menu view if
+   * succeeds.
+   *
+   * @param event save button click. To redirect back to menu.
+   * @throws Exception if error flagged from <code>validateInputs()</code>.
+   * Prevents update of part in <code>Inventory</code>
+   * @see PartsController#validateInputs()
+   * @see SceneManager#returnToMenu(ActionEvent)
+   */
+  @FXML
+  public void handleSaveBtnEvent(ActionEvent event) throws Exception {
+    try {
+      validateInputs();
+      Inventory.updatePart(currPartIndex, createPart());
+      System.out.println(selectedSrc.getText() + " part was modified.");
+      SceneManager.returnToMenu(event);
+    } catch (Exception e) {
+      System.out.println(e.getMessage() + ": Part was not modified");
+    }
   }
 }

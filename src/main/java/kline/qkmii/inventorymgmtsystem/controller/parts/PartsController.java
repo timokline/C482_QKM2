@@ -66,8 +66,6 @@ interface IPartsCTRLR {
 public abstract class PartsController implements Initializable, IPartsCTRLR {
   ///FXML FIELDS
   @FXML
-  protected Label partFormLBL;
-  @FXML
   protected RadioButton inSrcRBtn;
   @FXML
   protected RadioButton outSrcRBtn;
@@ -101,6 +99,8 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
   protected TextField sourceTF;
   @FXML
   protected Text srcFbkMsgTXT;
+  @FXML
+  private Label partFormLBL;
 
   ///INSTANCE FIELDS
   protected PartFactory partFactory;
