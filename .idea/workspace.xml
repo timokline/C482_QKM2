@@ -12,14 +12,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="Added Javadocs to ModifyPartController.java">
+    <list default="true" id="0212f979-4339-47f7-9385-cda9ed234507" name="Changes" comment="edited comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/InvMgmtSysMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/InvMgmtSysMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/AddPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/AddPartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/ModifyPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/ModifyPartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/PartsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/parts/PartsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/DBTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/DBTableController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/MainMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/products/ProductsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/products/ProductsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/PartFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/PartFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/ProductBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/model/ProductBuilder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,27 +67,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "last_opened_file_path": "F:/SnqyTrtyl/DOCUMENTS",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2971481",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.runner"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/SnqyTrtyl/DOCUMENTS&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2971481&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="kline.qkmii.inventorymgmtsystem.controller" />
@@ -166,91 +166,10 @@
       <workItem from="1663191916399" duration="28268000" />
       <workItem from="1663225186982" duration="20426000" />
       <workItem from="1663493286701" duration="4619000" />
-      <workItem from="1663498592847" duration="25888000" />
-    </task>
-    <task id="LOCAL-00009" summary="Created ProductsController abstract w/ interface class. misc. refactoring">
-      <created>1660617614689</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1660617614689</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Wrote various methods for the model classes. Refactored SceneManager + fxml location constants">
-      <created>1660714297907</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1660714297908</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Prototype UID generator. Sample data population for main menu TableViews.&#10;Handler for Parts save button written.">
-      <created>1660714432493</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1660714432493</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Wrote lookup methods for Part and Product">
-      <created>1660791342614</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1660791342614</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Refactoring">
-      <created>1660791379979</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1660791379979</updated>
-    </task>
-    <task id="LOCAL-00014" summary="ModifyPartController receives Part objects from MainMenuController. Added overload method for SceneManager to encapsulate that logic.">
-      <created>1660796751104</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1660796751104</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Refactored main application driver">
-      <created>1660796767644</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1660796767644</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Wrote deletePart/Product methods for Inventory. Handlers for delete buttons on the main menu implement methods.">
-      <created>1660798201012</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1660798201012</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Refactoring + comments">
-      <created>1660798211848</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1660798211848</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Fixing some text in the UI">
-      <created>1661039628549</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1661039628549</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Refactored Parts controllers">
-      <created>1661042138275</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1661042138275</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Handler for ModifyPartController save button written">
-      <created>1661067173569</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1661067173569</updated>
+      <workItem from="1663498592847" duration="29184000" />
+      <workItem from="1663618589980" duration="25212000" />
+      <workItem from="1663665294261" duration="268000" />
+      <workItem from="1663704582719" duration="8832000" />
     </task>
     <task id="LOCAL-00021" summary="Fixed bug with radio buttons in modify part form">
       <created>1661067273031</created>
@@ -511,7 +430,91 @@
       <option name="project" value="LOCAL" />
       <updated>1663568793227</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Added Javadocs to AddPartController.java">
+      <created>1663569184712</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1663569184712</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Updated Javadocs in ModifyPartController.java">
+      <created>1663631011034</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1663631011034</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Updated Javadocs in AddPartController.java">
+      <created>1663631157072</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1663631157072</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Added Javadocs in PartsController.java. Refactored variable names.">
+      <created>1663640239074</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1663640239074</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Updated header comments">
+      <created>1663640318414</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1663640318414</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Added Javadocs to InHouse.java and OutSourced.java.">
+      <created>1663641792012</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1663641792012</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Added Javadocs to Inventory.java. Refactored deleteProduct().">
+      <created>1663644187648</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1663644187648</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Refactored incorrect method names">
+      <created>1663645060309</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1663645060309</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Added Javadoc comments to AddProductController.java, ModifyProductController.java, and ProductsController.java. Refactored organization.">
+      <created>1663649272909</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1663649272909</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Refactored organization and typo.">
+      <created>1663649332535</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1663649332535</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Added Javadoc comments to MainMenuController.java">
+      <created>1663665391241</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1663665391241</updated>
+    </task>
+    <task id="LOCAL-00069" summary="edited comments">
+      <created>1663665449865</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1663665449865</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -561,18 +564,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="MainMenuController and ProductsController use DBTableController for parts database search tableview" />
-    <MESSAGE value="Created a utility ErrorHandler class that implements Chain of Responsibilities. Various Handler classes validate input. Created a POD for the text field properties, TextFieldContainer. Constants class FeedbackMessage holds strings of possible responses to invalid input." />
-    <MESSAGE value="Added a DialogManager to create popup windows for errors. MainMenuController now has dialog logic. Product form fxml now get injected with appropriate controller via button" />
-    <MESSAGE value="Removed unused FilePath constants" />
-    <MESSAGE value="fixed gui layout of fxml files" />
-    <MESSAGE value="refactored interfaces back together with abstract base controller classes" />
-    <MESSAGE value="created a ProductBuilder to decouple creation of Product from controller" />
-    <MESSAGE value="ProductsController and derived controller refactored to allow pre-injection." />
-    <MESSAGE value="ProductsController passes validation to ErrorHandler" />
-    <MESSAGE value="ProductsControllers passes validation to ErrorHandler" />
-    <MESSAGE value="removed static variable and function for serializing new products in Main" />
-    <MESSAGE value="reformatted model classes" />
     <MESSAGE value="moved SceneManager, refactored into singleton class" />
     <MESSAGE value="PartsController base class allows pre-injection and various initialization of containers." />
     <MESSAGE value="PartsController passes text field validation to ErrorHandler.process()" />
@@ -586,17 +577,18 @@
     <MESSAGE value="Refactored SceneManager. removed instantiation of the class" />
     <MESSAGE value="Refactored main application and project files" />
     <MESSAGE value="Added Javadocs to ModifyPartController.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Javadocs to ModifyPartController.java" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/kline/qkmii/inventorymgmtsystem/controller/MainMenuController.java</url>
-          <line>52</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Added Javadocs to AddPartController.java" />
+    <MESSAGE value="Updated Javadocs in ModifyPartController.java" />
+    <MESSAGE value="Updated Javadocs in AddPartController.java" />
+    <MESSAGE value="Added Javadocs in PartsController.java. Refactored variable names." />
+    <MESSAGE value="Updated header comments" />
+    <MESSAGE value="Added Javadocs to InHouse.java and OutSourced.java." />
+    <MESSAGE value="Added Javadocs to Inventory.java. Refactored deleteProduct()." />
+    <MESSAGE value="Refactored incorrect method names" />
+    <MESSAGE value="Added Javadoc comments to AddProductController.java, ModifyProductController.java, and ProductsController.java. Refactored organization." />
+    <MESSAGE value="Refactored organization and typo." />
+    <MESSAGE value="Added Javadoc comments to MainMenuController.java" />
+    <MESSAGE value="edited comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="edited comments" />
   </component>
 </project>

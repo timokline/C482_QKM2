@@ -3,7 +3,7 @@
  * DESC: Controller class for "main menu form" view
  * AUTH: Timothy Albert Kline
  *
- * UPDT: 19 Sept 2022
+ * UPDT: 20 Sept 2022
  * VERS: 1.0
  * COPR: N/A
  */
@@ -32,10 +32,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /** Abstract controller class for the MainMenu FXML view.
+ * TODO: DESCRIPTION
  * @author Timothy Albert Kline
  * @version 1.0
  */
 public class MainMenuController implements Initializable {
+  ///FXML FIELDS
   @FXML
   private VBox partsTbl;
   @FXML
@@ -111,7 +113,7 @@ public class MainMenuController implements Initializable {
    */
   @FXML
   void handlePartsModBtnEvent(ActionEvent event) {
-    var selectedPart = getSelection(partsTblController.getDatabase());
+    var selectedPart = getSelection(partsTblController.getTableView());
 
     try {
       ModifyPartController modifyPartController = new ModifyPartController(selectedPart);
@@ -135,7 +137,7 @@ public class MainMenuController implements Initializable {
    */
   @FXML
   void handlePartsDelBtnEvent(ActionEvent ignoredEvent) {
-    var selectedPart = getSelection(partsTblController.getDatabase());
+    var selectedPart = getSelection(partsTblController.getTableView());
     if (selectedPart != null) {
       var result = DialogManager.PartDeletionConfirmation().showAndWait();
       if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -183,7 +185,7 @@ public class MainMenuController implements Initializable {
    */
   @FXML
   void handleProdModBtnEvent(ActionEvent event) {
-    var selectedProduct = getSelection(productTblController.getDatabase());
+    var selectedProduct = getSelection(productTblController.getTableView());
 
     try {
       ModifyProductController modifyProductController = new ModifyProductController(selectedProduct);
@@ -207,7 +209,7 @@ public class MainMenuController implements Initializable {
    */
   @FXML
   void handleProdDelBtnEvent(ActionEvent ignoredEvent) {
-    var selectedProduct = getSelection(productTblController.getDatabase());
+    var selectedProduct = getSelection(productTblController.getTableView());
     if (selectedProduct != null) {
       var result = DialogManager.ProductDeletionConfirmation().showAndWait();
       if (result.isPresent() && result.get() == ButtonType.OK) {
