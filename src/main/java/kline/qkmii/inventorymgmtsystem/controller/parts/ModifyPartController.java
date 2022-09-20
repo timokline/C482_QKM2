@@ -37,7 +37,7 @@ public class ModifyPartController extends PartsController {
    * Initializes <code>formLabelText</code> to be pre-injected into FXML
    *
    * @param selectedPart the part to be modified. Cannot be null
-   * @see PartsController#formLabelText
+   * @see PartsController#formLabelTitle
    * @see #fetchPartInfo(Part)
    * @see #initialize(URL, ResourceBundle)
    * @see PartFactory#PartFactory(Part)
@@ -46,7 +46,7 @@ public class ModifyPartController extends PartsController {
     super();
     fetchPartInfo(selectedPart);
     partFactory = new PartFactory(selectedPart);
-    formLabelText = "Modify Part";
+    formLabelTitle = "Modify Part";
   }
 
   /** Handles saving a modified part.
@@ -81,7 +81,7 @@ public class ModifyPartController extends PartsController {
    *                     Must exist in <code>Inventory.allParts</code>.
    * @throws NullPointerException if selected part is null.
    * @see #currPartIndex
-   * @see PartsController#currPartSrc
+   * @see PartsController#currPartSrcVal
    */
   private void fetchPartInfo(Part selectedPart){
     currPartID = selectedPart.getId();
@@ -91,10 +91,10 @@ public class ModifyPartController extends PartsController {
     currMaxParts = selectedPart.getMax();
     currMinParts = selectedPart.getMin();
     if (selectedPart instanceof InHouse) {
-      currPartSrc = ((InHouse) selectedPart).getMachineId();
+      currPartSrcVal = ((InHouse) selectedPart).getMachineId();
       currPartType = PartFactory.PartSrcType.IN_HOUSE;
     } else if (selectedPart instanceof OutSourced) {
-      currPartSrc = ((OutSourced) selectedPart).getCompanyName();
+      currPartSrcVal = ((OutSourced) selectedPart).getCompanyName();
       currPartType = PartFactory.PartSrcType.OUTSOURCED;
     }
     currPartIndex = Inventory.getAllParts().indexOf(selectedPart);
@@ -118,10 +118,10 @@ public class ModifyPartController extends PartsController {
     idTF.setText(String.valueOf(currPartID));
     nameTF.setText(currPartName);
     invTF.setText(String.valueOf(currPartStock));
-    unitTF.setText(String.valueOf(currPartPrice));
+    priceTF.setText(String.valueOf(currPartPrice));
     maxPartsTF.setText(String.valueOf(currMaxParts));
     minPartsTF.setText(String.valueOf(currMinParts));
-    sourceTF.setText(String.valueOf(currPartSrc));
+    sourceTF.setText(String.valueOf(currPartSrcVal));
     switch (currPartType) {
       case IN_HOUSE -> {
         partSrcTG.selectToggle(inSrcRBtn);

@@ -27,13 +27,13 @@ public class AddPartController extends PartsController {
   /** Controller constructor.
    * Creates a new <code>PartFactory</code>.
    * Initializes <code>formLabelText</code> to be pre-injected into FXML
-   * @see PartsController#formLabelText
+   * @see PartsController#formLabelTitle
    * @see PartFactory#PartFactory()
    */
   public AddPartController() {
     super();
     partFactory = new PartFactory();
-    formLabelText = "Add Part";
+    formLabelTitle = "Add Part";
   }
 
   /** Handles saving a new part.
