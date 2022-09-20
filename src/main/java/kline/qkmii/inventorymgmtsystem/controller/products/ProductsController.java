@@ -247,7 +247,7 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
    */
   @FXML
   public void handleAddPartBtnEvent(ActionEvent ignoredEvent) {
-    var selectedPart = availPartsTblController.getDatabase().getSelectionModel().getSelectedItem();
+    var selectedPart = availPartsTblController.getTableView().getSelectionModel().getSelectedItem();
     if (selectedPart != null) {
       productBuilder.add(selectedPart);
     } else {
