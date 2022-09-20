@@ -225,7 +225,7 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
   }
 
   /**
-   * Redirects user to main menu form.
+   * Handles cancel button event.
    * Calls static helper function <code>returnToMenu</code>.
    *
    * @param event action event.
