@@ -1,17 +1,31 @@
+/*
+ * FNAM: ProductBuilder.java
+ * DESC: Builder design pattern for creating products
+ * AUTH: Timothy Albert Kline
+ *
+ * UPDT: 20 Sept 2022
+ * VERS: 1.0
+ * COPR: N/A
+ * SRCS: https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java
+ */
 package kline.qkmii.inventorymgmtsystem.model;
 
 import javafx.collections.ObservableList;
 import kline.qkmii.inventorymgmtsystem.util.FeedbackMessage;
 
-//ProductBuilder
-//Implements a builder pattern based on Joshua Bloch's version
-//Stores a temporary Product object to update its list of associated parts
-//Creates product from information given
+/**
+ * A Builder pattern that creates a product.
+ * Implements a builder pattern based on Joshua Bloch's version.
+ * Stores a temporary <code>Product</code> object to specify information
+ * about it and update its list of associated parts.
+ * Code written follows this blog post as a guide:
+ * <a href=https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java>blogs.oracle.com</a>
+ */
 public class ProductBuilder {
   private static int productUID = 999;
 
-  private final boolean isNew;
   private final Product product;
+  private boolean isNew;
   private int id;
   private String name;
   private double price;
@@ -19,7 +33,10 @@ public class ProductBuilder {
   private int min;
   private int max;
 
-  //Constructs a product builder with placeholder information for a new product;
+  /**
+   * Default constructor specifying placeholder information for a new product.
+   * Dummy values do not meet the requirements upon <code>build</code> call.
+   */
   public ProductBuilder() {
     isNew = true;
     name = "";
@@ -30,7 +47,10 @@ public class ProductBuilder {
     this.product = new Product(-1, name, price, stock, min, max);
   }
 
-  //Constructs a product builder with provided information for a new product
+  /**
+   * Param constructor specifying provided information for a new product.
+   * Used exclusively for product creation during main application lifecycle
+   */
   public ProductBuilder(String name, double price, int stock, int min, int max) {
     isNew = true;
     this.name = name;
@@ -41,7 +61,11 @@ public class ProductBuilder {
     product = new Product(-1, name, price, stock, min, max);
   }
 
-  //Constructs a product builder by copying information of a provided product. Stores a copy of said product.
+  /**
+   * Constructor specifying to copy information of a provided product.
+   * Assumes given product passed is going to be "rebuilt".
+   * Stores a copy of said product and its associated parts.
+   */
   public ProductBuilder(Product product) {
     isNew = false;
     id = product.getId();
@@ -50,7 +74,8 @@ public class ProductBuilder {
     stock = product.getStock();
     min = product.getMin();
     max = product.getMax();
-    this.product = new Product(id,
+    this.product = new Product(
+        id,
         name,
         price,
         stock,
@@ -61,92 +86,143 @@ public class ProductBuilder {
     }
   }
 
-  private int getProductUID() {
-    return ++productUID;
-  }
-
-  //sets the name of the product. returns reference to this ProductBuilder
+  /**
+   * @param name the name to set
+   * @return the reference to this ProductBuilder
+   */
   public ProductBuilder name(String name) {
     this.name = name;
 
     return this;
   }
 
-  //sets the price of the product. returns reference to this ProductBuilder
+  /**
+   * @param price the price to set
+   * @return the reference to this ProductBuilder
+   */
   public ProductBuilder price(double price) {
     this.price = price;
 
     return this;
   }
 
-  //sets the inventory level of the product. returns reference to this ProductBuilder
+  /**
+   * @param stock the stock level to set
+   * @return the reference to this ProductBuilder
+   */
   public ProductBuilder stock(int stock) {
     this.stock = stock;
 
     return this;
   }
 
-  //sets the maximum amount for the product's stock. returns reference to this ProductBuilder
+  /**
+   * @param max the maximum stock level to set
+   * @return the reference to this ProductBuilder
+   */
   public ProductBuilder max(int max) {
     this.max = max;
 
     return this;
   }
 
-  //sets the minimum amount for the product's stock. returns reference to this ProductBuilder
+  /**
+   * @param min the maximum stock level to set
+   * @return the reference to this ProductBuilder
+   */
   public ProductBuilder min(int min) {
     this.min = min;
 
     return this;
   }
 
-  //adds a Part to the running list of associated parts for the product. returns reference to this ProductBuilder
+  /**
+   * Adds a <code>Part</code> to the running list of associated parts for the product.
+   *
+   * @param part the part to add
+   * @return the reference to this ProductBuilder
+   */
   public ProductBuilder add(Part part) {
     product.addAssociatedPart(part);
 
     return this;
   }
 
-  //removes a Part from the running list of associated parts for the product. returns boolean if success
-  public boolean delete(Part part) {
-    return product.deleteAssociatedPart(part);
+  /**
+   * Removes a <code>Part</code> from the running list of associated parts for the product.
+   *
+   * @param part the part to delete
+   * @return the reference to this ProductBuilder
+   */
+  public ProductBuilder delete(Part part) {
+    product.deleteAssociatedPart(part);
+
+    return this;
   }
 
-  //returns ObservableList<Part> the running list of associated parts for the product
+  /**
+   * @return the running list of associated parts for the product
+   */
   public ObservableList<Part> viewAssocParts() {
     return product.getAllAssociatedParts();
   }
 
-  //Sets the variables of the current product. Throws if any parameters are invalid. Returns the built product.
+  /**
+   * @return the next available UID
+   */
+  private int getProductUID() {
+    return ++productUID;
+  }
+
+  /**
+   * Specifies information of the product being assembled and creates it.
+   *
+   * @return the built product
+   * @throws IllegalStateException if validate() throws
+   * @see #validate()
+   */
   public Product build() throws IllegalStateException {
+    validate();
     product.setName(name);
     product.setPrice(price);
     product.setStock(stock);
     product.setMin(min);
     product.setMax(max);
-    validate();
     product.setId(isNew ? getProductUID() : id);
+    if(isNew) {
+      id = product.getId();
+      isNew = false;
+    }
 
     return product;
   }
 
+  /**
+   * Checks if all pieces of information about the product meet the requirements.
+   * Appends feedback for every illegal input to a <code>FeedbackMessage.Builder()</code>
+   * Attaches the logs to an <code>IllegalStateException</code>
+   *
+   * @throws IllegalStateException if error messages were logged
+   * @see FeedbackMessage.Builder#Builder()
+   */
   private void validate() throws IllegalStateException {
     var feedbackMessages = new FeedbackMessage.Builder();
     if (name == null || name.isEmpty()) {
       feedbackMessages.append("ProductBuilder.name cannot be null or empty.");
     }
     if (price < 0) {
-      feedbackMessages.append("ProductBuilder.price cannot be negative.");
+      feedbackMessages.append("ProductBuilder.price: " + FeedbackMessage.NEGATIVE_NUM_MSG);
     }
     if (stock < 0) {
-      feedbackMessages.append("ProductBuilder.stock cannot be negative.");
+      feedbackMessages.append("ProductBuilder.stock: " + FeedbackMessage.NEGATIVE_NUM_MSG);
     }
     if (max < 0) {
-      feedbackMessages.append("ProductBuilder.price cannot be negative.");
+      feedbackMessages.append("ProductBuilder.price: " + FeedbackMessage.NEGATIVE_NUM_MSG);
     }
     if (min < 0) {
-      feedbackMessages.append("ProductBuilder.price cannot be negative.");
+      feedbackMessages.append("ProductBuilder.price: " + FeedbackMessage.NEGATIVE_NUM_MSG);
     }
+
     if (feedbackMessages.length() > 0) {
       throw new IllegalStateException(feedbackMessages.printLog().toString());
     }
