@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
 import kline.qkmii.inventorymgmtsystem.util.FeedbackMessage;
 
 /**
- * A Builder pattern that creates a product.
+ * A Builder pattern class that creates a product.
  * Implements a builder pattern based on Joshua Bloch's version.
  * Stores a temporary <code>Product</code> object to specify information
  * about it and update its list of associated parts.
@@ -49,7 +49,7 @@ public class ProductBuilder {
 
   /**
    * Param constructor specifying provided information for a new product.
-   * Used exclusively for product creation during main application lifecycle
+   * Used exclusively for product creation during main application lifecycle.
    */
   public ProductBuilder(String name, double price, int stock, int min, int max) {
     isNew = true;
