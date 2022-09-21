@@ -1,3 +1,12 @@
+/*
+ * FNAM: ErrorHandler.java
+ * DESC: Utility class for validating input and displaying feedback in UI
+ * AUTH: Timothy Albert Kline
+ *
+ * UPDT: 20 Sept 2022
+ * VERS: 1.0
+ * COPR: N/A
+ */
 package kline.qkmii.inventorymgmtsystem.util;
 
 import javafx.scene.text.Text;
@@ -6,20 +15,59 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-//Top-Level static wrapper class for handling user input
-//Chain of Responsibility design pattern.
+/**
+ * Top-Level static wrapper class for handling user input. Implements a
+ * Chain of Responsibility design pattern to pass input through a series of handlers.
+ * Provides other methods to check for business logic.
+ * @author Timothy Albert Kline
+ * @version 1.0
+ * @see Handler
+ */
 public final class ErrorHandler {
   private static final Handler firstHandler = new HandleEmptyTextField();
   private static final List<Handler> numberHandlers = new LinkedList<>(Arrays.asList(firstHandler, new HandleNumberConversion(), new HandleNegativeNumbers()));
 
+  /**
+   * Sole constructor. Cannot be instantiated.
+   */
   private ErrorHandler() {
   }
 
+  /**
+   * A wrapper function to pass a <code>TextFieldContainer</code> fields to
+   * class function <code>processInput()</code>
+   * @param textFieldInfo the TextFieldContainer to process
+   * @return true, if input was valid; false, otherwise.
+   * @see #processInput(String, TextFieldContainer.InputType, Text)
+   */
   public static boolean processInput(TextFieldContainer textFieldInfo) {
     return processInput(textFieldInfo.input.getText(), textFieldInfo.inputType, textFieldInfo.feedback);
   }
 
-  public static boolean processInput(String input, TextFieldContainer.InputType inputType, Text feedbackMessage) {
+  /**
+   * Passes user's input from a <code>TextField</code> to validate if it is:
+   * <ol>
+   *   <li>Not empty</li>
+   *   <li>The correct data type</li>
+   *   <li>A logical value</li>
+   * </ol>
+   * <code>TextFieldContainer.InputType</code> provides insight for the data type
+   * a text field box accepts. Input is handled by the appropriate series of handlers.
+   * If input is invalid, is it flagged and the corresponding <code>Text</code> field
+   * is displayed in UI.
+   * <br><p>
+   *   POST-COND: (side effect) Modifies the corresponding <code>Text</code> to display
+   *              feedback/a hint about the input processed. Clears and disables visibility
+   *              if input is valid.
+   * </p>
+   *
+   * @param input the text entered into the TextField
+   * @param inputType the data type accepted by the TextField per business logic
+   * @param feedbackMessage the text displayed in UI about the user's input
+   * @return true, if input is valid; false, otherwise.
+   * @see Handler
+   */
+  private static boolean processInput(String input, TextFieldContainer.InputType inputType, Text feedbackMessage) {
     boolean inputHandled = true;
 
     switch (inputType) {
@@ -49,6 +97,24 @@ public final class ErrorHandler {
     return inputHandled;
   }
 
+  /**
+   * Checks business logic for the stock level range and its current level; displays errors in UI.
+   * The current inventory level of an item must be between its min and max capacity.
+   * The range values must be set so that the min is less than the max.
+   * <br><p>
+   * POST-COND: (side effect) Modifies <code>Text</code> associated with the
+   *            user's input to display feedback/help for incorrect logic.
+   *            Disables its visibility otherwise.
+   * </p>
+   *
+   * @param stock the stock of the item
+   * @param min the minimum stock level
+   * @param max the maximum stock level
+   * @param stockFeedback the feedback for the stock input
+   * @param minFeedback the feedback for the min input
+   * @param maxFeedback the feedback for the max input
+   * @return true, if inputs were logical. false, otherwise.
+   */
   public static boolean validateIntInputs(int stock, int min, int max,
                                           Text stockFeedback, Text minFeedback, Text maxFeedback) {
     boolean errorCaught = false;
@@ -78,14 +144,19 @@ public final class ErrorHandler {
     return errorCaught;
   }
 
-  //parses a String to verify if the whole String contains only numeric values
+  /**
+   * Parses a String to verify if the whole String contains only numeric values
+   *
+   * @param input the string to check
+   * @return true, if the string is an integer; false, otherwise.
+   */
   public static boolean isInteger(String input) {
     if (input == null || input.length() == 0) {
-
       return false;
     }
 
-    //XXX: Expensive hacky way, implement an iteration through String in the future.
+    //TODO: Implement an iteration through String in the future.
+    //XXX: Expensive hacky way
     try {
       Integer.parseInt(input);
     } catch (NumberFormatException e) {
