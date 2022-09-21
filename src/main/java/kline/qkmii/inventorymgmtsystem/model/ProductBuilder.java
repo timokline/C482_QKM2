@@ -3,7 +3,7 @@
  * DESC: Builder design pattern for creating products
  * AUTH: Timothy Albert Kline
  *
- * UPDT: 20 Sept 2022
+ * UPDT: 21 Sept 2022
  * VERS: 1.0
  * COPR: N/A
  * SRCS: https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java
@@ -141,6 +141,7 @@ public class ProductBuilder {
    *
    * @param part the part to add
    * @return the reference to this ProductBuilder
+   * @see Product#addAssociatedPart(Part) 
    */
   public ProductBuilder add(Part part) {
     product.addAssociatedPart(part);
@@ -153,6 +154,7 @@ public class ProductBuilder {
    *
    * @param part the part to delete
    * @return the reference to this ProductBuilder
+   * @see Product#deleteAssociatedPart(Part) 
    */
   public ProductBuilder delete(Part part) {
     product.deleteAssociatedPart(part);
@@ -162,6 +164,7 @@ public class ProductBuilder {
 
   /**
    * @return the running list of associated parts for the product
+   * @see Product#addAssociatedPart(Part)
    */
   public ObservableList<Part> viewAssocParts() {
     return product.getAllAssociatedParts();

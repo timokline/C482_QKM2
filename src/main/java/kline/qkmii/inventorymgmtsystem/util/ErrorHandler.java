@@ -3,7 +3,7 @@
  * DESC: Utility class for validating input and displaying feedback in UI
  * AUTH: Timothy Albert Kline
  *
- * UPDT: 20 Sept 2022
+ * UPDT: 21 Sept 2022
  * VERS: 1.0
  * COPR: N/A
  */
@@ -28,7 +28,7 @@ public final class ErrorHandler {
   private static final List<Handler> numberHandlers = new LinkedList<>(Arrays.asList(firstHandler, new HandleNumberConversion(), new HandleNegativeNumbers()));
 
   /**
-   * Sole constructor. Cannot be instantiated.
+   * Default constructor. Cannot be instantiated.
    */
   private ErrorHandler() {
   }

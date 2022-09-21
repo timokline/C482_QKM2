@@ -3,14 +3,14 @@
  * DESC: Utility class for gui and console messages
  * AUTH: Timothy Albert Kline
  *
- * UPDT: 20 Sept 2022
+ * UPDT: 21 Sept 2022
  * VERS: 1.0
  * COPR: N/A
  */
 package kline.qkmii.inventorymgmtsystem.util;
 
 /**
- * A static utility class for reusable error messages for console and GUI.
+ * A static utility class of reusable error messages for console and GUI.
  * Used in conjunction with <code>Handler</code> subclasses.
  * Implements an inner builder pattern class for cataloging multiple logging messages.
  *

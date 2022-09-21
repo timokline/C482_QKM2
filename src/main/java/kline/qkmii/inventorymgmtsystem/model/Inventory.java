@@ -3,7 +3,7 @@
  * DESC: Static model class of stored Part and Product objects
  * AUTH: Timothy Albert Kline
  *
- * UPDT: 19 Sept 2022
+ * UPDT: 21 Sept 2022
  * VERS: 1.0
  * COPR: N/A
  */
@@ -29,6 +29,7 @@ public class Inventory {
    *
    * @param newPart part to be added.
    * @throws NullPointerException if newPart is null.
+   * @see List#add(Object)
    */
   public static void addPart(Part newPart) {
     allParts.add(newPart);
@@ -38,6 +39,7 @@ public class Inventory {
    *
    * @param newProduct product to be added.
    * @throws NullPointerException if newProduct is null.
+   * @see List#add(Object)
    */
   public static void addProduct(Product newProduct) {
     allProducts.add(newProduct);
@@ -112,6 +114,7 @@ public class Inventory {
    * @param selectedPart the part to replace modified part
    * @throws NullPointerException if selectedPart is null.
    * @throws IndexOutOfBoundsException if index is out of bounds.
+   * @see List#set(int, Object)
    */
   public static void updatePart(int index, Part selectedPart) {
     allParts.set(index, selectedPart);
@@ -122,6 +125,7 @@ public class Inventory {
    * @param newProduct the part to replace modified product.
    * @throws NullPointerException if newProduct is null.
    * @throws IndexOutOfBoundsException if index is out of bounds.
+   * @see List#set(int, Object)
    */
   public static void updateProduct(int index, Product newProduct) {
     allProducts.set(index, newProduct);
@@ -131,6 +135,7 @@ public class Inventory {
    * @param selectedPart the part to be removed.
    * @return true if part is removed; false, otherwise.
    * @throws NullPointerException if selectedPart is null.
+   * @see List#remove(Object)
    */
   public static boolean deletePart(Part selectedPart) {
     for (var currentPart : allParts) {
@@ -147,6 +152,7 @@ public class Inventory {
    * @return true, if product is removed;
    * false, otherwise or selectedProduct has associated parts.
    * @throws NullPointerException if selectedProduct is null.
+   * @see List#remove(Object)
    */
   public static boolean deleteProduct(Product selectedProduct) {
     if(selectedProduct.getAllAssociatedParts().isEmpty()) {

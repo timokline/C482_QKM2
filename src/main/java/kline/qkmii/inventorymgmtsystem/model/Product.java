@@ -3,7 +3,7 @@
  * DESC: Model class for products
  * AUTH: Timothy Albert Kline
  *
- * UPDT: 20 Sept 2022
+ * UPDT: 21 Sept 2022
  * VERS: 1.0
  * COPR: N/A
  */
@@ -132,6 +132,7 @@ public class Product {
 
   /**
    * @param part the part to associate
+   * @see java.util.List#add(Object)
    */
   public void addAssociatedPart(Part part) {
     associatedParts.add(part);
@@ -140,6 +141,7 @@ public class Product {
   /**
    * @param selectedAssociatedPart the associate part to remove
    * @return true, if successful; false, otherwise
+   * @see java.util.List#remove(Object)
    */
   public boolean deleteAssociatedPart(Part selectedAssociatedPart) {
     return associatedParts.remove(selectedAssociatedPart);
