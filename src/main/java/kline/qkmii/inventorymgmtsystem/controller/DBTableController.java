@@ -164,7 +164,7 @@ public class DBTableController<T> implements Initializable {
 
     populateTable();
     if (filteredList.isEmpty()) {
-      DialogManager.SearchError();
+      DialogManager.displaySearchError();
     } else {
       databaseTblV.getSelectionModel().select(filteredList.get(0));
     }
@@ -192,7 +192,7 @@ public class DBTableController<T> implements Initializable {
     SortedList<T> sortedList = new SortedList<>(filteredList);
     if (sortedList.isEmpty()) {
       populateTable();
-      DialogManager.SearchError();
+      DialogManager.displaySearchError();
     } else {
       populateTable(sortedList);
     }

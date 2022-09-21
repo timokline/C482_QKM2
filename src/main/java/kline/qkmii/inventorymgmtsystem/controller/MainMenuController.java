@@ -3,7 +3,7 @@
  * DESC: Controller class for "main menu form" view
  * AUTH: Timothy Albert Kline
  *
- * UPDT: 20 Sept 2022
+ * UPDT: 21 Sept 2022
  * VERS: 1.0
  * COPR: N/A
  */
@@ -121,7 +121,7 @@ public class MainMenuController implements Initializable {
       SceneManager.switchScene(event, fxmlLoader);
     } catch (NullPointerException e) {
       e.printStackTrace();
-      DialogManager.SelectionError();
+      DialogManager.displaySelectionError();
     }
   }
 
@@ -139,17 +139,17 @@ public class MainMenuController implements Initializable {
   void handlePartsDelBtnEvent(ActionEvent ignoredEvent) {
     var selectedPart = getSelection(partsTblController.getTableView());
     if (selectedPart != null) {
-      var result = DialogManager.PartDeletionConfirmation().showAndWait();
+      var result = DialogManager.getPartDeletionConfirmation().showAndWait();
       if (result.isPresent() && result.get() == ButtonType.OK) {
         if (!Inventory.deletePart(selectedPart)) {
-          DialogManager.PartDeletionError();
+          DialogManager.displayPartDeletionError();
         }
       } else {
-        DialogManager.PartDeletionInfo();
+        DialogManager.displayPartDeletionInfo();
       }
     } else {
       System.out.println(new NullPointerException() + "No item was selected in tableview.");
-      DialogManager.SelectionError();
+      DialogManager.displaySelectionError();
     }
     ignoredEvent.consume();
   }
@@ -193,7 +193,7 @@ public class MainMenuController implements Initializable {
       SceneManager.switchScene(event, fxmlLoader);
     } catch (NullPointerException e) {
       e.printStackTrace();
-      DialogManager.SelectionError();
+      DialogManager.displaySelectionError();
     }
   }
 
@@ -211,17 +211,17 @@ public class MainMenuController implements Initializable {
   void handleProdDelBtnEvent(ActionEvent ignoredEvent) {
     var selectedProduct = getSelection(productTblController.getTableView());
     if (selectedProduct != null) {
-      var result = DialogManager.ProductDeletionConfirmation().showAndWait();
+      var result = DialogManager.getProductDeletionConfirmation().showAndWait();
       if (result.isPresent() && result.get() == ButtonType.OK) {
         if (!Inventory.deleteProduct(selectedProduct)) {
-          DialogManager.ProductDeletionError();
+          DialogManager.displayProductDeletionError();
         }
       } else {
-        DialogManager.ProductDeletionInfo();
+        DialogManager.displayProductDeletionInfo();
       }
     } else {
       System.out.println(new NullPointerException() + "No item was selected in tableview.");
-      DialogManager.SelectionError();
+      DialogManager.displaySelectionError();
     }
     ignoredEvent.consume();
   }
