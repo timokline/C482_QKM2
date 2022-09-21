@@ -2,10 +2,10 @@
  * FNAM: SceneManager.java
  * DESC: Manager class for setting scenes
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 21 Sept 2022
+ * STRT: 12 Aug 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem;
 
@@ -21,7 +21,6 @@ import java.io.IOException;
 
 /**
  * Static class that is responsible for handling scenes changes with FXMLLoader.
- *
  * @author Timothy Albert Kline
  * @version 1.0
  */
@@ -39,6 +38,7 @@ public final class SceneManager {
   /**
    * Given an event and an FXML file's location, attempts to set the scene to the
    * FXML via an <code>FXMLLoader</code>.
+   * 
    * @param event the action event from the scene
    * @param location the FXML file to be loaded
    */
@@ -57,6 +57,7 @@ public final class SceneManager {
   /**
    * Given an event and a preloaded FXMLLoader, attempts to set the scene from the
    * <code>FXMLLoader</code>.
+   * 
    * @param event the action event from the scene
    * @param fxmlLoader the loaded FXML. load() must be invoked prior
    */
@@ -96,6 +97,7 @@ public final class SceneManager {
    *
    * @param event the action event from the current scene.
    * @see #switchScene(ActionEvent, String)
+   * @see FilePath
    */
   public static void returnToMenu(ActionEvent event) {
     switchScene(event, FilePath.MAIN_MENU);

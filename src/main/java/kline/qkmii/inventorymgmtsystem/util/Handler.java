@@ -29,7 +29,7 @@ public interface Handler {
    * @param feedbackMessage the message to be displayed
    * @return true, if input was handled; false, otherwise
    */
-  default boolean handle(String textFieldInput, TextFieldContainer.InputType requiredType, Text feedbackMessage) {
+  default boolean handle(final String textFieldInput, final TextFieldContainer.InputType requiredType, final Text feedbackMessage) {
     return true;
   }
 }
@@ -53,7 +53,7 @@ class HandleEmptyTextField implements Handler {
    * @return true, if input was handled; false, otherwise
    */
   @Override
-  public boolean handle(String textFieldInput, TextFieldContainer.InputType ignoredRequiredType, Text feedbackMessage) {
+  public boolean handle(final String textFieldInput, final TextFieldContainer.InputType ignoredRequiredType, final Text feedbackMessage) {
     if (textFieldInput.isEmpty()) {
       System.out.println("Empty text field:" + new NullPointerException());
       feedbackMessage.setText(FeedbackMessage.EMPTY_FIELD_MSG);
@@ -85,7 +85,7 @@ class HandleNumberConversion implements Handler {
    * @return true, if input was handled; false, otherwise
    */
   @Override
-  public boolean handle(String textFieldInput, TextFieldContainer.InputType requiredType, Text feedbackMessage) {
+  public boolean handle(final String textFieldInput, final TextFieldContainer.InputType requiredType, final Text feedbackMessage) {
     switch (requiredType) {
       case INTEGER:
         try {
@@ -136,7 +136,7 @@ class HandleNegativeNumbers implements Handler {
    * @return true, if input was handled; false, otherwise
    */
   @Override
-  public boolean handle(String textFieldInput, TextFieldContainer.InputType requiredType, Text feedbackMessage) {
+  public boolean handle(final String textFieldInput, final TextFieldContainer.InputType requiredType, final Text feedbackMessage) {
     switch (requiredType) {
       case INTEGER:
         if (!(Integer.parseInt(textFieldInput) >= 0)) {

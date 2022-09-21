@@ -41,7 +41,7 @@ public final class ErrorHandler {
    * @return true, if input was valid; false, otherwise.
    * @see #processInput(String, TextFieldContainer.InputType, Text)
    */
-  public static boolean processInput(TextFieldContainer textFieldInfo) {
+  public static boolean processInput(final TextFieldContainer textFieldInfo) {
     return processInput(textFieldInfo.input.getText(), textFieldInfo.inputType, textFieldInfo.feedback);
   }
 
@@ -68,7 +68,7 @@ public final class ErrorHandler {
    * @return true, if input is valid; false, otherwise.
    * @see Handler
    */
-  private static boolean processInput(String input, TextFieldContainer.InputType inputType, Text feedbackMessage) {
+  private static boolean processInput(final String userInput, final TextFieldContainer.InputType requiredType, final Text feedbackMessage) {
     boolean inputHandled = true;
 
     switch (requiredType) {
@@ -117,7 +117,7 @@ public final class ErrorHandler {
    * @return true, if inputs were logical. false, otherwise.
    */
   public static boolean validateIntInputs(int stock, int min, int max,
-                                          Text stockFeedback, Text minFeedback, Text maxFeedback) {
+                                          final Text stockFeedback, final Text minFeedback, final Text maxFeedback) {
     boolean errorCaught = false;
 
     //check if min is less than max
@@ -151,7 +151,7 @@ public final class ErrorHandler {
    * @param input the string to check
    * @return true, if the string is an integer; false, otherwise.
    */
-  public static boolean isInteger(String input) {
+  public static boolean isInteger(final String input) {
     if (input == null || input.length() == 0) {
       return false;
     }
