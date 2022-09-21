@@ -1,3 +1,12 @@
+/*
+ * FNAM: SceneManager.java
+ * DESC: Manager class for setting scenes
+ * AUTH: Timothy Albert Kline
+ *
+ * UPDT: 21 Sept 2022
+ * VERS: 1.0
+ * COPR: N/A
+ */
 package kline.qkmii.inventorymgmtsystem;
 
 import javafx.event.ActionEvent;
@@ -10,14 +19,29 @@ import kline.qkmii.inventorymgmtsystem.util.FilePath;
 
 import java.io.IOException;
 
+/**
+ * Static class that is responsible for handling scenes changes with FXMLLoader.
+ *
+ * @author Timothy Albert Kline
+ * @version 1.0
+ */
 public final class SceneManager {
   static Stage stage;
   static Parent scene;
   static FXMLLoader loader;
 
+  /**
+   * Default constructor. Cannot be instantiated.
+   */
   private SceneManager() {
   }
 
+  /**
+   * Given an event and an FXML file's location, attempts to set the scene to the
+   * FXML via an <code>FXMLLoader</code>.
+   * @param event the action event from the scene
+   * @param location the FXML file to be loaded
+   */
   public static void switchScene(ActionEvent event, String location) {
     try {
       stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -30,6 +54,12 @@ public final class SceneManager {
     }
   }
 
+  /**
+   * Given an event and a preloaded FXMLLoader, attempts to set the scene from the
+   * <code>FXMLLoader</code>.
+   * @param event the action event from the scene
+   * @param fxmlLoader the loaded FXML. load() must be invoked prior
+   */
   public static void switchScene(ActionEvent event, FXMLLoader fxmlLoader) {
     try {
       stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -41,6 +71,14 @@ public final class SceneManager {
     }
   }
 
+  /**
+   * Given a controller class and an FXML file, sets the controller for the FXML.
+   * Attempts to load the file via <code>FXMLLoader</code>.
+   *
+   * @param controller the controller class to inject into FXML
+   * @param location the FXML file's location.
+   * @return the FXMLLoader of the FXML with the injected controller
+   */
   public static FXMLLoader injectController(Object controller, String location) {
     var fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
     fxmlLoader.setController(controller);
@@ -53,6 +91,12 @@ public final class SceneManager {
     return fxmlLoader;
   }
 
+  /**
+   * Helper function to return to the main menu scene.
+   *
+   * @param event the action event from the current scene.
+   * @see #switchScene(ActionEvent, String)
+   */
   public static void returnToMenu(ActionEvent event) {
     switchScene(event, FilePath.MAIN_MENU);
   }
