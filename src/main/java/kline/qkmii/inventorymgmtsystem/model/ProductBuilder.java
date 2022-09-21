@@ -2,10 +2,10 @@
  * FNAM: ProductBuilder.java
  * DESC: Builder design pattern for creating products
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 21 Sept 2022
+ * STRT: 15 Sep 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  * SRCS: https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java
  */
 package kline.qkmii.inventorymgmtsystem.model;
@@ -20,6 +20,8 @@ import kline.qkmii.inventorymgmtsystem.util.FeedbackMessage;
  * about it and update its list of associated parts.
  * Code written follows this blog post as a guide:
  * <a href=https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java>blogs.oracle.com</a>
+ * @author Timothy Albert Kline
+ * @version 1.0
  */
 public class ProductBuilder {
   private static int productUID = 999;

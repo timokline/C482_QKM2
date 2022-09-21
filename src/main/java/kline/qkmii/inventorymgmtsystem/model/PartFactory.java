@@ -2,10 +2,10 @@
  * FNAM: PartFactory.java
  * DESC: Factory design pattern for creating parts
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 20 Sept 2022
+ * STRT: 18 Sep 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.model;
 
@@ -13,6 +13,8 @@ package kline.qkmii.inventorymgmtsystem.model;
  * A Factory pattern class that creates a part.
  * Three (3) overload methods are provided to create
  * a specific <code>Part</code> source type: InHouse or Outsourced.
+ * @author Timothy Albert Kline
+ * @version 1.0
  */
 public class PartFactory {
   private static int partUID = -1;

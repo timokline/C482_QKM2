@@ -2,17 +2,18 @@
  * FNAM: Product.java
  * DESC: Model class for products
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 21 Sept 2022
+ * STRT: 11 Sep 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-/** Class for a product with associated parts.
+/** 
+ * Class for a product with associated parts.
  * Inherits from the base class <code>Part</code>.
  * @author Timothy Albert Kline
  * @version 1.0

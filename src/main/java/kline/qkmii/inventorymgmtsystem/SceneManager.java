@@ -42,7 +42,7 @@ public final class SceneManager {
    * @param event the action event from the scene
    * @param location the FXML file to be loaded
    */
-  public static void switchScene(ActionEvent event, String location) {
+  public static void switchScene(ActionEvent event, final String location) {
     try {
       stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
       loader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
@@ -60,7 +60,7 @@ public final class SceneManager {
    * @param event the action event from the scene
    * @param fxmlLoader the loaded FXML. load() must be invoked prior
    */
-  public static void switchScene(ActionEvent event, FXMLLoader fxmlLoader) {
+  public static void switchScene(ActionEvent event, final FXMLLoader fxmlLoader) {
     try {
       stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
       scene = fxmlLoader.getRoot();
@@ -79,7 +79,7 @@ public final class SceneManager {
    * @param location the FXML file's location.
    * @return the FXMLLoader of the FXML with the injected controller
    */
-  public static FXMLLoader injectController(Object controller, String location) {
+  public static FXMLLoader injectController(final Object controller, final String location) {
     var fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
     fxmlLoader.setController(controller);
     try {

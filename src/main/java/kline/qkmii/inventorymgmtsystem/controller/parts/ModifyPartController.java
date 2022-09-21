@@ -2,10 +2,10 @@
  * FNAM: ModifyPartController.java
  * DESC: Derived controller class of PartsController; modify
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 19 Sept 2022
+ * STRT: 11 Aug 2022
+ * UPDT: 19 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.controller.parts;
 
@@ -17,7 +17,8 @@ import kline.qkmii.inventorymgmtsystem.model.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/** Controller class to handle modification of an existing <code>Part</code>.
+/** 
+ * Controller class to handle modification of an existing <code>Part</code>.
  * Inherits from the base class <code>PartsController</code>. Given a <code>Part</code> object,
  * copies information about part to be injected into the corresponding FXML fields.
  * Upon a save event, calls a validation method and updates the part in <code>Inventory</code>.
@@ -31,7 +32,8 @@ public class ModifyPartController extends PartsController {
    */
   private int currPartIndex;
 
-  /** Controller constructor specifying a part to modify.
+  /** 
+   * Controller constructor specifying a part to modify.
    * Provided a <code>Part</code> object, calls <code>fetchPartInfo</code> to store information about the part.
    * Creates a new <code>PartFactory</code> using the part to be updated.
    * Initializes <code>formLabelTitle</code> to be pre-injected into FXML
@@ -49,7 +51,8 @@ public class ModifyPartController extends PartsController {
     formLabelTitle = "Modify Part";
   }
 
-  /** Stores information about the part being modified.
+  /** 
+   * Stores information about the part being modified.
    * Provided a <code>Part</code> object, copies part information into appropriate instance variables.
    * Stores the index in <code>Inventory.allParts</code> of the part.
    *
@@ -76,7 +79,8 @@ public class ModifyPartController extends PartsController {
     currPartIndex = Inventory.getAllParts().indexOf(selectedPart);
   }
 
-  /** Injects <code>Part</code> information into FXML fields.
+  /** 
+   * Injects <code>Part</code> information into FXML fields.
    * The current <code>Part</code>'s information fetched during the constructor
    * instantiation is injected into the loaded FXML fields. <code>Radio Button</code>s
    * of view are updated per source of the current part.
@@ -111,7 +115,8 @@ public class ModifyPartController extends PartsController {
     super.initialize(url, resourceBundle);
   }
 
-  /** Handles saving a modified part.
+  /** 
+   * Handles saving a modified part.
    * Calls <code>validateInput()</code> to verify user inputs are correct
    * before updating part in <code>Inventory</code>. Calls <code>createPart</code>
    * to replace part being modified with its updated data. Returns to menu view if

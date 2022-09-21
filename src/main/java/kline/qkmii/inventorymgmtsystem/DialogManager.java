@@ -2,10 +2,10 @@
  * FNAM: DialogManager.java
  * DESC: Manager class for dialog windows
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 21 Sept 2022
+ * STRT: 15 Sep 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem;
 
@@ -13,7 +13,6 @@ import javafx.scene.control.Alert;
 
 /**
  * Static class that is responsible for creating dialog windows for various scenes.
- *
  * @author Timothy Albert Kline
  * @version 1.0
  */

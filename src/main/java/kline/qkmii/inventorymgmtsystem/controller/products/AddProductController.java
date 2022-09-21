@@ -2,10 +2,10 @@
  * FNAM: AddProductController.java
  * DESC: Derived controller class of ProductsController; add
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 19 Sept 2022
+ * STRT: 11 Aug 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.controller.products;
 
@@ -20,7 +20,6 @@ import kline.qkmii.inventorymgmtsystem.model.ProductBuilder;
  * Inherits from the base class <code>ProductsController</code>.
  * Upon a save event, calls a validation method
  * and adds the product to <code>Inventory.allProducts</code>.
- *
  * @author Timothy Albert Kline
  * @version 1.0
  * @see ProductsController

@@ -1,11 +1,11 @@
 /*
  * FNAM: DBTableController.java
- * DESC: Controller class for "main menu form" tableviews
+ * DESC: Controller class for scenes with tableviews + search function
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 20 Sept 2022
+ * STRT: 01 Sep 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.controller;
 
@@ -31,10 +31,17 @@ import kline.qkmii.inventorymgmtsystem.util.ErrorHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/** Controller class for the MainMenu FXML TableView database table.
- * TODO: DESCRIPTION
+/** 
+ * Controller class for the MainMenu FXML TableView database table.
+ * Controls a <code>TableView</code>'s items and handles searching for items.
+ * Must be a nested controller of a master controller. Properties and fields
+ * are set and populated using <code>initDBTblController()</code> after
+ * initialization.
  * @author Timothy Albert Kline
  * @version 1.0
+ * @see #initDBTblController(String, String, String, String, ObservableList)
+ * @see MainMenuController
+ * @see kline.qkmii.inventorymgmtsystem.controller.products.ProductsController
  */
 public class DBTableController<T> implements Initializable {
   ///FXML FIELDS
@@ -101,6 +108,7 @@ public class DBTableController<T> implements Initializable {
 
   /**
    * Sets the <code>TableView</code>'s items to a given <code>ObservableList</code>.
+   * 
    * @param database the list of objects to set the TableViews items to.
    */
   private void populateTable(ObservableList<T> database) {
@@ -147,6 +155,7 @@ public class DBTableController<T> implements Initializable {
    * Given an integer, searches the current database for a matching ID.
    * Highlights the item in the <code>TableView</code> if found.
    * Displays dialog if no item was found.
+   * 
    * @param query the ID of an item to search for
    * @see DialogManager
    */
@@ -174,6 +183,7 @@ public class DBTableController<T> implements Initializable {
    * Given a string, searches the current database for a partial or exact matching name.
    * Highlights the item in the <code>TableView</code> if found.
    * Displays dialog if no item was found.
+   * 
    * @param query the name of an item to search for
    * @see DialogManager
    */

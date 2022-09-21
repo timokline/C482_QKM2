@@ -2,10 +2,10 @@
  * FNAM: ErrorHandler.java
  * DESC: Utility class for validating input and displaying feedback in UI
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 21 Sept 2022
+ * STRT: 15 Sep 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.util;
 
@@ -16,7 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Top-Level static wrapper class for handling user input. Implements a
+ * Static helper class for handling user input. Implements a
  * Chain of Responsibility design pattern to pass input through a series of handlers.
  * Provides other methods to check for business logic.
  * @author Timothy Albert Kline
@@ -34,8 +34,9 @@ public final class ErrorHandler {
   }
 
   /**
-   * A wrapper function to pass a <code>TextFieldContainer</code> fields to
+   * Helper function to pass a <code>TextFieldContainer</code> fields to
    * class function <code>processInput()</code>
+   *
    * @param textFieldInfo the TextFieldContainer to process
    * @return true, if input was valid; false, otherwise.
    * @see #processInput(String, TextFieldContainer.InputType, Text)
@@ -61,8 +62,8 @@ public final class ErrorHandler {
    *              if input is valid.
    * </p>
    *
-   * @param input the text entered into the TextField
-   * @param inputType the data type accepted by the TextField per business logic
+   * @param userInput the text entered into the TextField
+   * @param requiredType the data type accepted by the TextField per business logic
    * @param feedbackMessage the text displayed in UI about the user's input
    * @return true, if input is valid; false, otherwise.
    * @see Handler
@@ -70,14 +71,14 @@ public final class ErrorHandler {
   private static boolean processInput(String input, TextFieldContainer.InputType inputType, Text feedbackMessage) {
     boolean inputHandled = true;
 
-    switch (inputType) {
+    switch (requiredType) {
       case STRING:
-        inputHandled = firstHandler.handle(input, inputType, feedbackMessage);
+        inputHandled = firstHandler.handle(userInput, requiredType, feedbackMessage);
         break;
       case INTEGER:
       case DECIMAL:
         for (var handler : numberHandlers) {
-          if (!handler.handle(input, inputType, feedbackMessage)) {
+          if (!handler.handle(userInput, requiredType, feedbackMessage)) {
             inputHandled = false;
             break;
           }

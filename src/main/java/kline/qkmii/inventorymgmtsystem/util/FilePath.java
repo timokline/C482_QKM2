@@ -2,10 +2,10 @@
  * FNAM: FilePath.java
  * DESC: Utility class for file path constants
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 20 Sept 2022
+ * STRT: 12 Aug 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.util;
 
@@ -23,7 +23,7 @@ public final class FilePath {
   public static final String PRODUCTS_FORM_SCENE = "view/product-form.fxml";
 
   /**
-   * Sole constructor. Cannot be instantiated.
+   * Default constructor. Cannot be instantiated.
    */
   private FilePath() {
   }

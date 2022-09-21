@@ -2,13 +2,14 @@
  * FNAM: MainMenuController.java
  * DESC: Controller class for "main menu form" view
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 21 Sept 2022
+ * STRT: 11 Sep 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.controller;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
 import kline.qkmii.inventorymgmtsystem.DialogManager;
+import kline.qkmii.inventorymgmtsystem.InvMgmtSysMain;
 import kline.qkmii.inventorymgmtsystem.SceneManager;
 import kline.qkmii.inventorymgmtsystem.controller.parts.AddPartController;
 import kline.qkmii.inventorymgmtsystem.controller.parts.ModifyPartController;
@@ -31,10 +33,22 @@ import kline.qkmii.inventorymgmtsystem.util.FilePath;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/** Abstract controller class for the MainMenu FXML view.
- * TODO: DESCRIPTION
+/** 
+ * Controller class for the MainMenu FXML view.
+ * Handles button events for either <code>Parts</code> or <code>Products</code> tables.
+ * Table logic is handled by the nested controller <code>DBTableController</code>.
+ * Two references are stored to populate each table in the <code>initialize</code> method
+ * called by JavaFX. Button events that trigger a scene change are managed by <code>SceneManager</code>.
+ * Model objects that need to be passed between scenes are injected into the appropriate controller.
+ * Injection of the controllers to the corresponding FXML is managed by <code>SceneManager</code>.
+ * Dialog popups for feedback of button events are managed by <code>DialogManager</code>.
+ *
  * @author Timothy Albert Kline
  * @version 1.0
+ * @see #initialize(URL, ResourceBundle) 
+ * @see DBTableController
+ * @see SceneManager
+ * @see DialogManager
  */
 public class MainMenuController implements Initializable {
   ///FXML FIELDS
@@ -47,9 +61,11 @@ public class MainMenuController implements Initializable {
   @FXML
   private DBTableController<Product> productTblController;
 
+  ///CLASS METHODS
   /**
    * Initializes <code>TableView</code>s for current inventory of
    * <code>Part</code>s and <code>Product</code>s.
+   * 
    * @param url            url
    * @param resourceBundle resource bundle
    * @see DBTableController#initDBTblController(String, String, String, String, ObservableList)
@@ -63,17 +79,20 @@ public class MainMenuController implements Initializable {
   }
 
   /**
-   * Terminates the program.
+   * Invokes the main application's lifecycle method <code>stop</code>.
+   * 
    * @param ignoredEvent action event
+   * @see InvMgmtSysMain#stop()
    */
   @FXML
   void handleExitBtnEvent(ActionEvent ignoredEvent) {
     ignoredEvent.consume();
-    System.exit(0);
+    Platform.exit();
   }
 
   /**
    * Wrapper function for getting a selected item from a tableview.
+   * 
    * @param database the tableview
    * @return the selected item
    * @param <T> the object type of the tableview
@@ -88,6 +107,7 @@ public class MainMenuController implements Initializable {
    * Creates a new <code>AddPartController</code> to be injected into 
    * the "parts form" FXML.
    * Calls static helper functions to set the controller and change scenes.
+   * 
    * @param event action event
    * @see SceneManager#injectController(Object, String)
    * @see SceneManager#switchScene(ActionEvent, FXMLLoader)
@@ -106,6 +126,7 @@ public class MainMenuController implements Initializable {
    * to be injected into the "parts form" FXML.
    * Calls static helper functions to set the controller and change scenes.
    * Displays a dialog window if no item was selected
+   * 
    * @param event action event
    * @see DialogManager
    * @see SceneManager#injectController(Object, String)
@@ -132,6 +153,7 @@ public class MainMenuController implements Initializable {
    * If deletion cancelled, displays dialog that part was not modified.
    * Attempts to remove part.
    * Displays a dialog window if no item was selected.
+   * 
    * @param ignoredEvent action event
    * @see DialogManager
    */
@@ -160,6 +182,7 @@ public class MainMenuController implements Initializable {
    * Creates a new <code>AddProductController</code> to be injected into
    * the "product form" FXML.
    * Calls static helper functions to set the controller and change scenes.
+   * 
    * @param event action event
    * @see SceneManager#injectController(Object, String)
    * @see SceneManager#switchScene(ActionEvent, FXMLLoader)
@@ -178,6 +201,7 @@ public class MainMenuController implements Initializable {
    * to be injected into the "product form" FXML.
    * Calls static helper functions to set the controller and change scenes.
    * Displays a dialog window if no item was selected
+   * 
    * @param event action event
    * @see DialogManager
    * @see SceneManager#injectController(Object, String)
@@ -204,6 +228,7 @@ public class MainMenuController implements Initializable {
    * If deletion cancelled, displays dialog that product was not deleted.
    * Attempts to remove product; displays dialog if failed.
    * Displays a dialog window if no item was selected.
+   * 
    * @param ignoredEvent action event
    * @see DialogManager
    */

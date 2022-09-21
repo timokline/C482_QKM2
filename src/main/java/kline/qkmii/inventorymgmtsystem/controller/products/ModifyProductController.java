@@ -2,10 +2,10 @@
  * FNAM: ModifyProductController.java
  * DESC: Derived controller class of ProductsController; modify
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 19 Sept 2022
+ * STRT: 11 Aug 2022
+ * UPDT: 19 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.controller.products;
 
@@ -24,7 +24,6 @@ import java.util.ResourceBundle;
  * Inherits from the base class <code>ProductsController</code>. Given a <code>Product</code> object,
  * copies information about product to be injected into the corresponding FXML fields.
  * Upon a save event, calls a validation method and updates the product in <code>Inventory</code>.
- *
  * @author Timothy Albert Kline
  * @version 1.0
  * @see ProductsController

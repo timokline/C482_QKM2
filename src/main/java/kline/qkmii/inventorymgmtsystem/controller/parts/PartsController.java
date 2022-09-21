@@ -2,10 +2,10 @@
  * FNAM: PartsController.java
  * DESC: Interface and Base controller class for parts form view
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 19 Sept 2022
+ * STRT: 12 Aug 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.controller.parts;
 
@@ -36,29 +36,38 @@ import java.util.Set;
  */
 interface IPartsCTRLR {
 
-  /** Save button event handler
+  /** 
+   * Save button event handler
+   * 
    * @param event action event
    * @throws Exception if failed to save.
    */
   void handleSaveBtnEvent(ActionEvent event) throws Exception;
 
-  /** Cancel button event handler
+  /** 
+   * Cancel button event handler
+   * 
    * @param event action event.
    */
   void handleCancelBtnEvent(ActionEvent event);
 
-  /** In-Source radio button event handler
+  /** 
+   * In-Source radio button event handler
+   * 
    * @param event action event
    */
   void handleInSrcBtnEvent(ActionEvent event);
 
-  /** Outsourced radio button event handler
+  /** 
+   * Outsourced radio button event handler
+   * 
    * @param event action event
    */
   void handleOutSrcBtnEvent(ActionEvent event);
 }
 
-/** Abstract controller class for the <code>Part</code>s FXML view.
+/** 
+ * Abstract controller class for the <code>Part</code>s FXML view.
  * @author Timothy Albert Kline
  * @version 1.0
  * @see IPartsCTRLR
@@ -140,14 +149,16 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
   Object currPartSrcVal;
 
 
-  /** Default constructor.
+  /** 
+   * Default constructor.
    * (To be invoked by derived class constructors)
    */
   protected PartsController() {
   }
 
-  /** Propagates FXML <code>Text</code> fields into a set for easy iteration.
-   *
+  ///CLASS METHODS
+  /** 
+   * Propagates FXML <code>Text</code> fields into a set for easy iteration.
    */
   private void initFeedbackTextsSet() {
     feedbackMessageTexts = new HashSet<>(Arrays.asList(
@@ -160,7 +171,9 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     ));
   }
 
-  /** Propagates <code>TextFieldContainer</code>s into a set for easy iteration.
+  /** 
+   * Propagates <code>TextFieldContainer</code>s into a set for easy iteration.
+   * 
    * @see TextFieldContainer
    */
   private void initTFContainerSet() {
@@ -173,7 +186,8 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     );
   }
 
-  /** Resets <code>Text</code> fields that display input feedback.
+  /** 
+   * Resets <code>Text</code> fields that display input feedback.
    */
   protected void resetFeedbackTexts() {
     for (var text : feedbackMessageTexts) {
@@ -182,9 +196,11 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     }
   }
 
-  /** Initializes select member variables and modifies form "title" label.
+  /** 
+   * Initializes select member variables and modifies form "title" label.
    *  Calls helper functions to initialize containers for various FXML fields.
    *  Injects <code>formLabelTitle</code> into <code>partFormLBL</code>.
+   * 
    * @param url url
    * @param resourceBundle resource bundle
    * @see #initTFContainerSet()
@@ -202,8 +218,10 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     partFormLBL.setText(String.valueOf(formLabelTitle));
   }
 
-  /** Handles cancel button event.
+  /** 
+   * Handles cancel button event.
    * Calls static helper function <code>returnToMenu</code>.
+   * 
    * @param event action event.
    * @see SceneManager#returnToMenu(ActionEvent)
    */
@@ -212,8 +230,10 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     SceneManager.returnToMenu(event);
   }
 
-  /** Handles In-house radio button event.
+  /** 
+   * Handles In-house radio button event.
    * Changes label text of <code>sourceLBL</code>.
+   * 
    * @param ignoredEvent action event
    */
   @FXML
@@ -222,8 +242,10 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     ignoredEvent.consume();
   }
 
-  /** Handles Outsource radio button event.
+  /** 
+   * Handles Outsource radio button event.
    * Changes label text of <code>sourceLBL</code>.
+   * 
    * @param ignoredEvent action event
    */
   @FXML
@@ -232,8 +254,10 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     ignoredEvent.consume();
   }
 
-  /** Handles save event.
+  /** 
+   * Handles save event.
    * Must call <code>validateInput()</code> to parse and check user inputs from FXML form.
+   * 
    * @param event button click. Used for redirecting to a new scene after saving.
    * @throws Exception error log.
    * @see #validateInputs()
@@ -241,7 +265,9 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
   @FXML
   public abstract void handleSaveBtnEvent(ActionEvent event) throws Exception;
 
-  /** Creates a new <code>Part</code> using <code>PartFactory</code>.
+  /** 
+   * Creates a new <code>Part</code> using <code>PartFactory</code>.
+   * 
    * @return the new <code>Part</code>.
    * @see PartFactory#makePart(PartFactory.PartSrcType, String, double, int, int, int, Object)
    */
@@ -249,7 +275,9 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     return partFactory.makePart(currPartType, currPartName, currPartPrice, currPartStock, currMinParts, currMaxParts, currPartSrcVal);
   }
 
-  /** Extracts each editable <code>TextField</code> text and parses data into corresponding instance field.
+  /** 
+   * Extracts each editable <code>TextField</code> text and parses data into corresponding instance field.
+   * 
    * @throws NumberFormatException if corresponding String is cannot be parsed into numerical data type.
    */
   private void parseUserInputs() {
@@ -265,7 +293,8 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     }
   }
 
-  /** Determines the current <code>Part</code>'s source type by checking which radio button is selected.
+  /** 
+   * Determines the current <code>Part</code>'s source type by checking which radio button is selected.
    */
   protected void fetchSelectedSrc() {
     selectedSrc = (RadioButton) partSrcTG.getSelectedToggle();
@@ -276,7 +305,8 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     }
   }
 
-  /** Passes each input from the user through a series of checks.
+  /** 
+   * Passes each input from the user through a series of checks.
    * Calls <code>fetchSelectedSrc</code> to add appropriate source information to
    * the current set of editable text field containers. Iterates through
    * <code>editableTextFields</code> to pass each item into the global validator

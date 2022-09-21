@@ -2,10 +2,10 @@
  * FNAM: ProductsController.java
  * DESC: Interface and Base controller class for products form view
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 19 Sept 2022
+ * STRT: 12 Aug 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.controller.products;
 
@@ -35,7 +35,6 @@ import java.util.Set;
 
 /**
  * Controller interface for handle methods of <code>Product</code> FXML view.
- *
  * @author Timothy Albert Kline
  * @version 1.0
  * @see ProductsController
@@ -74,7 +73,6 @@ interface IProdCTRLR {
 
 /**
  * Abstract controller class for the <code>Product</code>s FXML view.
- *
  * @author Timothy Albert Kline
  * @version 1.0
  * @see IProdCTRLR
@@ -155,6 +153,7 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
   protected ProductsController() {
   }
 
+  ///CLASS METHODS
   /**
    * Propagates FXML <code>Text</code> fields into a set for easy iteration.
    */

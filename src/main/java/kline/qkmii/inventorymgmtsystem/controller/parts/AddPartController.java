@@ -2,10 +2,10 @@
  * FNAM: AddPartController.java
  * DESC: Derived controller class of PartsController; add
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 19 Sept 2022
+ * STRT: 11 Aug 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.controller.parts;
 
@@ -27,6 +27,7 @@ public class AddPartController extends PartsController {
   /** Controller constructor.
    * Creates a new <code>PartFactory</code>.
    * Initializes <code>formLabelTitle</code> to be pre-injected into FXML
+   * 
    * @see PartsController#formLabelTitle
    * @see PartFactory#PartFactory()
    */

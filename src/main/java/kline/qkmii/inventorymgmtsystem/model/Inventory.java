@@ -2,10 +2,10 @@
  * FNAM: Inventory.java
  * DESC: Static model class of stored Part and Product objects
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 21 Sept 2022
+ * STRT: 11 Aug 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.model;
 
@@ -15,7 +15,8 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Static class for storing list of <code>Part</code>s and <code>Product</code>s.
+/** 
+ * Static class for storing list of <code>Part</code>s and <code>Product</code>s.
  * @author Timothy Albert Kline
  * @version 1.0
  * @see Part
@@ -73,7 +74,9 @@ public class Inventory {
     return null;
   }
 
-  /** Given a string, searches for partial or exact matches of a part's name.
+  /** 
+   * Given a string, searches for partial or exact matches of a part's name.
+   * 
    * @param partName the query for the part
    * @return the list of matches;
    *         or, the current part inventory if no matches found.
@@ -91,7 +94,9 @@ public class Inventory {
     return filteredParts.isEmpty() ? allParts : FXCollections.observableArrayList(filteredParts);
   }
 
-  /** Given a string, searches for partial or exact matches of a product's name.
+  /** 
+   * Given a string, searches for partial or exact matches of a product's name.
+   * 
    * @param productName the query for the part
    * @return the list of matches;
    *         or, the current product inventory if no matches found.
@@ -131,7 +136,9 @@ public class Inventory {
     allProducts.set(index, newProduct);
   }
 
-  /** Given a <code>Part</code>, attempts to remove if part is found in part list.
+  /** 
+   * Given a <code>Part</code>, attempts to remove if part is found in part list.
+   * 
    * @param selectedPart the part to be removed.
    * @return true if part is removed; false, otherwise.
    * @throws NullPointerException if selectedPart is null.
@@ -146,8 +153,10 @@ public class Inventory {
     return false;
   }
 
-  /** Given a <code>Product</code>, attempts to remove if product is found in product list.
+  /** 
+   * Given a <code>Product</code>, attempts to remove if product is found in product list.
    * Product cannot be removed if it has any associated parts.
+   * 
    * @param selectedProduct the product to be removed.
    * @return true, if product is removed;
    * false, otherwise or selectedProduct has associated parts.

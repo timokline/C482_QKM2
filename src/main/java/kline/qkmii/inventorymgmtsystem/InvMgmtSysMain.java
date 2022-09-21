@@ -1,3 +1,13 @@
+/*
+ * FNAM: InvMgmtSysMain.java
+ * DESC: Main method for application
+ * AUTH: Timothy Albert Kline
+ * STRT: 11 Aug 2022
+ * UPDT: 21 Sep 2022
+ * VERS: 1.0
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
+ */
+
 package kline.qkmii.inventorymgmtsystem;
 
 import javafx.application.Application;
@@ -9,9 +19,16 @@ import kline.qkmii.inventorymgmtsystem.util.FilePath;
 
 import java.io.IOException;
 
+/**
+ * Driver class creates the application for an inventory management system.
+ * @author Timothy Albert Kline
+ * @version 1.0
+ */
 public class InvMgmtSysMain extends Application {
   private Stage primaryStage;
+
   /**
+   * This is the main method.
    * @param args Command line arguments
    */
   public static void main(String[] args) {
@@ -22,8 +39,7 @@ public class InvMgmtSysMain extends Application {
     Part myPart3 = partFactory.makePart("screw", 0.11, 100, 1, 1000, 11);
     Part theirPart1 = partFactory.makePart("bolt", 0.92, 200, 100, 999, "BigBennyBolts");
 
-    Product myProduct = new ProductBuilder("hammer", 2.34, 10, 1, 100).build();
-    myProduct.addAssociatedPart(myPart1);
+    Product myProduct = new ProductBuilder("hammer", 2.34, 10, 1, 100).add(myPart1).build();
 
     Inventory.addPart(myPart1);
     Inventory.addPart(myPart2);
@@ -34,6 +50,10 @@ public class InvMgmtSysMain extends Application {
     launch(args);
   }
 
+  /**
+   * Initializes and shows main menu scene.
+   * @see FilePath
+   */
   private void showMainMenu() {
     try {
       FXMLLoader fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource(FilePath.MAIN_MENU));
@@ -45,11 +65,21 @@ public class InvMgmtSysMain extends Application {
     }
   }
 
+  /**
+   * Lifecycle: Initialize
+   */
   @Override
   public void init() {
     System.out.println("Starting application....");
   }
 
+  /**
+   * Lifecycle: Start.
+   * Stores the <code>Stage</code> object reference and sets the title of the window.
+   * Displays the main menu.
+   * @param stage the initial stage when starting the app
+   * @see #showMainMenu()
+   */
   @Override
   public void start(Stage stage) {
     primaryStage = stage;
@@ -57,6 +87,9 @@ public class InvMgmtSysMain extends Application {
     showMainMenu();
   }
 
+  /**
+   * Lifecycle: Stop.
+   */
   @Override
   public void stop() {
     System.out.println("Stopping application....");

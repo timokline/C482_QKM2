@@ -2,10 +2,10 @@
  * FNAM: TextFieldContainer.java
  * DESC: Utility class for a POJO of a text field form
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 20 Sept 2022
+ * STRT: 15 Sep 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.util;
 

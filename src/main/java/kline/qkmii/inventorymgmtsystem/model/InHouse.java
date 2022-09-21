@@ -2,14 +2,15 @@
  * FNAM: InHouse.java
  * DESC: Derived model class of Part; InHouse
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 19 Sept 2022
+ * STRT: 11 Aug 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.model;
 
-/** Subclass for an in-house part.
+/** 
+ * Subclass for an in-house part.
  * Inherits from the base class <code>Part</code>.
  * @author Timothy Albert Kline
  * @version 1.0
@@ -18,7 +19,8 @@ package kline.qkmii.inventorymgmtsystem.model;
 public class InHouse extends Part {
   private int machineId;
 
-  /** Model constructor specifying part information.
+  /** 
+   * Model constructor specifying part information.
    * Calls <code>super</code> on part information.
    * Stores the machine code that made the part.
    *

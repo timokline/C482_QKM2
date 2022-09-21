@@ -2,10 +2,10 @@
  * FNAM: FeedbackMessage.java
  * DESC: Utility class for gui and console messages
  * AUTH: Timothy Albert Kline
- *
- * UPDT: 21 Sept 2022
+ * STRT: 15 Sep 2022
+ * UPDT: 21 Sep 2022
  * VERS: 1.0
- * COPR: N/A
+ * COPR: 2022 Timothy Albert Kline <timothyal.kline@gmail.com>
  */
 package kline.qkmii.inventorymgmtsystem.util;
 
@@ -13,7 +13,6 @@ package kline.qkmii.inventorymgmtsystem.util;
  * A static utility class of reusable error messages for console and GUI.
  * Used in conjunction with <code>Handler</code> subclasses.
  * Implements an inner builder pattern class for cataloging multiple logging messages.
- *
  * @author Timothy Albert Kline
  * @version 1.0
  * @see Handler
@@ -28,6 +27,7 @@ public final class FeedbackMessage {
 
   /**
    * Constructor that stores the logs from Builder
+   * 
    * @param messages the logs built from Builder
    * @see Builder
    */
@@ -37,6 +37,7 @@ public final class FeedbackMessage {
 
   /**
    * Converts <code>logs</code> into a String.
+   * 
    * @return the logs
    */
   public String toString() {
@@ -47,8 +48,8 @@ public final class FeedbackMessage {
   /**
    * A builder pattern class for <code>FeedbackMessage</code>.
    * Uses a StringBuilder to format appended error/log messages.
-   *
    * @author Timothy Albert Kline
+   * @version 1.0
    */
   public static class Builder {
     private final StringBuilder logMessages;
