@@ -244,6 +244,8 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
    * Updates the <code>TableView</code> of the associated parts.
    *
    * @param ignoredEvent action event
+   * @see DialogManager#displaySelectionError()
+   * @see ProductBuilder#add(Part)
    */
   @FXML
   public void handleAddPartBtnEvent(ActionEvent ignoredEvent) {
@@ -251,7 +253,7 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
     if (selectedPart != null) {
       productBuilder.add(selectedPart);
     } else {
-      DialogManager.SelectionError();
+      DialogManager.displaySelectionError();
     }
     populateAssocPartsTbl();
     ignoredEvent.consume();
@@ -274,19 +276,26 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
    * Updates the <code>TableView</code> of the associated parts.
    *
    * @param ignoredEvent action event
+   * @see DialogManager
+   * @see ProductBuilder#delete(Part)
    */
   @FXML
   public void handleRmvPartBtnEvent(ActionEvent ignoredEvent) {
     var selectedPart = associatedPartsTBLV.getSelectionModel().getSelectedItem();
     if (selectedPart != null) {
-      var result = DialogManager.PartRemovalConfirmation().showAndWait();
+      var result = DialogManager.getPartRemovalConfirmation().showAndWait();
       if (result.isPresent() && result.get() == ButtonType.OK) {
-        productBuilder.delete(selectedPart);
+        try {
+          productBuilder.delete(selectedPart);
+        } catch (NullPointerException e) {
+          e.printStackTrace();
+          DialogManager.displayPartRemovalError();
+        }
       } else {
-        DialogManager.PartRemovalInfo();
+        DialogManager.displayPartRemovalInfo();
       }
     } else {
-      DialogManager.SelectionError();
+      DialogManager.displaySelectionError();
     }
     populateAssocPartsTbl();
     ignoredEvent.consume();
@@ -340,7 +349,8 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
    * Corresponding feedback for each text field is updated by <code>ErrorHandler</code> during the checks.
    *
    * @throws IllegalArgumentException if inputs flagged as invalid
-   * @see ErrorHandler
+   * @see ErrorHandler#processInput(TextFieldContainer)
+   * @see ErrorHandler#validateIntInputs(int, int, int, Text, Text, Text)
    */
   protected void validateInputs() throws IllegalArgumentException {
     boolean errorCaught = false;
