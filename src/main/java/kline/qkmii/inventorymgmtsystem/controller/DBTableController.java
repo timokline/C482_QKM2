@@ -161,7 +161,6 @@ public class DBTableController<T> implements Initializable {
    */
   private void searchByID(int query) {
     FilteredList<T> filteredList = new FilteredList<>(databaseEntries);
-    //TODO: Implement a safer solution to generalize any object T
     filteredList.setPredicate(entry -> {
       if (entry instanceof Part) {
         return entry == Inventory.lookupPart(query);
@@ -189,7 +188,6 @@ public class DBTableController<T> implements Initializable {
    */
   private void searchByName(String query) {
     FilteredList<T> filteredList = new FilteredList<>(databaseEntries);
-    //TODO: Implement a safer solution to generalize any object T
     filteredList.setPredicate(entry -> {
       if (entry instanceof Part) {
         return ((Part) entry).getName().contains(query);

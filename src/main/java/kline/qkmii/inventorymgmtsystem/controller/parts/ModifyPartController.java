@@ -84,8 +84,18 @@ public class ModifyPartController extends PartsController {
    * The current <code>Part</code>'s information fetched during the constructor
    * instantiation is injected into the loaded FXML fields. <code>Radio Button</code>s
    * of view are updated per source of the current part.
-   * <br>
-   * PRE-COND: <code>currPartType</code> must be assigned to enum value.
+   * <br><p>
+   *  PRE-COND: <code>currPartType</code> must be assigned to enum value.
+   * </p>
+   * <p><b>
+   *   <i>RUNTIME ERROR</i>: <code>RadioButton</code> and corresponding <code>Label</code>
+   *                          does not update when <code>Part</code> is an Outsourced type.
+   *                          The <code>ToggleGroup</code> option is set for a either source type.
+   *                          The default option from the fxml file is not overwritten.
+   *                          An action event is required to cause the handler method to trigger
+   *                          prior to showing the scene. The corresponding radio button has to
+   *                          be manually triggered to update.
+   * </b></p>
    *
    * @param url url
    * @param resourceBundle resource bundle

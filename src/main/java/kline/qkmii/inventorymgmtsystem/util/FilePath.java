@@ -18,8 +18,17 @@ package kline.qkmii.inventorymgmtsystem.util;
  * @see kline.qkmii.inventorymgmtsystem.InvMgmtSysMain
  */
 public final class FilePath {
+  /**
+   * File path of the main menu form.
+   */
   public static final String MAIN_MENU = "view/main-form.fxml";
+  /**
+   * File path of the add/modify part form.
+   */
   public static final String PARTS_FORM_SCENE = "view/part-form.fxml";
+  /**
+   * File path of the add/modify product form.
+   */
   public static final String PRODUCTS_FORM_SCENE = "view/product-form.fxml";
 
   /**

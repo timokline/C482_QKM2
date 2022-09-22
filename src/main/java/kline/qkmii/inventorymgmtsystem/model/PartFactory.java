@@ -21,7 +21,19 @@ public class PartFactory {
   private boolean isNew;
   private int id;
 
-  public enum PartSrcType {IN_HOUSE, OUTSOURCED}
+  /**
+   * Defines source of part.
+   */
+  public enum PartSrcType {
+    /**
+     * In-sourced, made from machine.
+     */
+    IN_HOUSE,
+    /**
+     * Out-sourced from company.
+     */
+    OUTSOURCED
+  }
 
   /**
    * Default constructor specifying a new product.
@@ -35,6 +47,8 @@ public class PartFactory {
    * Constructor specifying to copy information of a provided part.
    * Assumes given part passed is going to be "remade".
    * Stores the ID of the part.
+   *
+   * @param selectedPart the part to be remade
    */
   public PartFactory(Part selectedPart) {
     isNew = false;
@@ -73,37 +87,5 @@ public class PartFactory {
       case IN_HOUSE -> new InHouse(id, name, price, stock, min, max, (Integer) srcValue);
       case OUTSOURCED -> new OutSourced(id, name, price, stock, min, max, (String) srcValue);
     };
-  }
-
-  /**
-   * Specifies provided information for a new part made in-house and creates it.
-   * Used exclusively for part creation during main application lifecycle
-   *
-   * @param name the part name
-   * @param price the part price
-   * @param stock the part stock level
-   * @param min the minimum stock level
-   * @param max the maximum stock level
-   * @param machineID the machine code that made the part
-   * @return an InHouse part
-   */
-  public InHouse makePart(String name, double price, int stock, int min, int max, int machineID) {
-    return new InHouse(getPartUID(), name, price, stock, min, max, machineID);
-  }
-
-  /**
-   * Specifies provided information for a new outsourced part and creates it.
-   * Used exclusively for part creation during main application lifecycle.
-   *
-   * @param name the part name
-   * @param price the part price
-   * @param stock the part stock level
-   * @param min the minimum stock level
-   * @param max the maximum stock level
-   * @param companyName the name of the company sourcing the part
-   * @return an OutSourced part
-   */
-  public OutSourced makePart(String name, double price, int stock, int min, int max, String companyName) {
-    return new OutSourced(getPartUID(), name, price, stock, min, max, companyName);
   }
 }

@@ -79,46 +79,106 @@ interface IProdCTRLR {
  */
 public abstract class ProductsController implements Initializable, IProdCTRLR {
   ///FXML FIELDS
+  /**
+   * The table of associated parts
+   */
   @FXML
   protected TableView<Part> associatedPartsTBLV;
+  /**
+   * The table column of the part stock level
+   */
   @FXML
   protected TableColumn<Part, Integer> assocInvLvlCol;
+  /**
+   * The table column of the part ids
+   */
   @FXML
   protected TableColumn<Part, Integer> assocPartIDCol;
+  /**
+   * The table column of the part names
+   */
   @FXML
   protected TableColumn<Part, String> assocPartNameCol;
+  /**
+   * The table column of the part price
+   */
   @FXML
   protected TableColumn<Part, Double> assocPartUnitCol;
+  /**
+   * Field for product id.
+   */
   @FXML
   protected TextField idTF;
+  /**
+   * Field for product name.
+   */
   @FXML
   protected TextField nameTF;
+  /**
+   * Feedback for user's name input.
+   */
   @FXML
   protected Text nameFeedbackTXT;
+  /**
+   * Field for product stock.
+   */
   @FXML
   protected TextField invTF;
+  /**
+   * Feedback for user's stock input.
+   */
   @FXML
   protected Text stockFeedbackTXT;
+  /**
+   * Field for product price.
+   */
   @FXML
   protected TextField priceTF;
+  /**
+   * Feedback for user's price input.
+   */
   @FXML
   protected Text priceFeedbackTXT;
+  /**
+   * Field for maximum number of the part.
+   */
   @FXML
   protected TextField maxProductsTF;
+  /**
+   * Feedback for user's max input.
+   */
   @FXML
   protected Text maxFeedbackTXT;
+  /**
+   * Field for minimum number of the part.
+   */
   @FXML
   protected TextField minProductsTF;
+  /**
+   * Feedback for user's min input.
+   */
   @FXML
   protected Text minFeedbackTXT;
+  /**
+   * Label for the form.
+   */
   @FXML
   private Label productFormLBL;
+  /**
+   * FXML for available parts table
+   */
   @FXML
   private VBox availPartsTbl;
+  /**
+   * Reference to the available parts controller
+   */
   @FXML
   private DBTableController<Part> availPartsTblController;
 
   ///INSTANCE FIELDS
+  /**
+   * The builder for a product.
+   */
   protected ProductBuilder productBuilder;
   /**
    * Container to easily iterate through all <code>Text</code> fields.

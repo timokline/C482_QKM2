@@ -11,7 +11,6 @@
 package kline.qkmii.inventorymgmtsystem.model;
 
 import javafx.collections.ObservableList;
-import kline.qkmii.inventorymgmtsystem.util.FeedbackMessage;
 
 /**
  * A Builder pattern class that creates a product.
@@ -50,23 +49,11 @@ public class ProductBuilder {
   }
 
   /**
-   * Param constructor specifying provided information for a new product.
-   * Used exclusively for product creation during main application lifecycle.
-   */
-  public ProductBuilder(String name, double price, int stock, int min, int max) {
-    isNew = true;
-    this.name = name;
-    this.price = price;
-    this.stock = stock;
-    this.min = min;
-    this.max = max;
-    product = new Product(-1, name, price, stock, min, max);
-  }
-
-  /**
    * Constructor specifying to copy information of a provided product.
    * Assumes given product passed is going to be "rebuilt".
    * Stores a copy of said product and its associated parts.
+   *
+   * @param product the product to be rebuilt
    */
   public ProductBuilder(Product product) {
     isNew = false;
@@ -183,11 +170,8 @@ public class ProductBuilder {
    * Specifies information of the product being assembled and creates it.
    *
    * @return the built product
-   * @throws IllegalStateException if validate() throws
-   * @see #validate()
    */
-  public Product build() throws IllegalStateException {
-    validate();
+  public Product build() {
     product.setName(name);
     product.setPrice(price);
     product.setStock(stock);
@@ -200,36 +184,5 @@ public class ProductBuilder {
     }
 
     return product;
-  }
-
-  /**
-   * Checks if all pieces of information about the product meet the requirements.
-   * Appends feedback for every illegal input to a <code>FeedbackMessage.Builder()</code>
-   * Attaches the logs to an <code>IllegalStateException</code>
-   *
-   * @throws IllegalStateException if error messages were logged
-   * @see FeedbackMessage.Builder#Builder()
-   */
-  private void validate() throws IllegalStateException {
-    var feedbackMessages = new FeedbackMessage.Builder();
-    if (name == null || name.isEmpty()) {
-      feedbackMessages.append("ProductBuilder.name cannot be null or empty.");
-    }
-    if (price < 0) {
-      feedbackMessages.append("ProductBuilder.price: " + FeedbackMessage.NEGATIVE_NUM_MSG);
-    }
-    if (stock < 0) {
-      feedbackMessages.append("ProductBuilder.stock: " + FeedbackMessage.NEGATIVE_NUM_MSG);
-    }
-    if (max < 0) {
-      feedbackMessages.append("ProductBuilder.price: " + FeedbackMessage.NEGATIVE_NUM_MSG);
-    }
-    if (min < 0) {
-      feedbackMessages.append("ProductBuilder.price: " + FeedbackMessage.NEGATIVE_NUM_MSG);
-    }
-
-    if (feedbackMessages.length() > 0) {
-      throw new IllegalStateException(feedbackMessages.printLog().toString());
-    }
   }
 }

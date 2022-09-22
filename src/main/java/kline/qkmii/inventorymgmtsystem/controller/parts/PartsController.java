@@ -74,44 +74,101 @@ interface IPartsCTRLR {
  */
 public abstract class PartsController implements Initializable, IPartsCTRLR {
   ///FXML FIELDS
+  /**
+   * In-house option.
+   */
   @FXML
   protected RadioButton inSrcRBtn;
+  /**
+   * Outsourced option.
+   */
   @FXML
   protected RadioButton outSrcRBtn;
+  /**
+   * Source option group.
+   */
   @FXML
   protected ToggleGroup partSrcTG;
+  /**
+   * Field for part id.
+   */
   @FXML
   protected TextField idTF;
+  /**
+   * Field for part name.
+   */
   @FXML
   protected TextField nameTF;
+  /**
+   * Feedback for user's name input.
+   */
   @FXML
   protected Text nameFbkMsgTXT;
+  /**
+   * Field for part stock.
+   */
   @FXML
   protected TextField invTF;
+  /**
+   * Feedback for user's stock input.
+   */
   @FXML
   protected Text invFbkMsgTXT;
+  /**
+   * Field for part price.
+   */
   @FXML
   protected TextField priceTF;
+  /**
+   * Feedback for user's price input.
+   */
   @FXML
   protected Text priceFbkMsgTXT;
+  /**
+   * Field for maximum number of the part.
+   */
   @FXML
   protected TextField maxPartsTF;
+  /**
+   * Feedback for user's max input.
+   */
   @FXML
   protected Text maxPartsFbkMsgTXT;
+  /**
+   * Field for minimum number of the part.
+   */
   @FXML
   protected TextField minPartsTF;
+  /**
+   * Feedback for user's min input.
+   */
   @FXML
   protected Text minPartsFbkMsgTXT;
+  /**
+   * Label for the source field.
+   */
   @FXML
   private Label sourceLBL;
+  /**
+   * Field for part source.
+   */
   @FXML
   protected TextField sourceTF;
+  /**
+   * Feedback for user's source input.
+   */
   @FXML
   protected Text srcFbkMsgTXT;
+  /**
+   * Label for the form.
+   */
   @FXML
   private Label partFormLBL;
 
   ///INSTANCE FIELDS
+  /**
+   * The factory that creates a part
+   */
   protected PartFactory partFactory;
   /**
    * Container to easily iterate through all <code>Text</code> fields.
@@ -125,12 +182,18 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
    * its input data type.
    */
   protected Set<TextFieldContainer> editableTextFields;
-  protected TextFieldContainer currCompanyName;
-  protected TextFieldContainer currMachineID;
+  /**
+   * the <code>TextFieldContainer</code> for an outsourced part.
+   */
+  protected TextFieldContainer companyNameField;
+  /**
+   * the <code>TextFieldContainer</code> for an in-sourced part.
+   */
+  protected TextFieldContainer machineIDField;
 
   ///INJECTABLE FIELDS
   /**
-   * The string for the title of the FXML view
+   * The string for the title of the FXML view.
    */
   String formLabelTitle;
   RadioButton selectedSrc;
@@ -147,7 +210,6 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
    * Type must be cast accordingly before creating <code>Part</code>.
    */
   Object currPartSrcVal;
-
 
   /** 
    * Default constructor.
@@ -212,8 +274,8 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
     initFeedbackTextsSet();
     initTFContainerSet();
     resetFeedbackTexts();
-    currCompanyName = new TextFieldContainer(sourceTF, TextFieldContainer.InputType.STRING, srcFbkMsgTXT);
-    currMachineID = new TextFieldContainer(sourceTF, TextFieldContainer.InputType.INTEGER, srcFbkMsgTXT);
+    companyNameField = new TextFieldContainer(sourceTF, TextFieldContainer.InputType.STRING, srcFbkMsgTXT);
+    machineIDField = new TextFieldContainer(sourceTF, TextFieldContainer.InputType.INTEGER, srcFbkMsgTXT);
 
     partFormLBL.setText(String.valueOf(formLabelTitle));
   }
@@ -320,9 +382,9 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
   protected void validateInputs() throws IllegalArgumentException {
     fetchSelectedSrc();
     if (selectedSrc == inSrcRBtn) {
-      editableTextFields.add(currMachineID);
+      editableTextFields.add(machineIDField);
     } else if (selectedSrc == outSrcRBtn) {
-      editableTextFields.add(currCompanyName);
+      editableTextFields.add(companyNameField);
     }
 
     try {
@@ -349,8 +411,8 @@ public abstract class PartsController implements Initializable, IPartsCTRLR {
       }
 
     } finally {
-      editableTextFields.remove(currCompanyName);
-      editableTextFields.remove(currMachineID);
+      editableTextFields.remove(companyNameField);
+      editableTextFields.remove(machineIDField);
     }
   }
 }

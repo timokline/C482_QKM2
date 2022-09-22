@@ -28,11 +28,36 @@ import javafx.scene.text.Text;
  * @see ErrorHandler
  */
 public class TextFieldContainer {
+  /**
+   * The field for user input.
+   */
   public final TextField input;
+  /**
+   * The required data type for input.
+   */
   public final InputType inputType;
+  /**
+   * The validation/helper message about the input.
+   */
   public final Text feedback;
 
-  public enum InputType {INTEGER, DECIMAL, STRING}
+  /**
+   * Defines the required data type of text fields.
+   */
+  public enum InputType {
+    /**
+     * <code>int</code> type
+     */
+    INTEGER,
+    /**
+     * <code>double</code> type
+     */
+    DECIMAL,
+    /**
+     * <code>String</code> type
+     */
+    STRING
+  }
 
   /**
    * Constructor for the data structure.

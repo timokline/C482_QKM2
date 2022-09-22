@@ -12,82 +12,33 @@ package kline.qkmii.inventorymgmtsystem.util;
 /**
  * A static utility class of reusable error messages for console and GUI.
  * Used in conjunction with <code>Handler</code> subclasses.
- * Implements an inner builder pattern class for cataloging multiple logging messages.
  * @author Timothy Albert Kline
  * @version 1.0
  * @see Handler
  * @see kline.qkmii.inventorymgmtsystem.model.ProductBuilder
  */
 public final class FeedbackMessage {
+  /**
+   * Message for requiring numerical input.
+   */
   public static final String ILLEGAL_INT_MSG = "Input must be numerical";
+  /**
+   * Message for requiring decimal input.
+   */
   public static final String ILLEGAL_DBL_MSG = "Input must be a decimal";
+  /**
+   * Message for requiring positive numerical input.
+   */
   public static final String NEGATIVE_NUM_MSG = "Number must be greater than 0";
+  /**
+   * Message for requiring non-empty input.
+   */
   public static final String EMPTY_FIELD_MSG = "Required Field";
-  private final StringBuilder logs;
 
   /**
-   * Constructor that stores the logs from Builder
-   * 
-   * @param messages the logs built from Builder
-   * @see Builder
+   * Constructor that stores the logs from Builder.
    */
-  private FeedbackMessage(StringBuilder messages) {
-    logs = messages;
+  private FeedbackMessage() {
   }
 
-  /**
-   * Converts <code>logs</code> into a String.
-   * 
-   * @return the logs
-   */
-  public String toString() {
-    return logs.toString();
-  }
-
-
-  /**
-   * A builder pattern class for <code>FeedbackMessage</code>.
-   * Uses a StringBuilder to format appended error/log messages.
-   * @author Timothy Albert Kline
-   * @version 1.0
-   */
-  public static class Builder {
-    private final StringBuilder logMessages;
-
-    /**
-     * Default constructor
-     */
-    public Builder() {
-      logMessages = new StringBuilder();
-    }
-
-    /**
-     * Adds a log message
-     */
-    public Builder append(String message) {
-      if (message.isEmpty()) {
-        return this;
-      }
-      if (logMessages.isEmpty()) {
-        logMessages.append("\n\r");
-      }
-      logMessages.append(message).append("\n\r");
-
-      return this;
-    }
-
-    /**
-     * @return the length of the log messages
-     */
-    public int length() {
-      return logMessages.length();
-    }
-
-    /**
-     * @return a FeedbackMessage containing the logs
-     */
-    public FeedbackMessage printLog() {
-      return new FeedbackMessage(logMessages);
-    }
-  }
 }

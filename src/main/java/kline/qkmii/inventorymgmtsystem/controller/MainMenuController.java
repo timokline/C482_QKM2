@@ -42,6 +42,18 @@ import java.util.ResourceBundle;
  * Model objects that need to be passed between scenes are injected into the appropriate controller.
  * Injection of the controllers to the corresponding FXML is managed by <code>SceneManager</code>.
  * Dialog popups for feedback of button events are managed by <code>DialogManager</code>.
+ * <p>
+ *   <b>
+ *     <i>FUTURE ENHANCEMENT</i>: Instead of changing the scene for the current stage (window),
+ *                                display a separate stage for each add/modify <code>Part</code>/
+ *                                <code>Product</code>. This would allow the user to have a reference
+ *                                to the current inventory items (in main menu) while they are creating/
+ *                                modifying an item so that the user does not accidentally duplicate
+ *                                information. Ideally, implement a proper database system (like with SQL)
+ *                                to make the inventory more robust. A login window would provide
+ *                                security to the data being accessed.
+ *   </b>
+ * </p>
  *
  * @author Timothy Albert Kline
  * @version 1.0
@@ -125,7 +137,7 @@ public class MainMenuController implements Initializable {
    * Passes the selection into a new <code>ModifyPartController</code>
    * to be injected into the "parts form" FXML.
    * Calls static helper functions to set the controller and change scenes.
-   * Displays a dialog window if no item was selected
+   * Displays a dialog window if no item was selected.
    * 
    * @param event action event
    * @see DialogManager
