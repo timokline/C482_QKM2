@@ -28,6 +28,7 @@ public class InvMgmtSysMain extends Application {
 
   /**
    * This is the main method.
+   * <b>JAVADOCS</b>: Folder located in the root of the project under the name "javadoc"
    * @param args Command line arguments
    */
   public static void main(String[] args) {
