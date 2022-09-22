@@ -1,0 +1,7 @@
+module:kline.qkmii.inventorymgmtsystem
+kline.qkmii.inventorymgmtsystem
+kline.qkmii.inventorymgmtsystem.controller
+kline.qkmii.inventorymgmtsystem.controller.parts
+kline.qkmii.inventorymgmtsystem.controller.products
+kline.qkmii.inventorymgmtsystem.model
+kline.qkmii.inventorymgmtsystem.util
