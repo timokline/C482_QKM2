@@ -60,7 +60,7 @@ public class AddProductController extends ProductsController {
       System.out.println("Product was created.");
       SceneManager.returnToMenu(event);
     } catch (Exception e) {
-      System.out.println(e.getMessage() + ": Product not added.");
+      System.out.println(e.getMessage() + ": Product not added.\n\r");
     }
   }
 }

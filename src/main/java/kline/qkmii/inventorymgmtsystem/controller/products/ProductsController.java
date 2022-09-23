@@ -25,6 +25,7 @@ import kline.qkmii.inventorymgmtsystem.model.Part;
 import kline.qkmii.inventorymgmtsystem.model.Product;
 import kline.qkmii.inventorymgmtsystem.model.ProductBuilder;
 import kline.qkmii.inventorymgmtsystem.util.ErrorHandler;
+import kline.qkmii.inventorymgmtsystem.util.FeedbackMessage;
 import kline.qkmii.inventorymgmtsystem.util.TextFieldContainer;
 
 import java.net.URL;
@@ -312,6 +313,7 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
     if (selectedPart != null) {
       productBuilder.add(selectedPart);
     } else {
+      System.out.println(new NullPointerException() + FeedbackMessage.NULL_SELECTION);
       DialogManager.displaySelectionError();
     }
     populateAssocPartsTbl();
@@ -347,13 +349,14 @@ public abstract class ProductsController implements Initializable, IProdCTRLR {
         try {
           productBuilder.delete(selectedPart);
         } catch (NullPointerException e) {
-          e.printStackTrace();
+          System.out.println(e + "No such part exists.");
           DialogManager.displayPartRemovalError();
         }
       } else {
         DialogManager.displayPartRemovalInfo();
       }
     } else {
+      System.out.println(new NullPointerException() + FeedbackMessage.NULL_SELECTION);
       DialogManager.displaySelectionError();
     }
     populateAssocPartsTbl();

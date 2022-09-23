@@ -160,7 +160,6 @@ public class Inventory {
    * @param selectedProduct the product to be removed.
    * @return true, if product is removed;
    * false, otherwise or selectedProduct has associated parts.
-   * @throws NullPointerException if selectedProduct is null.
    * @see List#remove(Object)
    */
   public static boolean deleteProduct(Product selectedProduct) {

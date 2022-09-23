@@ -134,7 +134,7 @@ public class ModifyPartController extends PartsController {
    *
    * @param event save button click. To redirect back to menu.
    * @throws Exception if error flagged from <code>validateInputs()</code>.
-   * Prevents update of part in <code>Inventory</code>
+   *                   Prevents update of part in <code>Inventory</code>
    * @see PartsController#validateInputs()
    * @see SceneManager#returnToMenu(ActionEvent)
    */
@@ -143,10 +143,10 @@ public class ModifyPartController extends PartsController {
     try {
       validateInputs();
       Inventory.updatePart(currPartIndex, createPart());
-      System.out.println(selectedSrc.getText() + " part was modified.");
+      System.out.println("Part was modified.");
       SceneManager.returnToMenu(event);
     } catch (Exception e) {
-      System.out.println(e.getMessage() + ": Part was not modified");
+      System.out.println(e.getMessage() + ": Part was not modified.\n\r");
     }
   }
 }

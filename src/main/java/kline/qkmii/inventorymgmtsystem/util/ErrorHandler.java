@@ -161,7 +161,7 @@ public final class ErrorHandler {
     try {
       Integer.parseInt(input);
     } catch (NumberFormatException e) {
-      System.out.println(e.getMessage() + ", input is not an integer.");
+      System.out.println(e.getMessage() + ", input is not an integer. Returning false.");
 
       return false;
     }

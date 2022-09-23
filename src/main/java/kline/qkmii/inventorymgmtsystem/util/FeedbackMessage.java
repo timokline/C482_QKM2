@@ -34,6 +34,10 @@ public final class FeedbackMessage {
    * Message for requiring non-empty input.
    */
   public static final String EMPTY_FIELD_MSG = "Required Field";
+  /**
+   * Exception message for a null selection in a <code>TableView</code>.
+   */
+  public static final String NULL_SELECTION = ": No item was selected in tableview.";
 
   /**
    * Constructor that stores the logs from Builder.

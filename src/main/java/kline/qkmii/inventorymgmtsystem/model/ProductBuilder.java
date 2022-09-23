@@ -143,10 +143,13 @@ public class ProductBuilder {
    *
    * @param part the part to delete
    * @return the reference to this ProductBuilder
+   * @throws NullPointerException if part does not exist
    * @see Product#deleteAssociatedPart(Part) 
    */
-  public ProductBuilder delete(Part part) {
-    product.deleteAssociatedPart(part);
+  public ProductBuilder delete(Part part) throws NullPointerException {
+    if(!product.deleteAssociatedPart(part)) {
+      throw new NullPointerException();
+    }
 
     return this;
   }

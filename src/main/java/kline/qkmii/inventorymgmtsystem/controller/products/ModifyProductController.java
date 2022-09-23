@@ -119,7 +119,7 @@ public class ModifyProductController extends ProductsController {
       System.out.println("Product was modified.");
       SceneManager.returnToMenu(event);
     } catch (Exception e) {
-      System.out.println(e.getMessage());
+      System.out.println(e.getMessage() + ": Product not modified.\n\r");
     }
   }
 }

@@ -50,7 +50,7 @@ public final class SceneManager {
       stage.setScene(scene.getScene());
       stage.show();
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException(e + "FXML file could not be found");
     }
   }
 
@@ -68,7 +68,7 @@ public final class SceneManager {
       stage.setScene(new Scene(scene));
       stage.show();
     } catch (NullPointerException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException(e + ": FXMLLoader was not loaded properly");
     }
   }
 
@@ -82,11 +82,14 @@ public final class SceneManager {
    */
   public static FXMLLoader injectController(final Object controller, final String location) {
     var fxmlLoader = new FXMLLoader(InvMgmtSysMain.class.getResource(location));
+    if(controller == null) {
+      throw new RuntimeException(new NullPointerException() + ": Controller class was not instantiated");
+    }
     fxmlLoader.setController(controller);
     try {
       fxmlLoader.load();
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException(e + ": Controller could not be injected into FXML");
     }
 
     return fxmlLoader;

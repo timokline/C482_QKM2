@@ -56,7 +56,7 @@ public class AddPartController extends PartsController {
       System.out.println(selectedSrc.getText() + " part was created.");
       SceneManager.returnToMenu(event);
     } catch (Exception e) {
-      System.out.println(e.getMessage() + ": Part not added.");
+      System.out.println(e.getMessage() + ": Part not added.\n\r");
     }
   }
 }

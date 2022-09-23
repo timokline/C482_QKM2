@@ -28,6 +28,7 @@ import kline.qkmii.inventorymgmtsystem.controller.products.ModifyProductControll
 import kline.qkmii.inventorymgmtsystem.model.Inventory;
 import kline.qkmii.inventorymgmtsystem.model.Part;
 import kline.qkmii.inventorymgmtsystem.model.Product;
+import kline.qkmii.inventorymgmtsystem.util.FeedbackMessage;
 import kline.qkmii.inventorymgmtsystem.util.FilePath;
 
 import java.net.URL;
@@ -153,7 +154,7 @@ public class MainMenuController implements Initializable {
       var fxmlLoader = SceneManager.injectController(modifyPartController, FilePath.PARTS_FORM_SCENE);
       SceneManager.switchScene(event, fxmlLoader);
     } catch (NullPointerException e) {
-      e.printStackTrace();
+      System.out.println(e.getMessage() + FeedbackMessage.NULL_SELECTION);
       DialogManager.displaySelectionError();
     }
   }
@@ -182,7 +183,7 @@ public class MainMenuController implements Initializable {
         DialogManager.displayPartDeletionInfo();
       }
     } else {
-      System.out.println(new NullPointerException() + "No item was selected in tableview.");
+      System.out.println(new NullPointerException() + FeedbackMessage.NULL_SELECTION);
       DialogManager.displaySelectionError();
     }
     ignoredEvent.consume();
@@ -228,7 +229,7 @@ public class MainMenuController implements Initializable {
       var fxmlLoader = SceneManager.injectController(modifyProductController, FilePath.PRODUCTS_FORM_SCENE);
       SceneManager.switchScene(event, fxmlLoader);
     } catch (NullPointerException e) {
-      e.printStackTrace();
+      System.out.println(e.getMessage() + FeedbackMessage.NULL_SELECTION);
       DialogManager.displaySelectionError();
     }
   }
@@ -257,7 +258,7 @@ public class MainMenuController implements Initializable {
         DialogManager.displayProductDeletionInfo();
       }
     } else {
-      System.out.println(new NullPointerException() + "No item was selected in tableview.");
+      System.out.println(new NullPointerException() + FeedbackMessage.NULL_SELECTION);
       DialogManager.displaySelectionError();
     }
     ignoredEvent.consume();
